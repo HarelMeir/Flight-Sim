@@ -1,0 +1,7 @@
+<MediaElement Margin="10,10,10,0 " Source="C:\Projects\WPF\MediaSamples\MediaSamples\Media\Lake.wmv"
+
+                              Name="McMediaElement"
+
+                 Width="450" Height="250" LoadedBehavior="Manual" UnloadedBehavior="Stop" Stretch="Fill"
+
+                 MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>

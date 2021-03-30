@@ -1,0 +1,39 @@
+﻿<Page x:Class="Flight_Sim.controllers.mediaPlayerViewModel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Flight_Sim.controllers"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="mediaPlayerViewModel">
+
+    <Grid>
+
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Image Margin="282,331,455,71.6" Source="/Flight-Sim;component/controllers/images/Image2.png" Stretch="Fill"/>
+        <Image Margin="345,331,391,71.6" Source="/Flight-Sim;component/controllers/images/Image3.png" Stretch="Fill"/>
+        <Image Margin="219,331,518,71.6" Source="/Flight-Sim;component/controllers/images/Image4.png" Stretch="Fill" RenderTransformOrigin="0.068,0.555"/>
+        <Image Margin="409,329,324,71.6" Source="/Flight-Sim;component/controllers/images/Image5.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.96"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="158,331,581,71.6" Source="/Flight-Sim;component/controllers/images/Image6.png" Stretch="Fill"/>
+        <Image Margin="478,331,257,71.6" Source="/Flight-Sim;component/controllers/images/Image7.png" Stretch="Fill"/>
+        <Image Margin="99,331,642,71.6" Source="/Flight-Sim;component/controllers/images/Image10.png" Stretch="Fill"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" Margin="21,20,0,0" VerticalAlignment="Top" Width="769"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="99,67,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="548,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="62"><Run Background="#FFBFBCBC" Text="Play Speed"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="615,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.722,-0.146"/>
+
+
+
+    </Grid>
+</Page>
