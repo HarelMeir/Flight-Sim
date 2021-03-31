@@ -37,6 +37,17 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WPFToolkit.DataVisualization.3.5.50211.1\lib\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -49,6 +60,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -60,6 +74,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controllers\mediaPlayerViewModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphWindow\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphWindow\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,6 +98,12 @@
     </Compile>
     <Compile Include="controllers\mediaPlayerViewModel.xaml.cs">
       <DependentUpon>mediaPlayerViewModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphWindow\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphWindow\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -100,15 +128,42 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Squidward%27s anomaly detector\anomalyTest.csv" />
+    <None Include="Squidward%27s anomaly detector\anomalyTrain.csv" />
+    <None Include="Squidward%27s anomaly detector\HybridAnomalyDetector.h.gch" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="controllers\images\Joystick images\down joystick.png" />
+    <Resource Include="controllers\images\Joystick images\left joystick.png" />
+    <Resource Include="controllers\images\Joystick images\neutral joystick.png" />
+    <Resource Include="controllers\images\Joystick images\right joystick.png" />
+    <Resource Include="controllers\images\Joystick images\up joystick.png" />
+    <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
+    <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
+    <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />
+    <Content Include="Squidward%27s anomaly detector\CLI.cpp" />
+    <Content Include="Squidward%27s anomaly detector\CLI.h" />
+    <Content Include="Squidward%27s anomaly detector\commands.h" />
+    <Content Include="Squidward%27s anomaly detector\HybridAnomalyDetector.cpp" />
+    <Content Include="Squidward%27s anomaly detector\HybridAnomalyDetector.h" />
+    <Content Include="Squidward%27s anomaly detector\MainTrain.cpp" />
+    <Content Include="Squidward%27s anomaly detector\minCircle.cpp" />
+    <Content Include="Squidward%27s anomaly detector\minCircle.h" />
+    <Content Include="Squidward%27s anomaly detector\Server.cpp" />
+    <Content Include="Squidward%27s anomaly detector\Server.h" />
+    <Content Include="Squidward%27s anomaly detector\SimpleAnomalyDetector.cpp" />
+    <Content Include="Squidward%27s anomaly detector\SimpleAnomalyDetector.h" />
+    <Content Include="Squidward%27s anomaly detector\timeseries.cpp" />
+    <Content Include="Squidward%27s anomaly detector\timeseries.h" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="controllers\images\Image1.png" />
   </ItemGroup>
