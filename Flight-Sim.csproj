@@ -141,11 +141,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="controllers\images\Joystick images\down joystick.png" />
-    <Resource Include="controllers\images\Joystick images\left joystick.png" />
-    <Resource Include="controllers\images\Joystick images\neutral joystick.png" />
-    <Resource Include="controllers\images\Joystick images\right joystick.png" />
-    <Resource Include="controllers\images\Joystick images\up joystick.png" />
+    <Resource Include="Joystick images\down joystick.png" />
+    <Resource Include="Joystick images\left joystick.png" />
+    <Resource Include="Joystick images\neutral joystick.png" />
+    <Resource Include="Joystick images\right joystick.png" />
+    <Resource Include="Joystick images\up joystick.png" />
+    <Resource Include="Joystick images\down-left joystick.png" />
+    <Resource Include="Joystick images\down-right joystick.png" />
+    <Resource Include="Joystick images\up-left joystick.png" />
+    <Resource Include="Joystick images\up-right joystick.png" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />
