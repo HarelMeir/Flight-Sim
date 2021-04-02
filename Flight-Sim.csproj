@@ -38,14 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\WPFToolkit.DataVisualization.3.5.50211.1\lib\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -60,16 +54,13 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="controllers\madiaPlayer1.xaml">
+    <Page Include="controllers\mediaPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,8 +72,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="controllers\madiaPlayer1.xaml.cs">
-      <DependentUpon>madiaPlayer1.xaml</DependentUpon>
+    <Compile Include="controllers\mediaPlayerView.xaml.cs">
+      <DependentUpon>mediaPlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controllers\mediaPlayerViewModel.xaml.cs">
+      <DependentUpon>mediaPlayerViewModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="controllers\mediaPlayerModel.cs" />
     <Compile Include="controllers\mediaPlayerViewModel.cs" />
@@ -90,6 +84,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="User Story 3\JoystickControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,15 +120,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Joystick images\down joystick.png" />
-    <Resource Include="Joystick images\left joystick.png" />
-    <Resource Include="Joystick images\neutral joystick.png" />
-    <Resource Include="Joystick images\right joystick.png" />
-    <Resource Include="Joystick images\up joystick.png" />
-    <Resource Include="Joystick images\down-left joystick.png" />
-    <Resource Include="Joystick images\down-right joystick.png" />
-    <Resource Include="Joystick images\up-left joystick.png" />
-    <Resource Include="Joystick images\up-right joystick.png" />
+    <Resource Include="User Story 3\rudder bar.png" />
+    <Resource Include="User Story 3\throttle bar.png" />
+    <Resource Include="User Story 3\0 - neutral joystick.png" />
+    <Resource Include="User Story 3\Joystick images\0 - neutral joystick.png" />
+    <Resource Include="User Story 3\Joystick images\1 - up joystick.png" />
+    <Resource Include="User Story 3\Joystick images\2 - up-right joystick.png" />
+    <Resource Include="User Story 3\Joystick images\3 - right joystick.png" />
+    <Resource Include="User Story 3\Joystick images\4 - down-right joystick.png" />
+    <Resource Include="User Story 3\Joystick images\5 - down joystick.png" />
+    <Resource Include="User Story 3\Joystick images\6 - down-left joystick.png" />
+    <Resource Include="User Story 3\Joystick images\7 - left joystick.png" />
+    <Resource Include="User Story 3\Joystick images\8 - up-left joystick.png" />
+    <Resource Include="User Story 3\Joystick images\rudder bar.png" />
+    <Resource Include="User Story 3\Joystick images\slider.png" />
+    <Resource Include="User Story 3\Joystick images\throttle bar.png" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />

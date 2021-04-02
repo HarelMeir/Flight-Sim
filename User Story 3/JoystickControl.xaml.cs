@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Flight_Sim.GraphWindow
+namespace Flight_Sim.User_Story_3
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for JoystickControl.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class JoystickControl : UserControl
     {
-        public UserControl1()
+        public JoystickControl()
         {
             InitializeComponent();
         }
