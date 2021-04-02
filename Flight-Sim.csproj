@@ -60,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="controllers\madiaPlayer1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="controllers\mediaPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +75,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="controllers\madiaPlayer1.xaml.cs">
+      <DependentUpon>madiaPlayer1.xaml</DependentUpon>
     </Compile>
     <Compile Include="controllers\mediaPlayerView.xaml.cs">
       <DependentUpon>mediaPlayerView.xaml</DependentUpon>
