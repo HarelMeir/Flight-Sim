@@ -60,9 +60,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="User Story 3\JoystickControl.xaml.cs">
-      <DependentUpon>JoystickControl.xaml</DependentUpon>
-    </Compile>
     <Page Include="controllers\mediaPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +81,12 @@
     </Compile>
     <Compile Include="controllers\mediaPlayerViewModel.xaml.cs">
       <DependentUpon>mediaPlayerViewModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphWindow\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphWindow\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
