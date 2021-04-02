@@ -46,6 +46,7 @@ namespace Flight_Sim.controllers
         }
         private void rightStopButton_Click(object sender, RoutedEventArgs e)
         {
+
             Console.WriteLine("adassdsadfjlkjkl");
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)

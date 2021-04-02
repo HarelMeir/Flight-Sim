@@ -10,6 +10,7 @@ namespace Flight_Sim.controllers
     {
         mediaPlayerModel model;
         bool VM_play;
+
         int VM_speedPlay;
         double VM_currentTime;
         

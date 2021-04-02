@@ -10,6 +10,7 @@ namespace Flight_Sim.controllers
     {
         bool play;
         int speedPlay;
+
         double currentTime;
 
         mediaPlayerModel()

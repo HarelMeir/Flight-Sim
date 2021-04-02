@@ -39,7 +39,7 @@
                 <ImageBrush ImageSource="/Flight-Sim;component/controllers/images/Image5.png"></ImageBrush>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="478,331,257,71.6" Name="rightStopButton" VerticalAlignment="Top" Width="63" Click="rightStopButton_Click" RenderTransformOrigin="0.5,0.5" Height="49">
+        <Button Content="" HorizontalAlignment="Left" Margin="472,331,0,0" Name="rightStopButton" VerticalAlignment="Top" Width="63" Click="rightStopButton_Click" RenderTransformOrigin="0.5,0.5" Height="49">
             <Button.Background>
                 <ImageBrush ImageSource="/Flight-Sim;component/controllers/images/Image7.png"></ImageBrush>
             </Button.Background>
