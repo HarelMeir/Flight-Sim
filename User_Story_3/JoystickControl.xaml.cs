@@ -18,10 +18,14 @@ namespace Flight_Sim.User_Story_3
     /// <summary>
     /// Interaction logic for JoystickControl.xaml
     /// </summary>
+
+    
     public partial class JoystickControl : UserControl
     {
+        public string ImageName;
         public JoystickControl()
         {
+            ImageName = "0 - neutral joystick.png";
             InitializeComponent();
         }
     }

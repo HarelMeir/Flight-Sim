@@ -60,13 +60,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="User_Story_3\JoystickControlModel.cs" />
+    <Compile Include="User_Story_3\JoystickControlViewModel.cs" />
     <Page Include="controllers\madiaPlayer1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="controllers\mediaPlayerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -79,19 +77,13 @@
     <Compile Include="controllers\madiaPlayer1.xaml.cs">
       <DependentUpon>madiaPlayer1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controllers\mediaPlayerView.xaml.cs">
-      <DependentUpon>mediaPlayerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="controllers\mediaPlayerViewModel.xaml.cs">
-      <DependentUpon>mediaPlayerViewModel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="controllers\mediaPlayerModel.cs" />
     <Compile Include="controllers\mediaPlayerViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="User Story 3\JoystickControl.xaml">
+    <Page Include="User_Story_3\JoystickControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,21 +119,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="User Story 3\rudder bar.png" />
-    <Resource Include="User Story 3\throttle bar.png" />
-    <Resource Include="User Story 3\0 - neutral joystick.png" />
-    <Resource Include="User Story 3\Joystick images\0 - neutral joystick.png" />
-    <Resource Include="User Story 3\Joystick images\1 - up joystick.png" />
-    <Resource Include="User Story 3\Joystick images\2 - up-right joystick.png" />
-    <Resource Include="User Story 3\Joystick images\3 - right joystick.png" />
-    <Resource Include="User Story 3\Joystick images\4 - down-right joystick.png" />
-    <Resource Include="User Story 3\Joystick images\5 - down joystick.png" />
-    <Resource Include="User Story 3\Joystick images\6 - down-left joystick.png" />
-    <Resource Include="User Story 3\Joystick images\7 - left joystick.png" />
-    <Resource Include="User Story 3\Joystick images\8 - up-left joystick.png" />
-    <Resource Include="User Story 3\Joystick images\rudder bar.png" />
-    <Resource Include="User Story 3\Joystick images\slider.png" />
-    <Resource Include="User Story 3\Joystick images\throttle bar.png" />
+    <Resource Include="User_Story_3\Joystick_images\4_down-right_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\0_neutral_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\1_up_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\2_up-right_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\3_right_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\4 _down-right_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\5_down_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\6_down-left_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\7_left_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\8_up-left_joystick.png" />
+    <Resource Include="User_Story_3\Joystick_images\rudder_bar.png" />
+    <Resource Include="User_Story_3\Joystick_images\slider.png" />
+    <Resource Include="User_Story_3\Joystick_images\throttle_bar.png" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />

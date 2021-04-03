@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Flight_Sim"
-        xmlns:controllers="clr-namespace:Flight_Sim.controllers" x:Class="Flight_Sim.MainWindow"
+        xmlns:controllers="clr-namespace:Flight_Sim.controllers" xmlns:User_Story_3="clr-namespace:Flight_Sim.User_Story_3" x:Class="Flight_Sim.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="Black">

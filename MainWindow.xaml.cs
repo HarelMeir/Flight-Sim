@@ -24,5 +24,10 @@ namespace Flight_Sim
         {
             InitializeComponent();
         }
+
+        private void madiaPlayer1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
