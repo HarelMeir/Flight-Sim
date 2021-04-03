@@ -60,11 +60,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FlightSimApp.xaml.cs">
+      <DependentUpon>FlightSimApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FlightSimM.cs" />
+    <Compile Include="FlightSimVM.cs" />
+    <Compile Include="IFlightSimM.cs" />
+    <Compile Include="IFlightSimVM.cs" />
     <Compile Include="User_Story_3\JoystickControlModel.cs" />
     <Compile Include="User_Story_3\JoystickControlViewModel.cs" />
     <Page Include="controllers\madiaPlayer1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FlightSimApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
