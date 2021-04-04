@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Flight_Sim.User_Story_3
+namespace Flight_Sim
 {
     /// <summary>
-    /// Interaction logic for JoystickControl.xaml
+    /// Interaction logic for Hello.xaml
     /// </summary>
-    public partial class JoystickControl : UserControl
+    public partial class Hello : Window
     {
-        public JoystickControl()
+        public Hello()
         {
             InitializeComponent();
         }
