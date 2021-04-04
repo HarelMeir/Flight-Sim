@@ -14,7 +14,7 @@ namespace Flight_Sim
     {
             
         //fields
-        private IFlightSimM model;
+        private FlightSimM model;
         public event PropertyChangedEventHandler PropertyChanged;
 
 
