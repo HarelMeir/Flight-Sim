@@ -19,6 +19,7 @@ namespace Flight_Sim.User_Story_3
         public JoystickControlViewModel(FlightdataModel fdm)
         {
             this.model = fdm;
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) { NotifyPropertyChanged("VM_" + e.PropertyName); };
         }
 
 
@@ -26,11 +27,25 @@ namespace Flight_Sim.User_Story_3
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
+            {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                ///////very temporary, not right at all
+                UpdateAll();
+            }
+                
         }
 
-        private string imageName = "Joystick_images\\0_neutral_joystick.png";
+        //updates positions in the view
+        public void UpdateAll() {
+            UpdateJoystickPosition();
+           // UpdateRudderPosition();
+           // UpdateThrottle1Position();
+            //UpdateThrottle2Position();
+        }
 
+
+        //Binding for Joystick image
+        private string imageName = "Joystick_images\\0_neutral_joystick.png";
         public string ImageName {
             get { return imageName; }
             set {
@@ -44,7 +59,7 @@ namespace Flight_Sim.User_Story_3
 
         //public const Thickness t 
         private int rudderSliderPos = 400;
-        public int RudderSliderPos
+        public int VM_Rudder
         {
             get { return rudderSliderPos; }
             set
@@ -52,25 +67,23 @@ namespace Flight_Sim.User_Story_3
                 if (rudderSliderPos != value)
                 {
                     rudderSliderPos = value;
-                    NotifyPropertyChanged(nameof(RudderSliderPos));
+                    UpdateRudderPosition();
                 }
             }
         }
-        //private const int rudderStartPos
         private const int rudderLeft = 310;
         private const int rudderWidth = 210;
-        private Thickness defaultThickness = new Thickness(400, 318, 0, 0);
-       
+        private Thickness defualtRudderThickness = new Thickness(400, 318, 0, 0);
         public Thickness RudderMargin
         {
-            get { return new Thickness(RudderSliderPos, defaultThickness.Top, defaultThickness.Right, defaultThickness.Bottom);}
+            get { return new Thickness(VM_Rudder, defualtRudderThickness.Top, defualtRudderThickness.Right, defualtRudderThickness.Bottom);}
         }
 
 
         private const int throttleHeight = 226;
         private const int throttleTop = 71;
         private int throttleSliderPos = 168;
-        public int ThrottleSliderPos
+        public int VM_Throttle1
         {
             get { return throttleSliderPos; }
             set
@@ -78,7 +91,7 @@ namespace Flight_Sim.User_Story_3
                 if (throttleSliderPos != value)
                 {
                     throttleSliderPos = value;
-                    //PropertyChanged(this, new PropertyChangedEventArgs(nameof(ThrottleSliderPos)));
+                    UpdateThrottle1Position();
                 }
             }
         }
@@ -87,21 +100,21 @@ namespace Flight_Sim.User_Story_3
             get {
                 //not sure how this works yet so specifically setting throttle and rudder diferently to see which one works.
                 //PropertyChanged(this, new PropertyChangedEventArgs(nameof(ThrottleMargin)));
-                return new Thickness(244, ThrottleSliderPos, 0, 0); }
+                return new Thickness(244, VM_Throttle1, 0, 0); }
         }
         public void UpdateRudderPosition()
         {
             for (int i = 0; i <= 10; i++) {
                 if (model.Rudder <= -1 + (0.2 * i) && model.Rudder >= -1 + (0.2 * (i + 1))) 
-                    RudderSliderPos = rudderLeft + i * (1 / 10) * rudderWidth;
+                    VM_Rudder = rudderLeft + i * (1 / 10) * rudderWidth;
             }  
         }
-        public void UpdateThrottlePosition()
+        public void UpdateThrottle1Position()
         {
             for (int i = 0; i <= 10; i++)
             {
                 if (model.Throttle1 <= -1 + (0.2 * i) && model.Throttle1 >= -1 + (0.2 * (i + 1)))
-                    ThrottleSliderPos = throttleTop + i * (1 / 10) * throttleHeight;
+                    VM_Throttle1 = throttleTop + i * (1 / 10) * throttleHeight;
             }
         }
 
