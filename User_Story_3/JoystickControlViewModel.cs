@@ -14,12 +14,20 @@ namespace Flight_Sim.User_Story_3
 {
     class JoystickControlViewModel : INotifyPropertyChanged
     {
-        FlightdataModel fdm;
-        public JoystickControlViewModel(FlightdataModel fdm) {
-            this.fdm = fdm;
+
+        FlightdataModel model;
+        public JoystickControlViewModel(FlightdataModel fdm)
+        {
+            this.model = fdm;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
 
         private string imageName = "Joystick_images\\0_neutral_joystick.png";
 
@@ -29,7 +37,7 @@ namespace Flight_Sim.User_Story_3
                 if (imageName != value)
                 {
                     imageName = value;
-                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(ImageName)));
+                    NotifyPropertyChanged(nameof(ImageName));
                 }
             }
         }
@@ -44,18 +52,23 @@ namespace Flight_Sim.User_Story_3
                 if (rudderSliderPos != value)
                 {
                     rudderSliderPos = value;
-                    //not sure how this works yet so specifically setting throttle and rudder diferently to see which one works.
-                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(RudderSliderPos)));
+                    NotifyPropertyChanged(nameof(RudderSliderPos));
                 }
             }
         }
-        //private const int rudder0
+        //private const int rudderStartPos
+        private const int rudderLeft = 310;
+        private const int rudderWidth = 210;
+        private Thickness defaultThickness = new Thickness(400, 318, 0, 0);
+       
         public Thickness RudderMargin
         {
-            get { return new Thickness(RudderSliderPos, 318, 0, 0); }
+            get { return new Thickness(RudderSliderPos, defaultThickness.Top, defaultThickness.Right, defaultThickness.Bottom);}
         }
 
 
+        private const int throttleHeight = 226;
+        private const int throttleTop = 71;
         private int throttleSliderPos = 168;
         public int ThrottleSliderPos
         {
@@ -73,51 +86,59 @@ namespace Flight_Sim.User_Story_3
         {
             get {
                 //not sure how this works yet so specifically setting throttle and rudder diferently to see which one works.
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(ThrottleMargin)));
+                //PropertyChanged(this, new PropertyChangedEventArgs(nameof(ThrottleMargin)));
                 return new Thickness(244, ThrottleSliderPos, 0, 0); }
         }
-
         public void UpdateRudderPosition()
         {
-            //if RUD < -0.9 -> RudderSliderPos = leftMargin + 1/10 * totalMarginLength
-
-            //
+            for (int i = 0; i <= 10; i++) {
+                if (model.Rudder <= -1 + (0.2 * i) && model.Rudder >= -1 + (0.2 * (i + 1))) 
+                    RudderSliderPos = rudderLeft + i * (1 / 10) * rudderWidth;
+            }  
         }
+        public void UpdateThrottlePosition()
+        {
+            for (int i = 0; i <= 10; i++)
+            {
+                if (model.Throttle1 <= -1 + (0.2 * i) && model.Throttle1 >= -1 + (0.2 * (i + 1)))
+                    ThrottleSliderPos = throttleTop + i * (1 / 10) * throttleHeight;
+            }
+        }
+
 
         private double lastAileron = 0;
         private double lastElevator = 0;
-
         public void UpdateJoystickPosition()
         {
-            if (lastElevator == this.fdm.Elevator && lastAileron == this.fdm.Aileron)
-                  ImageName = "Joystick_images\\0_neutral_joystick.png";
+            if (lastElevator == this.model.Elevator && lastAileron == this.model.Aileron)
+                ImageName = "Joystick_images\\0_neutral_joystick.png";
 
-            if (lastElevator < this.fdm.Elevator && lastAileron == this.fdm.Aileron)
-                  ImageName = "Joystick_images\\1_up_joystick.png";
+            if (lastElevator < this.model.Elevator && lastAileron == this.model.Aileron)
+                ImageName = "Joystick_images\\1_up_joystick.png";
 
-            if (lastElevator < this.fdm.Elevator && lastAileron < this.fdm.Aileron)
-                  ImageName = "Joystick_images\\2_up-right_joystick.png";
+            if (lastElevator < this.model.Elevator && lastAileron < this.model.Aileron)
+                ImageName = "Joystick_images\\2_up-right_joystick.png";
 
-            if (lastElevator == this.fdm.Elevator && lastAileron < this.fdm.Aileron)
-                  ImageName = "Joystick_images\\3_right_joystick.png";
+            if (lastElevator == this.model.Elevator && lastAileron < this.model.Aileron)
+                ImageName = "Joystick_images\\3_right_joystick.png";
 
-            if (lastElevator > this.fdm.Elevator && lastAileron < this.fdm.Aileron)
-                  ImageName = "Joystick_images\\4_down-right_joystick.png";
+            if (lastElevator > this.model.Elevator && lastAileron < this.model.Aileron)
+                ImageName = "Joystick_images\\4_down-right_joystick.png";
 
-            if (lastElevator > this.fdm.Elevator && lastAileron == this.fdm.Aileron)
-                  ImageName = "Joystick_images\\5_down_joystick.png";
+            if (lastElevator > this.model.Elevator && lastAileron == this.model.Aileron)
+                ImageName = "Joystick_images\\5_down_joystick.png";
 
-            if (lastElevator > this.fdm.Elevator && lastAileron > this.fdm.Aileron)
-                  ImageName = "Joystick_images\\6_down-left_joystick.png";
+            if (lastElevator > this.model.Elevator && lastAileron > this.model.Aileron)
+                ImageName = "Joystick_images\\6_down-left_joystick.png";
 
-            if (lastElevator > this.fdm.Elevator && lastAileron == this.fdm.Aileron)
-                  ImageName = "Joystick_images\\7_left_joystick.png";
+            if (lastElevator > this.model.Elevator && lastAileron == this.model.Aileron)
+                ImageName = "Joystick_images\\7_left_joystick.png";
 
-            if (lastElevator > this.fdm.Elevator && lastAileron < this.fdm.Aileron)
-                  ImageName = "Joystick_images\\8_up-left_joystick.png";
+            if (lastElevator > this.model.Elevator && lastAileron < this.model.Aileron)
+                ImageName = "Joystick_images\\8_up-left_joystick.png";
 
-            lastAileron = this.fdm.Aileron;
-            lastElevator = this.fdm.Elevator;
+            lastAileron = this.model.Aileron;
+            lastElevator = this.model.Elevator;
         }
 
     }

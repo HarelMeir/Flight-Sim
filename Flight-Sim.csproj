@@ -68,7 +68,9 @@
     <Compile Include="FlightSimVM.cs" />
     <Compile Include="IFlightSimM.cs" />
     <Compile Include="IFlightSimVM.cs" />
-    <Compile Include="User_Story_3\JoystickControlModel.cs" />
+    <Compile Include="User_Story_3\JoystickControlView.xaml.cs">
+      <DependentUpon>JoystickControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User_Story_3\JoystickControlViewModel.cs" />
     <Page Include="controllers\madiaPlayer1.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,7 +97,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="User_Story_3\JoystickControl.xaml">
+    <Page Include="User_Story_3\JoystickControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

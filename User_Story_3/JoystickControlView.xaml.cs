@@ -14,23 +14,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Flight_Sim.User_Story_3
-
 {
     /// <summary>
-    /// Interaction logic for JoystickControl.xaml
+    /// Interaction logic for JoystickControlView.xaml
     /// </summary>
-
-
-    public partial class JoystickControl : UserControl
+    public partial class JoystickControlView : UserControl
     {
-        
-        //JoystickControlViewModel vm;
-        public JoystickControl()
+        public JoystickControlView()
         {
             InitializeComponent();
-            //vm = new JoystickControlViewModel(new FlightdataModel());
+            JoystickControlViewModel vm = new JoystickControlViewModel(new FlightdataModel());
+            DataContext = vm;
         }
-
-       
     }
 }
