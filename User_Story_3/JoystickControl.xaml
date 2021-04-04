@@ -10,10 +10,12 @@
         <local:JoystickControlViewModel/>
     </UserControl.DataContext>
     <Grid RenderTransformOrigin="0.531,0.414">
-        <Image x:Name ="Joystick" HorizontalAlignment="Left" Height="226" Margin="310,71,0,0" VerticalAlignment="Top" Width="228" Source="{Binding ImageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Image x:Name ="Joystick" HorizontalAlignment="Left" Height="226" Margin="310,71,0,0" VerticalAlignment="Top" Width="228" Source="{Binding ImageName, UpdateSourceTrigger=PropertyChanged}"/>
         <Image x:Name="Throttle" HorizontalAlignment="Left" Height="226" Margin="248,71,0,0" VerticalAlignment="Top" Width="37" Source="Joystick_images/throttle_bar.png"/>
         <Image x:Name="Rudder" HorizontalAlignment="Left" Height="38" Margin="310,321,0,0" VerticalAlignment="Top" Width="228" Source="Joystick_images/rudder_bar.png"/>
         <Image x:Name="Rudder_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding RudderMargin, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
         <Image x:Name="Throttle_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding ThrottleMargin, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
+        <TextBox Name="Rudder_text" HorizontalAlignment="Left" Height="23" Margin="387,364,0,0" TextWrapping="Wrap" Text="&lt;-Rudder-&gt;" VerticalAlignment="Top" Width="76"/>
+        <TextBox x:Name="Throttle_text" HorizontalAlignment="Left" Height="53" Margin="195,156,0,0" TextWrapping="Wrap" Text="     ^&#xD;&#xA;Throttle&#xD;&#xA;     v" VerticalAlignment="Top" Width="48"/>
     </Grid>
 </UserControl>
