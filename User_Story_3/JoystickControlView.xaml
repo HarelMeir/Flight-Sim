@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Flight_Sim.User_Story_3"
+             xmlns:local="clr-namespace:Flight_Sim.User_Story_3" d:DataContext="{d:DesignInstance Type=local:JoystickControlViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Image x:Name ="Joystick" HorizontalAlignment="Left" Height="226" Margin="310,71,0,0" VerticalAlignment="Top" Width="228" Source="{Binding ImageName, UpdateSourceTrigger=PropertyChanged}"/>
-        <Image x:Name="Throttle" HorizontalAlignment="Left" Height="226" Margin="248,71,0,0" VerticalAlignment="Top" Width="37" Source="Joystick_images/throttle_bar.png"/>
-        <Image x:Name="Rudder" HorizontalAlignment="Left" Height="38" Margin="310,321,0,0" VerticalAlignment="Top" Width="228" Source="Joystick_images/rudder_bar.png"/>
-        <Image x:Name="Rudder_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding RudderMargin, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
-        <Image x:Name="Throttle_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding ThrottleMargin, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
-        <TextBox Name="Rudder_text" HorizontalAlignment="Left" Height="23" Margin="387,364,0,0" TextWrapping="Wrap" Text="&lt;-Rudder-&gt;" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="Throttle_text" HorizontalAlignment="Left" Height="53" Margin="195,156,0,0" TextWrapping="Wrap" Text="     ^&#xD;&#xA;Throttle&#xD;&#xA;     v" VerticalAlignment="Top" Width="48"/>
+        <Image x:Name="Throttle" HorizontalAlignment="Left" Height="{Binding ThrottleHeight}" Margin="{Binding ThrottleMargin}" VerticalAlignment="Top" Width="37" Source="Joystick_images/throttle_bar.png"/>
+        <Image x:Name="Rudder" HorizontalAlignment="Left" Height="38" Margin="{Binding RudderMargin}" VerticalAlignment="Top" Width="{Binding RudderWidth}" Source="Joystick_images/rudder_bar.png"/>
+        <Image x:Name="Rudder_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding RudderSliderMargin}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
+        <Image x:Name="Throttle_slider" HorizontalAlignment="Left" Height="45" Margin="{Binding ThrottleSliderMargin, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="45" Source="Joystick_images/slider.png"/>
+        <TextBlock Name="Rudder_text" HorizontalAlignment="Left" Height="23" Margin="387,364,0,0" TextWrapping="Wrap" Text="&lt;-Rudder-&gt;" VerticalAlignment="Top" Width="76"/>
+        <TextBlock x:Name="Throttle_text" HorizontalAlignment="Left" Height="53" Margin="195,156,0,0" TextWrapping="Wrap" Text="     ^&#xD;&#xA;Throttle&#xD;&#xA;     v" VerticalAlignment="Top" Width="48"/>
     </Grid>
 </UserControl>

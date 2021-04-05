@@ -16,32 +16,37 @@ namespace Flight_Sim.User_Story_3
     {
 
         FlightdataModel model;
-        public JoystickControlViewModel(FlightdataModel fdm)
-        {
+        public JoystickControlViewModel(FlightdataModel fdm) {
             this.model = fdm;
+            rudderSliderPos = RudderMargin.Left;
+            throttleSliderPos = ThrottleMargin.Top;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) { NotifyPropertyChanged("VM_" + e.PropertyName); };
         }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-            {
+        public void NotifyPropertyChanged(string propName) {
+            if (this.PropertyChanged != null) {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-                ///////very temporary, not right at all
-                UpdateAll();
+
             }
-                
+
         }
 
-        //updates positions in the view
-        public void UpdateAll() {
-            UpdateJoystickPosition();
-           // UpdateRudderPosition();
-           // UpdateThrottle1Position();
-            //UpdateThrottle2Position();
+
+
+        //keep track of csv line number and update joystick when there's a change
+        private int lineNumber = 0;
+        public int VM_LineNumber { get { return lineNumber; } //////might not be called lineNumber when it's added.
+            set { 
+                if (lineNumber != value) {
+                    lineNumber = value;
+                    UpdateJoystickPosition();
+                }
+            }
         }
+
+
 
 
         //Binding for Joystick image
@@ -49,76 +54,68 @@ namespace Flight_Sim.User_Story_3
         public string ImageName {
             get { return imageName; }
             set {
-                if (imageName != value)
-                {
+                if (imageName != value) {
                     imageName = value;
                     NotifyPropertyChanged(nameof(ImageName));
                 }
             }
         }
 
-        //public const Thickness t 
-        private int rudderSliderPos = 400;
-        public int VM_Rudder
-        {
+
+
+
+        //Rudder definitions and functions to move the slider
+        private double rudderSliderPos;
+        public double VM_Rudder {
             get { return rudderSliderPos; }
-            set
-            {
-                if (rudderSliderPos != value)
-                {
+            set {
+                if (rudderSliderPos != value) {
                     rudderSliderPos = value;
                     UpdateRudderPosition();
                 }
             }
         }
-        private const int rudderLeft = 310;
-        private const int rudderWidth = 210;
-        private Thickness defualtRudderThickness = new Thickness(400, 318, 0, 0);
-        public Thickness RudderMargin
-        {
-            get { return new Thickness(VM_Rudder, defualtRudderThickness.Top, defualtRudderThickness.Right, defualtRudderThickness.Bottom);}
+
+        public Thickness RudderMargin { get { return new Thickness(310, 321, 0, 0); } }
+        public int RudderWidth { get{ return 210; } }
+        public Thickness RudderSliderMargin { get { return new Thickness(VM_Rudder, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
+        public void UpdateRudderPosition() {
+            for (int i = 0; i <= 10; i++) {
+                if (model.Rudder <= -1 + (0.2 * i) && model.Rudder >= -1 + (0.2 * (i + 1)))
+                    VM_Rudder = RudderMargin.Left + i * (1 / 10) * RudderWidth;
+            }
         }
 
 
-        private const int throttleHeight = 226;
-        private const int throttleTop = 71;
-        private int throttleSliderPos = 168;
-        public int VM_Throttle1
+
+
+        //Throttle definitions and functions to move the slider
+        private double throttleSliderPos;
+        public double VM_Throttle1
         {
             get { return throttleSliderPos; }
-            set
-            {
-                if (throttleSliderPos != value)
-                {
+            set {
+                if (throttleSliderPos != value) {
                     throttleSliderPos = value;
                     UpdateThrottle1Position();
                 }
             }
         }
-        public Thickness ThrottleMargin
-        {
-            get {
-                //not sure how this works yet so specifically setting throttle and rudder diferently to see which one works.
-                //PropertyChanged(this, new PropertyChangedEventArgs(nameof(ThrottleMargin)));
-                return new Thickness(244, VM_Throttle1, 0, 0); }
-        }
-        public void UpdateRudderPosition()
-        {
+
+        public Thickness ThrottleMargin { get { return new Thickness(248, 71, 0, 0); }}
+        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_Throttle1, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
+        public double ThrottleHeight { get { return 226; } }
+        public void UpdateThrottle1Position() {
             for (int i = 0; i <= 10; i++) {
-                if (model.Rudder <= -1 + (0.2 * i) && model.Rudder >= -1 + (0.2 * (i + 1))) 
-                    VM_Rudder = rudderLeft + i * (1 / 10) * rudderWidth;
-            }  
-        }
-        public void UpdateThrottle1Position()
-        {
-            for (int i = 0; i <= 10; i++)
-            {
                 if (model.Throttle1 <= -1 + (0.2 * i) && model.Throttle1 >= -1 + (0.2 * (i + 1)))
-                    VM_Throttle1 = throttleTop + i * (1 / 10) * throttleHeight;
+                    VM_Throttle1 = ThrottleMargin.Bottom - i * (1 / 10) * ThrottleHeight;
             }
         }
 
 
+
+
+        //Joystick logic for changing positions
         private double lastAileron = 0;
         private double lastElevator = 0;
         public void UpdateJoystickPosition()
