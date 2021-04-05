@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Flight_Sim"
             xmlns:controllers="clr-namespace:Flight_Sim.controllers" xmlns:User_Story_3="clr-namespace:Flight_Sim.User_Story_3"
         mc:Ignorable="d"
-        Title="FlightSimApp" Height="950" Width="1800">
-    <Grid Background="White" RenderTransformOrigin="0.436,0.491">
+        Title="FlightSimApp" Height="500.043" Width="1500">
+    <Grid Background="White" RenderTransformOrigin="0.436,0.491" Margin="0,0,404,461">
 
-        <controllers:madiaPlayer1 HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,-36"/>
-        <User_Story_3:JoystickControlView HorizontalAlignment="Left" Margin="779,43,0,0" VerticalAlignment="Top" Height="525" Width="741"/>
-        <local:UserStory5 HorizontalAlignment="Left" Margin="646,372,0,0" VerticalAlignment="Top"/>
+        <controllers:madiaPlayer1 HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="794" Margin="-83,0,0,-448"/>
+        <User_Story_3:JoystickControlView HorizontalAlignment="Left" Height="428" Margin="512,0,-66,-420" VerticalAlignment="Top" Width="642"/>
+        <local:UserStory5 HorizontalAlignment="Left" Margin="1078,10,-224,-292" VerticalAlignment="Top" Height="290" Width="234" Loaded="UserStory5_Loaded"/>
 
 
     </Grid>
