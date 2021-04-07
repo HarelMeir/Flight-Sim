@@ -20,6 +20,7 @@ namespace Flight_Sim.User_Story_3
             this.model = fdm;
             rudderSliderPos = RudderMargin.Left;
             throttleSliderPos = ThrottleMargin.Top;
+            sliderJumps = 2 / sliderAccuracy;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) { NotifyPropertyChanged("VM_" + e.PropertyName); };
         }
 
@@ -30,7 +31,6 @@ namespace Flight_Sim.User_Story_3
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
 
             }
-
         }
 
 
@@ -63,6 +63,9 @@ namespace Flight_Sim.User_Story_3
 
 
 
+        //how many chunks to divide the slider into
+        private int sliderAccuracy = 10;
+        private int sliderJumps;
 
         //Rudder definitions and functions to move the slider
         private double rudderSliderPos;
@@ -80,9 +83,9 @@ namespace Flight_Sim.User_Story_3
         public int RudderWidth { get{ return 210; } }
         public Thickness RudderSliderMargin { get { return new Thickness(VM_Rudder, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
         public void UpdateRudderPosition() {
-            for (int i = 0; i <= 10; i++) {
-                if (model.Rudder <= -1 + (0.2 * i) && model.Rudder >= -1 + (0.2 * (i + 1)))
-                    VM_Rudder = RudderMargin.Left + i * (1 / 10) * RudderWidth;
+            for (int i = 0; i <= sliderAccuracy; i++) {
+                if (model.Rudder <= -1 + (sliderJumps * i) && model.Rudder >= -1 + (sliderJumps * (i + 1)))
+                    VM_Rudder = RudderMargin.Left + i * (1 / sliderAccuracy) * RudderWidth;
             }
         }
 
@@ -106,9 +109,9 @@ namespace Flight_Sim.User_Story_3
         public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_Throttle1, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
-            for (int i = 0; i <= 10; i++) {
-                if (model.Throttle1 <= -1 + (0.2 * i) && model.Throttle1 >= -1 + (0.2 * (i + 1)))
-                    VM_Throttle1 = ThrottleMargin.Bottom - i * (1 / 10) * ThrottleHeight;
+            for (int i = 0; i <= sliderAccuracy; i++) {
+                if (model.Throttle1 <= -1 + (sliderJumps * i) && model.Throttle1 >= -1 + (sliderJumps * (i + 1)))
+                    VM_Throttle1 = ThrottleMargin.Bottom - i * (1 / sliderAccuracy) * ThrottleHeight;
             }
         }
 

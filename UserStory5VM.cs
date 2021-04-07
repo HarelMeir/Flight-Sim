@@ -40,7 +40,7 @@ namespace Flight_Sim
 
         private double airspeed = 0; 
         public string Airspeed_Text { get { return "Airspeed: " + VM_Airspeed; } }
-        public double VM_Airspeed //////////might need to switch to indicated-speed-kt
+        public double VM_Airspeed //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
         {
             get { return airspeed; }
             set { airspeed = value; }
