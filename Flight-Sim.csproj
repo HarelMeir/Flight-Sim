@@ -157,6 +157,8 @@
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />
+    <Content Include="Squidward%27s anomaly detector\CircleAnomalyDetector.cpp" />
+    <Content Include="Squidward%27s anomaly detector\CircleAnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\CLI.cpp" />
     <Content Include="Squidward%27s anomaly detector\CLI.h" />
     <Content Include="Squidward%27s anomaly detector\commands.h" />
