@@ -23,7 +23,7 @@ namespace Flight_Sim
         public UserStory5()
         {
             InitializeComponent();
-            UserStory5VM vm = new UserStory5VM(new FlightdataModel());
+            UserStory5VM vm = new UserStory5VM(Single.Singleton());
             DataContext = vm;
         }
     }

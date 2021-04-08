@@ -57,7 +57,7 @@ namespace Flight_Sim
             {
                 error_msg_csv.Visibility = Visibility.Hidden;
                 error_msg_xml.Visibility = Visibility.Hidden;
-                MessageBox.Show("Lets get this party started!");
+               // MessageBox.Show("Lets get this party started!");
                 Thread.Sleep(500);
                 vm.Connect();
                 FlightSimApp fsa = new FlightSimApp();
