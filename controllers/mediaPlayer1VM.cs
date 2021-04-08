@@ -18,7 +18,7 @@ namespace Flight_Sim.controllers
         {
             this.model.Play();
         }
-        public void VM_Pause()
+        /*public void VM_Pause()
         {
             this.model.Pause();
         }
@@ -47,7 +47,7 @@ namespace Flight_Sim.controllers
         public void VM_changeTimeSlider()
         {
             this.model.Play();
-        }
+        }*/
 
     }
 }

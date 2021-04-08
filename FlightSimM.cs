@@ -261,7 +261,7 @@ namespace Flight_Sim
                         {
                             Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[i]);
 
-                            stream.Write(lineInBytes, 0, lineInBytes.Length);
+                            //stream.Write(lineInBytes, 0, lineInBytes.Length);
                             Thread.Sleep(playRythm);
                         }
                         stop = true;

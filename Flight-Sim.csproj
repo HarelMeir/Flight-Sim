@@ -99,7 +99,6 @@
     <Compile Include="IFlightSimM.cs" />
     <Compile Include="IFlightSimVM.cs" />
     <Compile Include="controllers\mediaPlayer1VM.cs" />
-    <Compile Include="User_Story_3\JoystickControlModel.cs" />
     <Compile Include="UserStory5.xaml.cs">
       <DependentUpon>UserStory5.xaml</DependentUpon>
     </Compile>

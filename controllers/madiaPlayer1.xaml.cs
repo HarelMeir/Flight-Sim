@@ -40,29 +40,29 @@ namespace Flight_Sim.controllers
         }
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            // playFlag = false;
-            this.vm.VM_Pause();
+
+            //this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {
-            this.vm.VM_rightButton();
+           // this.vm.VM_rightButton();
         }
         private void rightStopButton_Click(object sender, RoutedEventArgs e)
         {
 
-            this.vm.VM_rightStopButton();
+           // this.vm.VM_rightStopButton();
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
-            this.vm.VM_Stop();
+           // this.vm.VM_Stop();
         }
         private void leftButton_Click(object sender, RoutedEventArgs e)
         {
-            this.vm.VM_leftButton();
+            //this.vm.VM_leftButton();
         }
         private void leftStopButton_Click(object sender, RoutedEventArgs e)
         {
-            this.vm.VM_leftStopButton();
+            //this.vm.VM_leftStopButton();
         }
 
 
