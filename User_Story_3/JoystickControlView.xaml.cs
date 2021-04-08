@@ -16,17 +16,15 @@ using System.Windows.Shapes;
 namespace Flight_Sim.User_Story_3
 {
     /// <summary>
-    /// Interaction logic for JoystickControl.xaml
+    /// Interaction logic for JoystickControlView.xaml
     /// </summary>
-
-    
-    public partial class JoystickControl : UserControl
+    public partial class JoystickControlView : UserControl
     {
-        public string ImageName;
-        public JoystickControl()
+        public JoystickControlView()
         {
-            ImageName = "0 - neutral joystick.png";
             InitializeComponent();
+            JoystickControlViewModel vm = new JoystickControlViewModel(new FlightdataModel());
+            DataContext = vm;
         }
     }
 }

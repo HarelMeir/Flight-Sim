@@ -10,23 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Flight_Sim
 {
     /// <summary>
-    /// Interaction logic for FlightSimApp.xaml
+    /// Interaction logic for UserStory5.xaml
     /// </summary>
-    public partial class FlightSimApp : Window
+    public partial class UserStory5 : UserControl
     {
-        public FlightSimApp()
+        public UserStory5()
         {
             InitializeComponent();
-        }
-
-        private void UserStory5_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            UserStory5VM vm = new UserStory5VM(new FlightdataModel());
+            DataContext = vm;
         }
     }
 }
