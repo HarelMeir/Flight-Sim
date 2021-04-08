@@ -25,7 +25,7 @@ namespace Flight_Sim
         private FlightSimVM vm;
         public MainWindow()
         {
-            vm = new FlightSimVM(new FlightSimM("localhost", 5400));
+            vm = new FlightSimVM();
             DataContext = vm;
             InitializeComponent();
         }
@@ -63,6 +63,8 @@ namespace Flight_Sim
                 FlightSimApp fsa = new FlightSimApp();
                 fsa.Show();
                 this.Close();
+
+
             }
         }
 
@@ -93,7 +95,6 @@ namespace Flight_Sim
             if (result == true)
             {
                 user_XML_Path.Text = openFileDlg.FileName;
-                
             }
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flight_Sim.User_Story_3
 {
-    public class JoystickControlModel
+    class JoystickControlModel
     {
 
     }
