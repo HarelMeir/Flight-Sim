@@ -24,7 +24,7 @@ namespace Flight_Sim.User_Story_3
         {
             InitializeComponent();
             //JoystickControlViewModel vm = new JoystickControlViewModel(new FlightdataModel());
-            JoystickControlViewModel vm = new JoystickControlViewModel(Single.Singleton());
+            JoystickControlViewModel vm = new JoystickControlViewModel(Single.SingleDataModel());
             DataContext = vm;
         }
     }

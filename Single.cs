@@ -8,15 +8,29 @@ namespace Flight_Sim
 {
     static class Single
     {
-        private static bool flag = true;
+        private static bool dataFlag = true;
         private static FlightdataModel fdm;
-        public static FlightdataModel Singleton()
+        public static FlightdataModel SingleDataModel()
         {
-            if (flag) {
+            Console.WriteLine("data flag: " + dataFlag + "\n");
+            if (dataFlag) {
                 fdm = new FlightdataModel();
-                flag = false;
+                dataFlag = false;
             }
             return fdm;
+        }
+
+
+        private static bool MFlag = true;
+        private static FlightSimM fsm;
+        public static FlightSimM SingleFlightSimM(string server, int port)
+        {
+            Console.WriteLine("Sim flag: " + MFlag + "\n");
+            if (MFlag) {
+                fsm = new FlightSimM(server, port);
+                MFlag = false;
+            }
+            return fsm;
         }
     }
 }
