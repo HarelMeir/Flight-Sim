@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Flight_Sim
 {
-    class FlightSimM : IFlightSimM
+    public class FlightSimM : IFlightSimM
     {
         private int playRythm;
         private volatile string filePath;
@@ -26,6 +26,12 @@ namespace Flight_Sim
             this.serverPath = server;
             this.port = port;
             stop = false;
+        }
+
+        public void Play()
+        {
+             this.stop = false;
+             this.Connect();
         }
 
         //Properties
@@ -57,7 +63,6 @@ namespace Flight_Sim
                 if (this.filePath != value)
                 {
                     this.filePath = value;
-
                 }
             }
         }

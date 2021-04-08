@@ -25,7 +25,7 @@ namespace Flight_Sim
         private FlightSimVM vm;
         public MainWindow()
         {
-            vm = new FlightSimVM();
+            vm = new FlightSimVM(new FlightSimM("localhost", 5400));
             DataContext = vm;
             InitializeComponent();
         }

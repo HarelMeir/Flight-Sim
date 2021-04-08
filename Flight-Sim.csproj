@@ -68,15 +68,16 @@
     <Compile Include="FlightSimVM.cs" />
     <Compile Include="IFlightSimM.cs" />
     <Compile Include="IFlightSimVM.cs" />
+    <Compile Include="controllers\mediaPlayer1VM.cs" />
     <Compile Include="User_Story_3\JoystickControlModel.cs" />
     <Compile Include="User_Story_3\JoystickControlViewModel.cs" />
     <Page Include="controllers\madiaPlayer1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="controllers\mediaPlayerView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="FlightSimApp.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Flight_Sim;
 
 namespace Flight_Sim.controllers
 {
@@ -21,10 +22,12 @@ namespace Flight_Sim.controllers
     /// 
     public partial class madiaPlayer1 : UserControl
     {
+         mediaPlayer1VM vm;
+
         public madiaPlayer1()
         {
-            mediaPlayerViewModel vm;
             InitializeComponent();
+            this.vm = new mediaPlayer1VM(new FlightSimM("localhost", 5400));
             Image b = new Image();
             b.Name = "play";
 
@@ -33,38 +36,36 @@ namespace Flight_Sim.controllers
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             // playFlag = true;
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_Play();
         }
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             // playFlag = false;
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_rightButton();
         }
         private void rightStopButton_Click(object sender, RoutedEventArgs e)
         {
 
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_rightStopButton();
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_Stop();
         }
         private void leftButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_leftButton();
         }
-        private void leftStop_Click(object sender, RoutedEventArgs e)
+        private void leftStopButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("adassdsadfjlkjkl");
+            this.vm.VM_leftStopButton();
         }
-        private void leftPauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("adassdsadfjlkjkl");
-        }
+
+
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
