@@ -12,16 +12,16 @@ namespace Flight_Sim
 {
     class FlightSimVM : IFlightSimVM
     {
-            
+
         //fields
         private FlightSimM model;
         public event PropertyChangedEventHandler PropertyChanged;
 
 
         //Constructor
-        public FlightSimVM()
+        public FlightSimVM(FlightSimM model)
         {
-            this.model = new FlightSimM("localhost", 5400);
+            this.model = model;
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -78,7 +78,6 @@ namespace Flight_Sim
             }
             else
             {
-                Console.WriteLine("GDFGDSFGDFSGDFGDSFGDFSGFDSGDFSGFDGFD");
                 model.Connect();
             }
         }
