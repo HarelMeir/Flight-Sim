@@ -34,12 +34,26 @@ namespace Flight_Sim.User_Story_3
         }
 
 
-
+        /*
         //keep track of csv line number and update joystick when there's a change
         private int lineNumber = 0;
         public int VM_LineNumber { get { return lineNumber; } //////might not be called lineNumber when it's added.
             set { 
                 if (lineNumber != value) {
+                    lineNumber = value;
+                    UpdateJoystickPosition();
+                }
+            }
+        }*/
+        //keep track of csv line number and update joystick when there's a change
+        private int lineNumber = 0;
+        public int VM_NumberOfLines
+        {
+            get { return lineNumber; } //////might not be called lineNumber when it's added.
+            set
+            {
+                if (lineNumber != value)
+                {
                     lineNumber = value;
                     UpdateJoystickPosition();
                 }
@@ -84,7 +98,7 @@ namespace Flight_Sim.User_Story_3
         public Thickness RudderSliderMargin { get { return new Thickness(VM_Rudder, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
         public void UpdateRudderPosition() {
             for (int i = 0; i <= sliderAccuracy; i++) {
-                if (model.Rudder <= -1 + (sliderJumps * i) && model.Rudder >= -1 + (sliderJumps * (i + 1)))
+                if (model.rudder_p <= -1 + (sliderJumps * i) && model.rudder_p>= -1 + (sliderJumps * (i + 1)))
                     VM_Rudder = RudderMargin.Left + i * (1 / sliderAccuracy) * RudderWidth;
             }
         }
@@ -110,7 +124,7 @@ namespace Flight_Sim.User_Story_3
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
             for (int i = 0; i <= sliderAccuracy; i++) {
-                if (model.Throttle1 <= -1 + (sliderJumps * i) && model.Throttle1 >= -1 + (sliderJumps * (i + 1)))
+                if (model.throttle1_p <= -1 + (sliderJumps * i) && model.throttle1_p >= -1 + (sliderJumps * (i + 1)))
                     VM_Throttle1 = ThrottleMargin.Bottom - i * (1 / sliderAccuracy) * ThrottleHeight;
             }
         }
@@ -123,35 +137,35 @@ namespace Flight_Sim.User_Story_3
         private double lastElevator = 0;
         public void UpdateJoystickPosition()
         {
-            if (lastElevator == this.model.Elevator && lastAileron == this.model.Aileron)
+            if (lastElevator == this.model.elevator_p && lastAileron == this.model.airleron_p)
                 ImageName = "Joystick_images\\0_neutral_joystick.png";
 
-            if (lastElevator < this.model.Elevator && lastAileron == this.model.Aileron)
+            if (lastElevator < this.model.elevator_p && lastAileron == this.model.airleron_p)
                 ImageName = "Joystick_images\\1_up_joystick.png";
 
-            if (lastElevator < this.model.Elevator && lastAileron < this.model.Aileron)
+            if (lastElevator < this.model.elevator_p && lastAileron < this.model.airleron_p)
                 ImageName = "Joystick_images\\2_up-right_joystick.png";
 
-            if (lastElevator == this.model.Elevator && lastAileron < this.model.Aileron)
+            if (lastElevator == this.model.elevator_p && lastAileron < this.model.airleron_p)
                 ImageName = "Joystick_images\\3_right_joystick.png";
 
-            if (lastElevator > this.model.Elevator && lastAileron < this.model.Aileron)
+            if (lastElevator > this.model.elevator_p && lastAileron < this.model.airleron_p)
                 ImageName = "Joystick_images\\4_down-right_joystick.png";
 
-            if (lastElevator > this.model.Elevator && lastAileron == this.model.Aileron)
+            if (lastElevator > this.model.elevator_p && lastAileron == this.model.airleron_p)
                 ImageName = "Joystick_images\\5_down_joystick.png";
 
-            if (lastElevator > this.model.Elevator && lastAileron > this.model.Aileron)
+            if (lastElevator > this.model.elevator_p && lastAileron > this.model.airleron_p)
                 ImageName = "Joystick_images\\6_down-left_joystick.png";
 
-            if (lastElevator > this.model.Elevator && lastAileron == this.model.Aileron)
+            if (lastElevator > this.model.elevator_p && lastAileron == this.model.airleron_p)
                 ImageName = "Joystick_images\\7_left_joystick.png";
 
-            if (lastElevator > this.model.Elevator && lastAileron < this.model.Aileron)
+            if (lastElevator > this.model.elevator_p && lastAileron < this.model.airleron_p)
                 ImageName = "Joystick_images\\8_up-left_joystick.png";
 
-            lastAileron = this.model.Aileron;
-            lastElevator = this.model.Elevator;
+            lastAileron = this.model.airleron_p;
+            lastElevator = this.model.elevator_p;
         }
 
     }
