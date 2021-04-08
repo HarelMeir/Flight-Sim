@@ -39,7 +39,8 @@ namespace Flight_Sim
             stop = false;
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
-            this.data = new FlightdataModel();
+            //this.data = new FlightdataModel();
+            this.data = Single.Singleton();
             this.currentLine = 1;
         }
 

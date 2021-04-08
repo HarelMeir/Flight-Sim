@@ -98,6 +98,7 @@
     <Compile Include="FlightSimVM.cs" />
     <Compile Include="IFlightSimM.cs" />
     <Compile Include="IFlightSimVM.cs" />
+    <Compile Include="Single.cs" />
     <Compile Include="UserStory5.xaml.cs">
       <DependentUpon>UserStory5.xaml</DependentUpon>
     </Compile>
