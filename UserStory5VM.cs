@@ -31,7 +31,7 @@ namespace Flight_Sim
         public string Altitude_Text { get { return "Aircraft altitude: " + VM_Altitude_ft; }}
         public double VM_Altitude_ft
         {
-            get { return model.Altitude_ft; }
+            get { return model.altitude_ft_p; }
             set { altitude = value; }
         }
 
@@ -78,7 +78,7 @@ namespace Flight_Sim
         {
             get { return yaw; }
             //set { yaw = value; }
-            set { yaw = model.Side_slip_deg; } ////test to see how Inotfiy really works
+            set { yaw = model.side_slip_deg_p; } ////test to see how Inotfiy really works
         }
 
         public string RollPitchYaw_Text { get { return "Roll: " + VM_Roll_deg + "\nPitch: " + VM_Pitch_deg + "\nYaw: " + VM_Side_slip_deg; } }
