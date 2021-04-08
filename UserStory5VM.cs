@@ -28,10 +28,10 @@ namespace Flight_Sim
 
 
         private double altitude = 0;
-        public string Altitude_Text { get { return "Aircraft altitude: " + VM_Altitude_ft; }}
-        public double VM_Altitude_ft
+        public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; }}
+        public double VM_altitude_ft_p
         {
-            get { return model.altitude_ft_p; }
+            get { return model.altitude_ft_p; } ////test to see which way to recieve the new value
             set { altitude = value; }
         }
 
@@ -39,8 +39,8 @@ namespace Flight_Sim
 
 
         private double airspeed = 0; 
-        public string Airspeed_Text { get { return "Airspeed: " + VM_Airspeed; } }
-        public double VM_Airspeed //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
+        public string Airspeed_Text { get { return "Airspeed: " + VM_airspeed_kt_p; } }
+        public double VM_airspeed_kt_p //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
         {
             get { return airspeed; }
             set { airspeed = value; }
@@ -50,8 +50,8 @@ namespace Flight_Sim
 
         //aircraft direction
         private double heading = 0;
-        public string Heading_Text { get { return "Aircraft direction: " + VM_Heading_deg; } }
-        public double VM_Heading_deg
+        public string Heading_Text { get { return "Aircraft direction: " + VM_heading_deg_p; } }
+        public double VM_heading_deg_p
         {
             get { return heading; }
             set { heading = value; }
@@ -61,26 +61,26 @@ namespace Flight_Sim
 
 
         private double roll = 0;
-        public double VM_Roll_deg
+        public double VM_roll_deg_p
         {
             get { return roll; }
             set { roll = value; }
         }
 
         private double pitch = 0;
-        public double VM_Pitch_deg
+        public double VM_pitch_deg_p
         {
             get { return pitch; }
             set { pitch = value; }
         }
         private double yaw = 0;
-        public double VM_Side_slip_deg
+        public double VM_side_slip_deg_p
         {
             get { return yaw; }
             //set { yaw = value; }
             set { yaw = model.side_slip_deg_p; } ////test to see how Inotfiy really works
         }
 
-        public string RollPitchYaw_Text { get { return "Roll: " + VM_Roll_deg + "\nPitch: " + VM_Pitch_deg + "\nYaw: " + VM_Side_slip_deg; } }
+        public string RollPitchYaw_Text { get { return "Roll: " + VM_roll_deg_p + "\nPitch: " + VM_pitch_deg_p + "\nYaw: " + VM_side_slip_deg_p; } }
     }
 }

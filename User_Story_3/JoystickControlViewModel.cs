@@ -83,7 +83,8 @@ namespace Flight_Sim.User_Story_3
 
         //Rudder definitions and functions to move the slider
         private double rudderSliderPos;
-        public double VM_Rudder {
+        public double VM_rudder_p
+        {
             get { return rudderSliderPos; }
             set {
                 if (rudderSliderPos != value) {
@@ -95,11 +96,11 @@ namespace Flight_Sim.User_Story_3
 
         public Thickness RudderMargin { get { return new Thickness(310, 321, 0, 0); } }
         public int RudderWidth { get{ return 210; } }
-        public Thickness RudderSliderMargin { get { return new Thickness(VM_Rudder, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
+        public Thickness RudderSliderMargin { get { return new Thickness(VM_rudder_p, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
         public void UpdateRudderPosition() {
             for (int i = 0; i <= sliderAccuracy; i++) {
                 if (model.rudder_p <= -1 + (sliderJumps * i) && model.rudder_p>= -1 + (sliderJumps * (i + 1)))
-                    VM_Rudder = RudderMargin.Left + i * (1 / sliderAccuracy) * RudderWidth;
+                    VM_rudder_p = RudderMargin.Left + i * (1 / sliderAccuracy) * RudderWidth;
             }
         }
 
@@ -108,7 +109,7 @@ namespace Flight_Sim.User_Story_3
 
         //Throttle definitions and functions to move the slider
         private double throttleSliderPos;
-        public double VM_Throttle1
+        public double VM_throttle1_p
         {
             get { return throttleSliderPos; }
             set {
@@ -120,12 +121,12 @@ namespace Flight_Sim.User_Story_3
         }
 
         public Thickness ThrottleMargin { get { return new Thickness(248, 71, 0, 0); }}
-        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_Throttle1, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
+        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_throttle1_p, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
             for (int i = 0; i <= sliderAccuracy; i++) {
                 if (model.throttle1_p <= -1 + (sliderJumps * i) && model.throttle1_p >= -1 + (sliderJumps * (i + 1)))
-                    VM_Throttle1 = ThrottleMargin.Bottom - i * (1 / sliderAccuracy) * ThrottleHeight;
+                    VM_throttle1_p = ThrottleMargin.Bottom - i * (1 / sliderAccuracy) * ThrottleHeight;
             }
         }
 
