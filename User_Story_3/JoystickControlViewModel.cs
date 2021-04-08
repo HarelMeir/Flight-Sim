@@ -9,10 +9,9 @@ using System.Windows;
 
 namespace Flight_Sim.User_Story_3
 {
-    class JoystickControlViewModel : INotifyPropertyChanged
+    public class JoystickControlViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
         private string imageName = "Joystick_images\\0_neutral_joystick.png";
         //private string imageName = "Joystick_images\\3_right_joystick.png";
         public string ImageName {

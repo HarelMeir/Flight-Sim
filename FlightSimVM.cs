@@ -19,9 +19,9 @@ namespace Flight_Sim
 
 
         //Constructor
-        public FlightSimVM()
+        public FlightSimVM(FlightSimM model)
         {
-            this.model = new FlightSimM("localhost", 5400);
+            this.model = model;
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);

@@ -23,6 +23,7 @@ namespace Flight_Sim.User_Story_3
     public partial class JoystickControl : UserControl
     {
         public string ImageName;
+        
         public JoystickControl()
         {
             ImageName = "0 - neutral joystick.png";
