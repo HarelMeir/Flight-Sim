@@ -22,7 +22,6 @@ namespace Flight_Sim
         public FlightSimVM(FlightSimM model)
         {
             this.model = model;
-            this.model = model;//new FlightSimM("localhost", 5400);
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -53,18 +52,17 @@ namespace Flight_Sim
             }
         }
 
-        public string VM_FilePath
+        public string VM_CsvPath
         {
             get
             {
-                return this.model.FilePath;
+                return this.model.CsvPath;
             }
             set
             {
-                if (this.VM_FilePath != value)
+                if (this.VM_CsvPath != value)
                 {
-                    this.model.FilePath = value;
-                    NotifyPropertyChanged("VM_FilePath");
+                    this.model.CsvPath = value;
                 }
             }
         }
@@ -85,10 +83,22 @@ namespace Flight_Sim
             }
         }
 
+        public string VM_XmlPath
+        {
+            get
+            {
+                return model.XmlPath;
+            }
+            set
+            {
+                this.model.XmlPath = value;
+            }
+        }
+           
+
         public void Connect()
         {
-            Console.WriteLine("this is Csv filepath----------------->" + VM_FilePath);
-            if (VM_FilePath == null)
+            if (VM_CsvPath == null)
             {
                 MessageBox.Show("An error occured. Make sure XML and CSV file are loaded.");
             }

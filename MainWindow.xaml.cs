@@ -79,7 +79,7 @@ namespace Flight_Sim
             // Load content of file in a TextBlock
             if (result == true)
             {
-                this.vm.VM_FilePath = openFileDlg.FileName;
+                this.vm.VM_CsvPath = openFileDlg.FileName;
                 user_Csv_Path.Text = openFileDlg.FileName;
             }
         }
@@ -95,7 +95,7 @@ namespace Flight_Sim
             if (result == true)
             {
                 user_XML_Path.Text = openFileDlg.FileName;
-
+                this.vm.VM_XmlPath = openFileDlg.FileName;
             }
         }
     }

@@ -8,25 +8,27 @@ using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
 using Microsoft.VisualBasic.FileIO;
+using System.Xml;
 
 namespace Flight_Sim
 {
     public class FlightSimM : IFlightSimM
     {
         volatile private int playRythm;
-        private volatile string filePath;
+        private volatile string csvPath;
+        private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
-
-
+        private int numOfCols;
         //members added after commit
         private int numberOfLines;
         private IDictionary<string, List<float>> table;
         private List<string> colNames;
         private int currentLine;
         private FlightdataModel data;
+        
 
 
         //constructor
@@ -41,7 +43,7 @@ namespace Flight_Sim
             this.table = new Dictionary<string, List<float>>();
             //this.data = new FlightdataModel();
             this.data = Single.SingleDataModel();
-            this.currentLine = 1;
+            this.currentLine = 0;
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -78,21 +80,37 @@ namespace Flight_Sim
             stop = true;
         }
 
-        public string FilePath
+        public string CsvPath
         {
             get
             {
-                return this.filePath;
+                return this.csvPath;
             }
             set
             {
-                if (this.filePath != value)
+                if (this.csvPath != value)
                 {
-                    this.filePath = value;
+                    this.csvPath = value;
 
                 }
             }
         }
+
+        public string XmlPath
+        {
+            get
+            {
+                return this.xmlPath;
+            }
+            set
+            {
+                if (this.xmlPath != value)
+                {
+                    this.xmlPath = value;
+                }
+            }
+        }
+
 
         public Int32 Port
         {
@@ -124,6 +142,14 @@ namespace Flight_Sim
 
                     NotifyPropertyChanged("Server");
                 }
+            }
+        }
+
+        public int NumOfCols
+        {
+            get
+            {
+                return this.numOfCols;
             }
         }
         //properties added after commit.
@@ -188,6 +214,34 @@ namespace Flight_Sim
         }
 
 
+        private void getColNames()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(this.xmlPath);
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/PropertyList/generic/output");
+            foreach (XmlNode n in node)
+            {
+                if (n.Name.Equals("chunk"))
+                {
+                    string s1 = n.SelectSingleNode("name").InnerText;
+                    if (colNames.Contains(s1))
+                    {
+                        colNames.Add(s1 + "2");
+                    }
+                    else
+                    {
+                        colNames.Add(s1);
+                    }
+                }
+            }
+            this.numOfCols = colNames.Count; 
+            for (int i = 0; i < this.numOfCols; i++)
+            {
+                colNames[i] = colNames[i].Replace('-', '_');
+                colNames[i] += "_p";
+            }
+        }
+
 
         /**
          *  Creating a Dictionary as a time Series.
@@ -197,21 +251,13 @@ namespace Flight_Sim
             //Create a dicionary, with string as keys,and list of floats as values.
             var dic = new Dictionary<string, List<float>>();
 
-            if (File.Exists(filePath))
+            if (File.Exists(csvPath))
             {
-                using (TextFieldParser parser = new TextFieldParser(filePath))
+                using (TextFieldParser parser = new TextFieldParser(csvPath))
                 {
-                    //using parser
-                    //setting up colnames,and add them as keys.
+                    getColNames();
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
-                    //reading the first line - the featurs.
-                    string[] columns = parser.ReadFields();
-                    foreach (string col in columns)
-                    {
-                        this.colNames.Add((col + "_p").Replace("-", "_"));
-                        dic.Add(col, new List<float>());
-                    }
                     string[] fields;
                     //adding the rest of the data as value to associated with each key.
                     while (!parser.EndOfData)
@@ -221,7 +267,7 @@ namespace Flight_Sim
                         //adding each value to its keys list.
                         for (int i = 0; i < dic.Count; i++)
                         {
-                            dic[columns[i]].Add(float.Parse(fields[i]));
+                            dic[this.colNames[i]].Add(float.Parse(fields[i]));
                         }
                     }
                 }
@@ -238,20 +284,21 @@ namespace Flight_Sim
          *  im going to sleep. ill dream about you AVEV.
          * 
          */
-        /*   public void ParseLine(string line)
-           {
-               for(int i = 0; i < colNames.Count; i++)
-               {
-                    
-               }
-           }*/
+        public void UpdateLine(string line)
+        {
+            float[] lineVal = Array.ConvertAll(line.Split(','), float.Parse);
+             for (int i = 0; i < this.numOfCols ; i++)
+              {
+                 data.GetType().GetProperty(colNames[i]).SetValue(data, lineVal[i]);
+              }
+        }
 
         public void Connect()
         {
-            string[] flightLines = File.ReadAllLines(filePath);
+            string[] flightLines = File.ReadAllLines(csvPath);
             //number of line
             this.numberOfLines = flightLines.Length;
-            for (int i = 1; i < numberOfLines; i++)
+            for (int i = 0; i < numberOfLines; i++)
             {
                 flightLines[i] += "\n";
             }
@@ -267,23 +314,20 @@ namespace Flight_Sim
                 //sending the lines 1 by 1 to the FG.
                 new Thread(delegate ()
                 {
-                    while (true)
+                    while (!stop)
                     {
-                        while (!stop)
+                        for (;CurrentLine < numberOfLines; CurrentLine++)
                         {
-                            for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
+                            /*if(stop)
                             {
-                                if(stop)
-                                {
-                                    break;
-                                }
-                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
-
-                                stream.Write(lineInBytes, 0, lineInBytes.Length);
-                                Thread.Sleep(playRythm);
-                            }
-                            stop = true;
+                                break;
+                            }*/                                
+                            Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
+                            stream.Write(lineInBytes, 0, lineInBytes.Length);
+                            UpdateLine(flightLines[CurrentLine]);
+                            Thread.Sleep(playRythm);
                         }
+                        stop = true;
                     }
                     stream.Close();
                     client.Close();
@@ -295,7 +339,7 @@ namespace Flight_Sim
             }
             catch (SocketException e)
             {
-                Console.WriteLine("Socket failed to open. Open the flightgear sim.\n", e);
+                Console.WriteLine("Socket failed to open. Open the flightgear sim Please.\n", e);
             }
         }
 

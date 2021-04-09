@@ -15,13 +15,13 @@ namespace Flight_Sim
    public class FlightdataModel : IFlightSimVM
     {
         //Flightcontrols. (6)
-        private float aileron, elevator, rudder, flaps, salts, speedbrake;
+        private float aileron, elevator, rudder, flaps, slats, speedbrake;
 
         //Engines (2)
-        private float throttle1, throttle2;
+        private float throttle, throttle2;
 
         //Gear - Hydraulic (4)
-        private float engine_pump1, engine_pump2, electric_pump1, electric_pump2;
+        private float engine_pump, engine_pump2, electric_pump, electric_pump2;
 
         //Gear - Electric (2)
         private float external_power, APU_generator;
@@ -50,7 +50,7 @@ namespace Flight_Sim
         * 
         */
         //#1
-        public float airleron_p
+        public float aileron_p
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Flight_Sim
                 if (this.aileron != value)
                 {
                     this.aileron = value;
-                    NotifyPropertyChanged("airleron_p");
+                    NotifyPropertyChanged("aileron_p");
                 }
             }
         }
@@ -118,19 +118,19 @@ namespace Flight_Sim
             }
         }
         //#5
-        public float salts_p
+        public float slats_p
         {
             get
             {
-                return this.salts;
+                return this.slats;
             }
 
             set
             {
-                if (this.salts != value)
+                if (this.slats != value)
                 {
-                    this.salts = value;
-                    NotifyPropertyChanged("salts_p");
+                    this.slats = value;
+                    NotifyPropertyChanged("slats_p");
                 }
             }
         }
@@ -152,19 +152,19 @@ namespace Flight_Sim
             }
         }
         //#7
-        public float throttle1_p
+        public float throttle_p
         {
             get
             {
-                return this.throttle1;
+                return this.throttle;
             }
 
             set
             {
-                if (this.throttle1 != value)
+                if (this.throttle != value)
                 {
-                    this.throttle1 = value;
-                    NotifyPropertyChanged("throttle1_p");
+                    this.throttle = value;
+                    NotifyPropertyChanged("throttle_p");
                 }
             }
         }
@@ -186,19 +186,19 @@ namespace Flight_Sim
             }
         }
         //#9
-        public float engine_pump1_p
+        public float engine_pump_p
         {
             get
             {
-                return this.engine_pump1;
+                return this.engine_pump;
             }
 
             set
             {
-                if (this.engine_pump1 != value)
+                if (this.engine_pump != value)
                 {
-                    this.engine_pump1 = value;
-                    NotifyPropertyChanged("engine_pump1_p");
+                    this.engine_pump = value;
+                    NotifyPropertyChanged("engine_pump_p");
                 }
             }
         }
@@ -220,19 +220,19 @@ namespace Flight_Sim
             }
         }
         //#11
-        public float electric_pump1_p
+        public float electric_pump_p
         {
             get
             {
-                return this.electric_pump1;
+                return this.electric_pump;
             }
 
             set
             {
-                if (this.electric_pump1 != value)
+                if (this.electric_pump != value)
                 {
-                    this.electric_pump1 = value;
-                    NotifyPropertyChanged("electric_pump1_p");
+                    this.electric_pump = value;
+                    NotifyPropertyChanged("electric_pump_p");
                 }
             }
         }
@@ -288,8 +288,6 @@ namespace Flight_Sim
             }
         }
         //#15
-        public float Latitude_deg { get; set; }
-
         public float latitude_deg_p
         {
             get
@@ -307,8 +305,6 @@ namespace Flight_Sim
             }
         }
         //#16
-        public float Longitude_deg { get; set; }
-
         public float longitude_deg_p
         {
             get
