@@ -12,7 +12,7 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace Flight_Sim
 {
-    public class FlightdataModel : IFlightSimVM
+   public class FlightdataModel : IFlightSimVM
     {
         //Flightcontrols. (6)
         private float aileron, elevator, rudder, flaps, salts, speedbrake;
@@ -43,12 +43,6 @@ namespace Flight_Sim
 
         //default constructor
         public FlightdataModel() { }
-
-        private int currentLine = 0;
-        public int CurrentLine { get { return currentLine; } 
-            set { currentLine = value;
-                NotifyPropertyChanged("CurrentLine");
-            }  }
 
         public event PropertyChangedEventHandler PropertyChanged;
         /**
@@ -745,6 +739,20 @@ namespace Flight_Sim
                     this.engine_rpm = value;
                     NotifyPropertyChanged("vengine_rpm_p");
                 }
+            }
+        }
+
+        private int currentLine = 0;
+        public int CurrentLine
+        {
+            get
+            {
+                return currentLine;
+            }
+            set
+            {
+                currentLine = value;
+                NotifyPropertyChanged("CurrentLine");
             }
         }
 

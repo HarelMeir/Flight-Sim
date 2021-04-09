@@ -22,13 +22,20 @@ namespace Flight_Sim
 
         private static bool MFlag = true;
         private static FlightSimM fsm;
-        public static FlightSimM SingleFlightSimM(string server, int port)
+        public static FlightSimM SingleFlightSimM()
         {
             if (MFlag) {
                 fsm = new FlightSimM(server, port);
                 MFlag = false;
             }
             return fsm;
+        }
+
+        private static string server;
+        private static int port;
+        public static void SetServer(string s, int p) {
+            server = s;
+            port = p;
         }
     }
 }

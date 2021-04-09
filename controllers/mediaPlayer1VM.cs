@@ -22,32 +22,32 @@ namespace Flight_Sim.controllers
         {
             this.model.Pause();
         }
-        /* public void VM_Stop()
-         {
-             this.model.Stop();
-         }
+        public void VM_Stop()
+        {
+            this.model.Stop();
+        }
 
-         public void VM_rightButton()
-         {
-             this.model.rightButton();
-         }
-         public void VM_rightStopButton()
-         {
-             this.model.rightStopButton();
-         }
-         public void VM_leftButton()
-         {
-             this.model.leftButton();
-         }
-         public void VM_leftStopButton()
-         {
-             this.model.Play();
-         }
+       /* public void VM_rightButton()
+        {
+            this.model.rightButton();
+        }
+        public void VM_rightStopButton()
+        {
+            this.model.rightStopButton();
+        }
+        public void VM_leftButton()
+        {
+            this.model.leftButton();
+        }
+        public void VM_leftStopButton()
+        {
+            this.model.Play();
+        }
 
-         public void VM_changeTimeSlider()
-         {
-             this.model.Play();
-         }*/
+        public void VM_changeTimeSlider()
+        {
+            this.model.Play();
+        }*/
 
     }
 }

@@ -44,16 +44,6 @@ namespace Flight_Sim
             this.currentLine = 1;
         }
 
-        public void Play()
-        {
-            // this.stop = false;
-             this.Connect();
-        }
-        public void Pause()
-        {
-            //stop = true;
-        }
-
         public FlightdataModel GetFlightdata() { return data; }
 
         //Properties
@@ -73,6 +63,19 @@ namespace Flight_Sim
 
             }
         }
+        public void Play()
+        {
+            stop = false;
+        }
+        public void Stop()
+        {
+            CurrentLine = 1;
+            stop = true;
+        }
+        public void Pause()
+        {
+            stop = true;
+        }
 
         public string FilePath
         {
@@ -85,6 +88,7 @@ namespace Flight_Sim
                 if (this.filePath != value)
                 {
                     this.filePath = value;
+
                 }
             }
         }
@@ -262,17 +266,19 @@ namespace Flight_Sim
                 //sending the lines 1 by 1 to the FG.
                 new Thread(delegate ()
                 {
-                    while (!stop)
+                    while (true)
                     {
-
-                        for (int i = 1; i < numberOfLines; i++)
+                        while (!stop)
                         {
-                            Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[i]);
+                            for (; CurrentLine < numberOfLines; CurrentLine++)
+                            {
+                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
 
-                            //stream.Write(lineInBytes, 0, lineInBytes.Length);
-                            Thread.Sleep(playRythm);
+                                stream.Write(lineInBytes, 0, lineInBytes.Length);
+                                Thread.Sleep(playRythm);
+                            }
+                            stop = true;
                         }
-                        stop = true;
                     }
                     stream.Close();
                     client.Close();

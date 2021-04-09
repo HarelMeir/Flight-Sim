@@ -22,12 +22,12 @@ namespace Flight_Sim.controllers
     /// 
     public partial class madiaPlayer1 : UserControl
     {
-         //mediaPlayer1VM vm;
+         mediaPlayer1VM vm;
 
         public madiaPlayer1()
         {
             InitializeComponent();
-            //this.vm = new mediaPlayer1VM(Single.SingleFlightSimM("localhost", 5400));
+            this.vm = new mediaPlayer1VM(Single.SingleFlightSimM());
             Image b = new Image();
             b.Name = "play";
 
@@ -36,33 +36,33 @@ namespace Flight_Sim.controllers
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             // playFlag = true;
-           // this.vm.VM_Play();
+            this.vm.VM_Play();
         }
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-
-            //this.vm.VM_Pause();
+            // playFlag = false;
+           // this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {
-           // this.vm.VM_rightButton();
+          //  this.vm.VM_rightButton();
         }
         private void rightStopButton_Click(object sender, RoutedEventArgs e)
         {
 
-           // this.vm.VM_rightStopButton();
+        ///    this.vm.VM_rightStopButton();
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
-           // this.vm.VM_Stop();
+         //   this.vm.VM_Stop();
         }
         private void leftButton_Click(object sender, RoutedEventArgs e)
         {
-            //this.vm.VM_leftButton();
+         //   this.vm.VM_leftButton();
         }
         private void leftStopButton_Click(object sender, RoutedEventArgs e)
         {
-            //this.vm.VM_leftStopButton();
+          //  this.vm.VM_leftStopButton();
         }
 
 
