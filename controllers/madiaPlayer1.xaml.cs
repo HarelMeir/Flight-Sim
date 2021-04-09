@@ -27,7 +27,7 @@ namespace Flight_Sim.controllers
         public madiaPlayer1()
         {
             InitializeComponent();
-            this.vm = new mediaPlayer1VM(new FlightSimM("localhost", 5400));
+            this.vm = new mediaPlayer1VM(new FlightSimM("localhost", 5400)); //Single.SingleFlightSimM("localhost", 5400));
             Image b = new Image();
             b.Name = "play";
 
@@ -41,7 +41,7 @@ namespace Flight_Sim.controllers
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //this.vm.VM_Pause();
+            this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {

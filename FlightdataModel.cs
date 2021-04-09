@@ -12,7 +12,7 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace Flight_Sim
 {
-    class FlightdataModel : IFlightSimVM
+    public class FlightdataModel : IFlightSimVM
     {
         //Flightcontrols. (6)
         private float aileron, elevator, rudder, flaps, salts, speedbrake;
