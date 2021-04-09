@@ -264,6 +264,7 @@ namespace Flight_Sim
                 {
                     while (!stop)
                     {
+
                         for (int i = 1; i < numberOfLines; i++)
                         {
                             Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[i]);
