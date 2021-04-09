@@ -12,7 +12,6 @@ namespace Flight_Sim
         private static FlightdataModel fdm;
         public static FlightdataModel SingleDataModel()
         {
-            Console.WriteLine("data flag: " + dataFlag + "\n");
             if (dataFlag) {
                 fdm = new FlightdataModel();
                 dataFlag = false;
@@ -25,7 +24,6 @@ namespace Flight_Sim
         private static FlightSimM fsm;
         public static FlightSimM SingleFlightSimM(string server, int port)
         {
-            Console.WriteLine("Sim flag: " + MFlag + "\n");
             if (MFlag) {
                 fsm = new FlightSimM(server, port);
                 MFlag = false;

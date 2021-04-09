@@ -44,6 +44,12 @@ namespace Flight_Sim
         //default constructor
         public FlightdataModel() { }
 
+        private int currentLine = 0;
+        public int CurrentLine { get { return currentLine; } 
+            set { currentLine = value;
+                NotifyPropertyChanged("CurrentLine");
+            }  }
+
         public event PropertyChangedEventHandler PropertyChanged;
         /**
         * All Properties.
