@@ -46,12 +46,12 @@ namespace Flight_Sim
 
         public void Play()
         {
-             this.stop = false;
+            // this.stop = false;
              this.Connect();
         }
         public void Pause()
         {
-            stop = true;
+            //stop = true;
         }
 
         public FlightdataModel GetFlightdata() { return data; }
