@@ -25,7 +25,9 @@ namespace Flight_Sim
         private FlightSimVM vm;
         public MainWindow()
         {
-            vm = new FlightSimVM(new FlightSimM("localhost", 5400));
+            Single.SetServer("localhost", 5400);
+            vm = new FlightSimVM(Single.SingleFlightSimM());
+            //vm = new FlightSimVM(new FlightSimM("localhost", 5400));
             DataContext = vm;
             InitializeComponent();
         }
@@ -57,7 +59,7 @@ namespace Flight_Sim
             {
                 error_msg_csv.Visibility = Visibility.Hidden;
                 error_msg_xml.Visibility = Visibility.Hidden;
-                MessageBox.Show("Lets get this party started!");
+               // MessageBox.Show("Lets get this party started!");
                 Thread.Sleep(500);
                 vm.Connect();
                 FlightSimApp fsa = new FlightSimApp();

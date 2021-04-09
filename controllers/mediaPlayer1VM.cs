@@ -27,7 +27,7 @@ namespace Flight_Sim.controllers
             this.model.Stop();
         }
 
-        public void VM_rightButton()
+       /* public void VM_rightButton()
         {
             this.model.rightButton();
         }
@@ -47,7 +47,7 @@ namespace Flight_Sim.controllers
         public void VM_changeTimeSlider()
         {
             this.model.Play();
-        }
+        }*/
 
     }
 }
