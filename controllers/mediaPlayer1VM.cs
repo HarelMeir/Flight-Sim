@@ -23,9 +23,9 @@ namespace Flight_Sim.controllers
             this.model.Pause();
         }
         public void VM_Stop()
-        {
-            this.model.Stop();
-        }
+         {
+             this.model.Stop();
+         }
 
        /* public void VM_rightButton()
         {

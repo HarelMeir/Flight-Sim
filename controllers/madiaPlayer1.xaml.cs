@@ -41,7 +41,7 @@ namespace Flight_Sim.controllers
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             // playFlag = false;
-           // this.vm.VM_Pause();
+            this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +54,7 @@ namespace Flight_Sim.controllers
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
-         //   this.vm.VM_Stop();
+            this.vm.VM_Stop();
         }
         private void leftButton_Click(object sender, RoutedEventArgs e)
         {

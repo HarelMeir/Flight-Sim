@@ -13,7 +13,7 @@ namespace Flight_Sim
 {
     public class FlightSimM : IFlightSimM
     {
-        private int playRythm;
+        volatile private int playRythm;
         private volatile string filePath;
         private Int32 port;
         private string serverPath;
@@ -46,6 +46,7 @@ namespace Flight_Sim
 
         public FlightdataModel GetFlightdata() { return data; }
 
+
         //Properties
         public int PlaySpeed
         {
@@ -69,7 +70,7 @@ namespace Flight_Sim
         }
         public void Stop()
         {
-            CurrentLine = 1;
+            data.CurrentLine = 1;
             stop = true;
         }
         public void Pause()
@@ -270,9 +271,13 @@ namespace Flight_Sim
                     {
                         while (!stop)
                         {
-                            for (; CurrentLine < numberOfLines; CurrentLine++)
+                            for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
                             {
-                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
+                                if(stop)
+                                {
+                                    break;
+                                }
+                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
 
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
                                 Thread.Sleep(playRythm);
