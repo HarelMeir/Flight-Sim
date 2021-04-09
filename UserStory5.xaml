@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Flight_Sim" d:DataContext="{d:DesignInstance Type=local:UserStory5VM}"
              mc:Ignorable="d" Height="206.039" Width="170.506">
     <Grid Margin="0,0,570,191">
-        <ListBox HorizontalAlignment="Left" Height="246" Margin="10,10,-226,-241" VerticalAlignment="Top" Width="216">
+        <ListBox HorizontalAlignment="Left" Height="235" Margin="10,10,-226,-230" VerticalAlignment="Top" Width="216">
             <TextBlock x:Name="Airspeed_textblock"  Text="{Binding Airspeed_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
-            <TextBlock x:Name="Altimeter_textblock"  Text="{Binding Altitude_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+            <TextBlock x:Name="Altitude_textblock"  Text="{Binding Altitude_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
             <TextBlock x:Name="Direction_textblock"  Text="{Binding Heading_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
             <TextBlock x:Name="RollPitchYaw_textblock"  Text="{Binding RollPitchYaw_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
         </ListBox>

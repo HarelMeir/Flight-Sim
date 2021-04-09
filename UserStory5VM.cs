@@ -21,66 +21,60 @@ namespace Flight_Sim
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                Update(propName);
+            }
         }
 
 
 
 
         private double altitude = 0;
-        public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; }}
+        //public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; }}
+        public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; } }
         public double VM_altitude_ft_p
         {
-            get { return model.altitude_ft_p; } ////test to see which way to recieve the new value
-            set { altitude = value; }
+            get { return model.altitude_ft_p; }
         }
 
 
 
 
-        private double airspeed = 0; 
         public string Airspeed_Text { get { return "Airspeed: " + VM_airspeed_kt_p; } }
         public double VM_airspeed_kt_p //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
         {
-            get { return airspeed; }
-            set { airspeed = value; }
+            get { return model.airspeed_kt_p; }
         }
 
 
 
-        //aircraft direction
-        private double heading = 0;
         public string Heading_Text { get { return "Aircraft direction: " + VM_heading_deg_p; } }
-        public double VM_heading_deg_p
-        {
-            get { return heading; }
-            set { heading = value; }
-        }
+        public double VM_heading_deg_p {  get { return model.heading_deg_p; } }
 
 
 
 
-        private double roll = 0;
-        public double VM_roll_deg_p
-        {
-            get { return roll; }
-            set { roll = value; }
-        }
+        public double VM_roll_deg_p { get { return model.roll_deg_p; } }
 
-        private double pitch = 0;
-        public double VM_pitch_deg_p
-        {
-            get { return pitch; }
-            set { pitch = value; }
-        }
-        private double yaw = 0;
-        public double VM_side_slip_deg_p
-        {
-            get { return yaw; }
-            //set { yaw = value; }
-            set { yaw = model.side_slip_deg_p; } ////test to see how Inotfiy really works
-        }
+        public double VM_pitch_deg_p { get { return model.pitch_deg_p; } }
+
+        public double VM_side_slip_deg_p { get { return model.side_slip_deg_p; } }
 
         public string RollPitchYaw_Text { get { return "Roll: " + VM_roll_deg_p + "\nPitch: " + VM_pitch_deg_p + "\nYaw: " + VM_side_slip_deg_p; } }
+
+
+
+        private void Update(string propName)
+        {
+            if (propName == "VM_airspeed_kt_p")
+                NotifyPropertyChanged("Airspeed_Text");
+            if (propName == "VM_altitude_ft_p")
+                NotifyPropertyChanged("Altitude_Text");
+            if (propName == "VM_heading_deg_p")
+                NotifyPropertyChanged("Heading_Text");
+            if (propName == "VM_roll_deg_p" || propName == "VM_pitch_deg_p" || propName == "VM_side_slip_deg_p")
+                NotifyPropertyChanged("RollPitchYaw_Text");
+        }
     }
 }

@@ -29,36 +29,25 @@ namespace Flight_Sim.User_Story_3
         public void NotifyPropertyChanged(string propName) {
             if (this.PropertyChanged != null) {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-
+                Update(propName);
             }
         }
 
+        
 
-        /*
-        //keep track of csv line number and update joystick when there's a change
-        private int lineNumber = 0;
-        public int VM_LineNumber { get { return lineNumber; } //////might not be called lineNumber when it's added.
-            set { 
-                if (lineNumber != value) {
-                    lineNumber = value;
-                    UpdateJoystickPosition();
-                }
-            }
-        }*/
-        //keep track of csv line number and update joystick when there's a change
-        private int lineNumber = 0;
-        public int VM_NumberOfLines
-        {
-            get { return lineNumber; } //////might not be called lineNumber when it's added.
-            set
-            {
-                if (lineNumber != value)
-                {
-                    lineNumber = value;
-                    UpdateJoystickPosition();
-                }
-            }
-        }
+        ////keep track of csv line number and update joystick when there's a change
+        //private int lineNumber = 0;
+        //public int VM_CurrentLine
+        //{
+        //    get { return lineNumber; }
+        //    set
+        //    {
+        //        if (lineNumber != value)
+        //        {
+        //            lineNumber = value;
+        //        }
+        //    }
+        //}
 
 
 
@@ -70,7 +59,6 @@ namespace Flight_Sim.User_Story_3
             set {
                 if (imageName != value) {
                     imageName = value;
-                    NotifyPropertyChanged(nameof(ImageName));
                 }
             }
         }
@@ -78,8 +66,8 @@ namespace Flight_Sim.User_Story_3
 
 
         //how many chunks to divide the slider into
-        private int sliderAccuracy = 10;
-        private int sliderJumps;
+        private float sliderAccuracy = 30;
+        private float sliderJumps;
 
         //Rudder definitions and functions to move the slider
         private double rudderSliderPos;
@@ -89,18 +77,21 @@ namespace Flight_Sim.User_Story_3
             set {
                 if (rudderSliderPos != value) {
                     rudderSliderPos = value;
-                    UpdateRudderPosition();
                 }
             }
         }
 
         public Thickness RudderMargin { get { return new Thickness(310, 321, 0, 0); } }
         public int RudderWidth { get{ return 210; } }
-        public Thickness RudderSliderMargin { get { return new Thickness(VM_rudder_p, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);}}
+        public Thickness RudderSliderMargin { get { return new Thickness(VM_rudder_p - 12, RudderMargin.Top - 4, RudderMargin.Right, RudderMargin.Bottom);} }
         public void UpdateRudderPosition() {
             for (int i = 0; i <= sliderAccuracy; i++) {
-                if (model.rudder_p <= -1 + (sliderJumps * i) && model.rudder_p>= -1 + (sliderJumps * (i + 1)))
-                    VM_rudder_p = RudderMargin.Left + i * (1 / sliderAccuracy) * RudderWidth;
+                if (model.rudder_p >= -1 + (sliderJumps * i) && model.rudder_p <= -1 + (sliderJumps * (i + 1)))  
+                {
+                    VM_rudder_p = RudderMargin.Left + (i * RudderWidth) / sliderAccuracy;
+                    NotifyPropertyChanged("RudderSliderMargin");
+                    break;
+                }
             }
         }
 
@@ -115,18 +106,21 @@ namespace Flight_Sim.User_Story_3
             set {
                 if (throttleSliderPos != value) {
                     throttleSliderPos = value;
-                    UpdateThrottle1Position();
                 }
             }
         }
 
         public Thickness ThrottleMargin { get { return new Thickness(248, 71, 0, 0); }}
-        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_throttle1_p, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
+        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_throttle1_p - 12, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
             for (int i = 0; i <= sliderAccuracy; i++) {
-                if (model.throttle1_p <= -1 + (sliderJumps * i) && model.throttle1_p >= -1 + (sliderJumps * (i + 1)))
-                    VM_throttle1_p = ThrottleMargin.Bottom - i * (1 / sliderAccuracy) * ThrottleHeight;
+                if (model.throttle1_p >= -1 + (sliderJumps * i) && model.throttle1_p <= -1 + (sliderJumps * (i + 1)))
+                {
+                    VM_throttle1_p = ThrottleMargin.Top + (i * ThrottleHeight) / sliderAccuracy;
+                    NotifyPropertyChanged("ThrottleSliderMargin");
+                    break;
+                }
             }
         }
 
@@ -159,14 +153,28 @@ namespace Flight_Sim.User_Story_3
             if (lastElevator > this.model.elevator_p && lastAileron > this.model.airleron_p)
                 ImageName = "Joystick_images\\6_down-left_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron == this.model.airleron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron > this.model.airleron_p)
                 ImageName = "Joystick_images\\7_left_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron < this.model.airleron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron > this.model.airleron_p)
                 ImageName = "Joystick_images\\8_up-left_joystick.png";
 
             lastAileron = this.model.airleron_p;
             lastElevator = this.model.elevator_p;
+            NotifyPropertyChanged("ImageName");
+        }
+
+
+
+
+        private void Update(string propName)
+        {
+            if (propName == "VM_rudder_p")
+                UpdateRudderPosition();
+            if (propName == "VM_throttle1_p")
+                UpdateThrottle1Position();
+            if (propName == "VM_CurrentLine")
+                UpdateJoystickPosition();
         }
 
     }
