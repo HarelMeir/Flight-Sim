@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Flight_Sim
 {
-    class FlightSimVM : IFlightSimVM
+    public class FlightSimVM : IFlightSimVM
     {
 
         //fields
@@ -22,11 +22,19 @@ namespace Flight_Sim
         public FlightSimVM(FlightSimM model)
         {
             this.model = model;
+            this.model = model;//new FlightSimM("localhost", 5400);
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+
+        public void VM_Play()
+        {
+            this.model.Play();
+        }
+
+
 
         //Properties
         public int VM_PlaySpeed
@@ -34,6 +42,14 @@ namespace Flight_Sim
             get
             {
                 return this.model.PlaySpeed;
+            }
+            set
+            {
+               /* if (this.PlaySpeed != value)
+                {
+                    this.PlaySpeed = value;
+                    this.NotifyPropertyChanged("PlaySpeed");
+                }*/
             }
         }
 

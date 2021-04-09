@@ -11,9 +11,9 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace Flight_Sim
 {
-    class FlightSimM : IFlightSimM
+    public class FlightSimM : IFlightSimM
     {
-        private int playRythm;
+        volatile private int playRythm;
         private volatile string filePath;
         private Int32 port;
         private string serverPath;
@@ -45,6 +45,7 @@ namespace Flight_Sim
 
         public FlightdataModel GetFlightdata() { return data; }
 
+
         //Properties
         public int PlaySpeed
         {
@@ -61,6 +62,19 @@ namespace Flight_Sim
                 }
 
             }
+        }
+        public void Play()
+        {
+            stop = false;
+        }
+        public void Stop()
+        {
+            data.CurrentLine = 1;
+            stop = true;
+        }
+        public void Pause()
+        {
+            stop = true;
         }
 
         public string FilePath
@@ -252,16 +266,23 @@ namespace Flight_Sim
                 //sending the lines 1 by 1 to the FG.
                 new Thread(delegate ()
                 {
-                    while (!stop)
+                    while (true)
                     {
-                        for (int i = 1; i < numberOfLines; i++)
+                        while (!stop)
                         {
-                            Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[i]);
+                            for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
+                            {
+                                if(stop)
+                                {
+                                    break;
+                                }
+                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
 
-                            stream.Write(lineInBytes, 0, lineInBytes.Length);
-                            Thread.Sleep(playRythm);
+                                stream.Write(lineInBytes, 0, lineInBytes.Length);
+                                Thread.Sleep(playRythm);
+                            }
+                            stop = true;
                         }
-                        stop = true;
                     }
                     stream.Close();
                     client.Close();

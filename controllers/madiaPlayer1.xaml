@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <Button Content="" HorizontalAlignment="Left" Margin="99,331,642,71.6" Name="leftPauseButton" VerticalAlignment="Top" Width="63" Click="leftPauseButton_Click" RenderTransformOrigin="0.5,0.5" Height="49">
+        <Button Content="" HorizontalAlignment="Left" Margin="99,331,642,71.6" Name="leftPauseButton" VerticalAlignment="Top" Width="63" Click="leftStopButton_Click" RenderTransformOrigin="0.5,0.5" Height="49">
             <Button.Background>
                 <ImageBrush ImageSource="/Flight-Sim;component/controllers/images/Image10.png"></ImageBrush>
             </Button.Background>
@@ -45,9 +45,7 @@
             </Button.Background>
         </Button>
 
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="200" Margin="0,-51,0,0" VerticalAlignment="Top" Width="769">
-            <ListBox HorizontalAlignment="Left" Height="6" Margin="284.2,151.2,0,0" VerticalAlignment="Top" Width="39"/>
-        </Border>
+        
         <TextBlock HorizontalAlignment="Left" Margin="548,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="62"><Run Background="#FFBFBCBC" Text="Play Speed"/></TextBlock>
 
         <Slider HorizontalAlignment="Left" Minimum="0" Maximum="100" Value="0" Height="24" Margin="106,285,0,0" VerticalAlignment="Top" Width="491" RenderTransformOrigin="0.5,0.5" ValueChanged="Slider_ValueChanged">
@@ -60,6 +58,8 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="615,331,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="27"/>
+
 
 
     </Grid>
