@@ -40,7 +40,7 @@ namespace Flight_Sim
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
             //this.data = new FlightdataModel();
-            this.data = Single.Singleton();
+            this.data = Single.SingleDataModel();
             this.currentLine = 1;
         }
 
@@ -49,6 +49,8 @@ namespace Flight_Sim
              this.stop = false;
              this.Connect();
         }
+
+        public FlightdataModel GetFlightdata() { return data; }
 
         //Properties
         public int PlaySpeed
@@ -264,6 +266,8 @@ namespace Flight_Sim
 
                             //stream.Write(lineInBytes, 0, lineInBytes.Length);
                             Thread.Sleep(playRythm);
+                            NumberOfLines = i; ////////////////////////////
+                            data.altitude_ft_p = i; /////////added for Ariel to test if things are updating live
                         }
                         stop = true;
                     }
