@@ -312,27 +312,19 @@ namespace Flight_Sim
                 NetworkStream stream = client.GetStream();
 
                 //sending the lines 1 by 1 to the FG.
-                new Thread(delegate ()
-                {
-                    while (!stop)
-                    {
-                        for (;CurrentLine < numberOfLines; CurrentLine++)
-                        {
-                            /*if(stop)
-                            {
-                                break;
-                            }*/                                
-                            Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
-                            stream.Write(lineInBytes, 0, lineInBytes.Length);
-                            UpdateLine(flightLines[CurrentLine]);
-                            Thread.Sleep(playRythm);
-                        }
-                        stop = true;
-                    }
-                    stream.Close();
-                    client.Close();
-                }).Start();
-            }
+                while(CurrentLine < numberOfLines)
+                {       
+                    //sending the line data as bytes to the fg.
+                    Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
+                    stream.Write(lineInBytes, 0, lineInBytes.Length);
+                    //update the data class members.
+                    UpdateLine(flightLines[this.currentLine]);
+                    this.currentLine++;
+                    Thread.Sleep(this.playRythm);
+                }
+                stream.Close();
+                client.Close();;
+                }
             catch (ArgumentNullException e)
             {
                 Console.WriteLine("You have a null reference. Please try again with another file or check if the files aren't open.\n", e);

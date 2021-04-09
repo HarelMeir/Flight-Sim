@@ -16,7 +16,7 @@ namespace Flight_Sim
         //fields
         private FlightSimM model;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        private Thread fgThread;
 
         //Constructor
         public FlightSimVM(FlightSimM model)
@@ -27,13 +27,6 @@ namespace Flight_Sim
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
-        public void VM_Play()
-        {
-            this.model.Play();
-        }
-
-
 
         //Properties
         public int VM_PlaySpeed
@@ -94,7 +87,12 @@ namespace Flight_Sim
                 this.model.XmlPath = value;
             }
         }
-           
+
+        public void VM_Play()
+        {
+            this.model.Play();
+        }
+
 
         public void Connect()
         {
@@ -104,7 +102,16 @@ namespace Flight_Sim
             }
             else
             {
-                model.Connect();
+                if(this.fgThread == null || !this.fgThread.IsAlive)
+                {
+                    Console.WriteLine("GFSGDSFGFSDGDSFGDFSGDSFGDSFGDFSGDSFGDSFGDSF");
+                    this.fgThread = new Thread(delegate ()
+                    {
+                        this.model.Connect();
+                    });
+                    this.fgThread.Start();
+                }
+
             }
         }
 
