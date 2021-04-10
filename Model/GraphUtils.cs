@@ -168,7 +168,6 @@ namespace Flight_Sim.Model
             return Dev(p, LinearReg(points)); 
         }
 
-
         //2st dev
         public float Dev(Point p, Line l) {
             return Math.Abs(p.Y - l.LineEx(p.X));
