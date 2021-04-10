@@ -10,27 +10,28 @@ using System.ComponentModel;
 using Microsoft.VisualBasic.FileIO;
 using System.Xml;
 
-namespace Flight_Sim
+namespace Flight_Sim.Model
 {
     public class FlightSimM : IFlightSimM
     {
-        volatile private int playRythm;
+        private volatile int playRythm;
         private volatile string csvPath;
         private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
-        public event PropertyChangedEventHandler PropertyChanged;
-        volatile Boolean stop;
+        private Boolean stop;
         private int numOfCols;
-        //members added after commit
+
         private int numberOfLines;
         private IDictionary<string, List<float>> table;
         private List<string> colNames;
-        private int currentLine;
         private FlightdataModel data;
-        
+
+        //Graphs
+        private List<Point> points;
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
         //constructor
         public FlightSimM(string server, Int32 port)
         {
@@ -38,12 +39,12 @@ namespace Flight_Sim
             this.port = port;
             //default speed(X1)
             this.playRythm = 100;
-            stop = false;
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
             //this.data = new FlightdataModel();
+            this.stop = false;
             this.data = Single.SingleDataModel();
-            this.currentLine = 0;
+            this.points = new List<Point>();
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -68,11 +69,11 @@ namespace Flight_Sim
         }
         public void Play()
         {
-            stop = false;
+           stop = false;
         }
-        public void Stop()
+       public void Stop()
         {
-            data.CurrentLine = 1;
+            this.data.CurrentLine = 0;
             stop = true;
         }
         public void Pause()
@@ -152,7 +153,7 @@ namespace Flight_Sim
                 return this.numOfCols;
             }
         }
-        //properties added after commit.
+
         public int NumberOfLines
         {
             get
@@ -196,22 +197,15 @@ namespace Flight_Sim
             }
         }
 
-        public int CurrentLine
+        public FlightdataModel Data
         {
             get
             {
-                return this.currentLine;
-            }
-
-            set
-            {
-                if (this.currentLine != value)
-                {
-                    this.currentLine = value;
-                    NotifyPropertyChanged("CurrentLine");
-                }
+                return this.data;
             }
         }
+    
+
 
 
         private void getColNames()
@@ -310,21 +304,30 @@ namespace Flight_Sim
                 //tcp client
                 TcpClient client = new TcpClient(serverPath, port);
                 NetworkStream stream = client.GetStream();
-
-                //sending the lines 1 by 1 to the FG.
-                while(CurrentLine < numberOfLines)
-                {       
-                    //sending the line data as bytes to the fg.
-                    Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[CurrentLine]);
-                    stream.Write(lineInBytes, 0, lineInBytes.Length);
-                    //update the data class members.
-                    UpdateLine(flightLines[this.currentLine]);
-                    this.currentLine++;
-                    Thread.Sleep(this.playRythm);
-                }
-                stream.Close();
-                client.Close();;
-                }
+                new Thread(delegate ()
+                {
+                    while (true)
+                    {
+                        while (!stop)
+                        {
+                            //sending the lines 1 by 1 to the FG.
+                            while (this.data.CurrentLine < numberOfLines)
+                            {
+                                //sending the line data as bytes to the fg.
+                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[this.data.CurrentLine]);
+                                stream.Write(lineInBytes, 0, lineInBytes.Length);
+                                //update the data class members.
+                                UpdateLine(flightLines[this.data.CurrentLine]);
+                                this.data.CurrentLine++;
+                                Thread.Sleep(this.playRythm);
+                            }
+                            stop = true;
+                        }
+                        stream.Close();
+                        client.Close();
+                    }             
+                }).Start();
+            }
             catch (ArgumentNullException e)
             {
                 Console.WriteLine("You have a null reference. Please try again with another file or check if the files aren't open.\n", e);
@@ -344,87 +347,3 @@ namespace Flight_Sim
 }
 
 
-
-
-/* 
-                            /////////////////////////////////// Ariel tests
-                            data.CurrentLine = i;
-                            if (i % 10 == 0)
-                            { data.rudder_p = -1;
-                                data.throttle1_p = (float)-1;
-                                data.elevator_p = 1;
-                            }
-                            if (i % 10 == 1)
-                            { data.rudder_p = (float)-0.8;
-                               data.throttle1_p = (float)-0.8;
-                                data.elevator_p = 2;
-                                data.airleron_p = 1;
-                            }
-                            if (i % 10 == 2)
-                            { data.rudder_p = (float)-0.6; ;
-                                data.throttle1_p = (float)-0.6;
-                                data.airleron_p = 2;
-                            }
-                            if (i % 10 == 3)
-                            { data.rudder_p = (float)-0.4;
-                                data.throttle1_p = (float)-0.4;
-                                data.elevator_p = 0;
-                                data.airleron_p = 3;
-                            }
-                            if (i % 10 == 4)
-                            { data.rudder_p = (float)-0.2;
-                                data.throttle1_p = (float)-0.2;
-                                data.elevator_p = -1;
-                            }
-                            if (i % 10 == 5)
-                            { data.rudder_p = (float)0;
-                                data.throttle1_p = (float)0;
-                                data.elevator_p = -2;
-                                data.airleron_p = -2;
-                            }
-                            if (i % 10 == 6)
-                            { data.rudder_p = (float)0.2;
-                                data.throttle1_p = (float)0.2;
-                                data.airleron_p = -3;
-                            }
-                            if (i % 10 == 7)
-                            { data.rudder_p = (float)0.4;
-                                data.throttle1_p = (float)0.4;
-                                data.elevator_p = 0;
-                                data.airleron_p = -4;
-                            }
-                            if (i % 10 == 8)
-                            { data.rudder_p = (float)0.6;
-                                data.throttle1_p = (float)0.8;
-                            }
-                            if (i % 10 == 9)
-                            { data.rudder_p = 1;
-                                data.throttle1_p = (float)1;
-                            }
-                            if (i % 3 == 0){
-                                data.airspeed_kt_p = -2;
-                                data.altitude_ft_p = -1;
-                                data.heading_deg_p = 0;
-                                data.roll_deg_p = 1;
-                                data.pitch_deg_p = 2;
-                                data.side_slip_deg_p = 3;
-                            }
-                            if (i % 3 == 1)
-                            {
-                                data.airspeed_kt_p = -1;
-                                data.altitude_ft_p = 0;
-                                data.heading_deg_p = 1;
-                                data.roll_deg_p = 2;
-                                data.pitch_deg_p = 3;
-                                data.side_slip_deg_p = 4;
-                            }
-                            if (i % 3 == 2)
-                            {
-                                data.airspeed_kt_p = 0;
-                                data.altitude_ft_p = 1;
-                                data.heading_deg_p = 2;
-                                data.roll_deg_p = 3;
-                                data.pitch_deg_p = 4;
-                                data.side_slip_deg_p = 5;
-                            }/////////////////////////////
- */

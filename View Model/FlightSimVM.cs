@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
 using System.Threading;
+using Flight_Sim.Model;
+
 
 
 namespace Flight_Sim
@@ -16,7 +18,6 @@ namespace Flight_Sim
         //fields
         private FlightSimM model;
         public event PropertyChangedEventHandler PropertyChanged;
-        private Thread fgThread;
 
         //Constructor
         public FlightSimVM(FlightSimM model)
@@ -37,11 +38,11 @@ namespace Flight_Sim
             }
             set
             {
-               /* if (this.PlaySpeed != value)
+                if (this.VM_PlaySpeed != value)
                 {
-                    this.PlaySpeed = value;
-                    this.NotifyPropertyChanged("PlaySpeed");
-                }*/
+                    this.VM_PlaySpeed = value;
+                    this.NotifyPropertyChanged("VM_PlaySpeed");
+                }
             }
         }
 
@@ -102,14 +103,7 @@ namespace Flight_Sim
             }
             else
             {
-                if(this.fgThread == null || !this.fgThread.IsAlive)
-                {
-                    this.fgThread = new Thread(delegate ()
-                    {
-                        this.model.Connect();
-                    });
-                    this.fgThread.Start();
-                }
+                this.model.Connect();
             }
         }
 

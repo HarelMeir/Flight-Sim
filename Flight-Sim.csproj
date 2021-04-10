@@ -95,9 +95,10 @@
       <DependentUpon>FlightSimApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\FlightSimM.cs" />
-    <Compile Include="Model\GraphsUtlils.cs" />
+    <Compile Include="Model\GraphUtils.cs" />
     <Compile Include="View Model\FlightSimVM.cs" />
     <Compile Include="Model\IFlightSimM.cs" />
+    <Compile Include="View Model\GraphsVm.cs" />
     <Compile Include="View Model\IFlightSimVM.cs" />
     <Compile Include="controllers\mediaPlayer1VM.cs" />
     <Compile Include="Model\Single.cs" />

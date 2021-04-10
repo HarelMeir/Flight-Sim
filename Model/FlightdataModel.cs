@@ -41,8 +41,12 @@ namespace Flight_Sim
             attitude_internal_pitch_deg, attitude_internal_roll_deg, encoder_indicated_altitude, encoder_pressure, gps_altitude, gps_ground_speed, gps_vertical_speed,
             indicated_heading, magnetic_compass_heading, slip_skid_balls, indicated_turn_rate, vertical_speed_speed_fpm, engine_rpm;
 
+        private int currentLine;
+
         //default constructor
-        public FlightdataModel() { }
+        public FlightdataModel() {
+            this.currentLine = 0;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         /**
@@ -737,8 +741,8 @@ namespace Flight_Sim
                 }
             }
         }
-
-        private int currentLine = 0;
+        
+        
         public int CurrentLine
         {
             get
