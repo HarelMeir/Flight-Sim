@@ -104,14 +104,12 @@ namespace Flight_Sim
             {
                 if(this.fgThread == null || !this.fgThread.IsAlive)
                 {
-                    Console.WriteLine("GFSGDSFGFSDGDSFGDFSGDSFGDSFGDFSGDSFGDSFGDSF");
                     this.fgThread = new Thread(delegate ()
                     {
                         this.model.Connect();
                     });
                     this.fgThread.Start();
                 }
-
             }
         }
 
