@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flight_Sim.Model;
+
 using System.Windows;
 using System.Runtime.CompilerServices;
 namespace Flight_Sim.controllers

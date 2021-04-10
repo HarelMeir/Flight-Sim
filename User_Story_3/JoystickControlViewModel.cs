@@ -115,7 +115,7 @@ namespace Flight_Sim.User_Story_3
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
             for (int i = 0; i <= sliderAccuracy; i++) {
-                if (model.throttle1_p >= -1 + (sliderJumps * i) && model.throttle1_p <= -1 + (sliderJumps * (i + 1)))
+                if (model.throttle_p >= -1 + (sliderJumps * i) && model.throttle_p <= -1 + (sliderJumps * (i + 1)))
                 {
                     VM_throttle1_p = ThrottleMargin.Top + (i * ThrottleHeight) / sliderAccuracy;
                     NotifyPropertyChanged("ThrottleSliderMargin");
@@ -132,34 +132,34 @@ namespace Flight_Sim.User_Story_3
         private double lastElevator = 0;
         public void UpdateJoystickPosition()
         {
-            if (lastElevator == this.model.elevator_p && lastAileron == this.model.airleron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\0_neutral_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron == this.model.airleron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\1_up_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron < this.model.airleron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\2_up-right_joystick.png";
 
-            if (lastElevator == this.model.elevator_p && lastAileron < this.model.airleron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\3_right_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron < this.model.airleron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\4_down-right_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron == this.model.airleron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\5_down_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron > this.model.airleron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\6_down-left_joystick.png";
 
-            if (lastElevator == this.model.elevator_p && lastAileron > this.model.airleron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\7_left_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron > this.model.airleron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\8_up-left_joystick.png";
 
-            lastAileron = this.model.airleron_p;
+            lastAileron = this.model.aileron_p;
             lastElevator = this.model.elevator_p;
             NotifyPropertyChanged("ImageName");
         }

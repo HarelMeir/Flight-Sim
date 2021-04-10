@@ -8,29 +8,34 @@ using System.Net.Sockets;
 using System.Threading;
 using System.ComponentModel;
 using Microsoft.VisualBasic.FileIO;
+using System.Xml;
 
-namespace Flight_Sim
+namespace Flight_Sim.Model
 {
     public class FlightSimM : IFlightSimM
     {
-        volatile private int playRythm;
-        private volatile string filePath;
+        private volatile int playRythm;
+        private volatile string csvPath;
+        private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
         volatile public int sliderCurrent;
         private bool closeFlag;
+        private Boolean stop;
+        private int numOfCols;
 
-
-        //members added after commit
         private int numberOfLines;
         private IDictionary<string, List<float>> table;
         private List<string> colNames;
-        private int currentLine;
         private FlightdataModel data;
 
+        //Graphs
+        private List<Point> points;
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
         //constructor
         public FlightSimM(string server, Int32 port)
         {
@@ -38,11 +43,12 @@ namespace Flight_Sim
             this.port = port;
             //default speed(X1)
             this.playRythm = 100;
-            stop = false;
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
             //this.data = new FlightdataModel();
+            this.stop = false;
             this.data = Single.SingleDataModel();
+            this.points = new List<Point>();
             this.currentLine = 1;
             this.closeFlag = false;
         }
@@ -69,11 +75,11 @@ namespace Flight_Sim
         }
         public void Play()
         {
-            stop = false;
+           stop = false;
         }
-        public void Stop()
+       public void Stop()
         {
-            data.CurrentLine = 1;
+            this.data.CurrentLine = 0;
             stop = true;
         }
         public void Pause()
@@ -113,21 +119,37 @@ namespace Flight_Sim
             closeFlag = true;
         }
 
-        public string FilePath
+        public string CsvPath
         {
             get
             {
-                return this.filePath;
+                return this.csvPath;
             }
             set
             {
-                if (this.filePath != value)
+                if (this.csvPath != value)
                 {
-                    this.filePath = value;
+                    this.csvPath = value;
 
                 }
             }
         }
+
+        public string XmlPath
+        {
+            get
+            {
+                return this.xmlPath;
+            }
+            set
+            {
+                if (this.xmlPath != value)
+                {
+                    this.xmlPath = value;
+                }
+            }
+        }
+
 
         public Int32 Port
         {
@@ -161,7 +183,15 @@ namespace Flight_Sim
                 }
             }
         }
-        //properties added after commit.
+
+        public int NumOfCols
+        {
+            get
+            {
+                return this.numOfCols;
+            }
+        }
+
         public int NumberOfLines
         {
             get
@@ -205,23 +235,44 @@ namespace Flight_Sim
             }
         }
 
-        public int CurrentLine
+        public FlightdataModel Data
         {
             get
             {
-                return this.currentLine;
-            }
-
-            set
-            {
-                if (this.currentLine != value)
-                {
-                    this.currentLine = value;
-                    NotifyPropertyChanged("CurrentLine");
-                }
+                return this.data;
             }
         }
+    
 
+
+
+        private void getColNames()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(this.xmlPath);
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/PropertyList/generic/output");
+            foreach (XmlNode n in node)
+            {
+                if (n.Name.Equals("chunk"))
+                {
+                    string s1 = n.SelectSingleNode("name").InnerText;
+                    if (colNames.Contains(s1))
+                    {
+                        colNames.Add(s1 + "2");
+                    }
+                    else
+                    {
+                        colNames.Add(s1);
+                    }
+                }
+            }
+            this.numOfCols = colNames.Count; 
+            for (int i = 0; i < this.numOfCols; i++)
+            {
+                colNames[i] = colNames[i].Replace('-', '_');
+                colNames[i] += "_p";
+            }
+        }
 
 
         /**
@@ -232,21 +283,13 @@ namespace Flight_Sim
             //Create a dicionary, with string as keys,and list of floats as values.
             var dic = new Dictionary<string, List<float>>();
 
-            if (File.Exists(filePath))
+            if (File.Exists(csvPath))
             {
-                using (TextFieldParser parser = new TextFieldParser(filePath))
+                using (TextFieldParser parser = new TextFieldParser(csvPath))
                 {
-                    //using parser
-                    //setting up colnames,and add them as keys.
+                    getColNames();
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
-                    //reading the first line - the featurs.
-                    string[] columns = parser.ReadFields();
-                    foreach (string col in columns)
-                    {
-                        this.colNames.Add((col + "_p").Replace("-", "_"));
-                        dic.Add(col, new List<float>());
-                    }
                     string[] fields;
                     //adding the rest of the data as value to associated with each key.
                     while (!parser.EndOfData)
@@ -256,7 +299,7 @@ namespace Flight_Sim
                         //adding each value to its keys list.
                         for (int i = 0; i < dic.Count; i++)
                         {
-                            dic[columns[i]].Add(float.Parse(fields[i]));
+                            dic[this.colNames[i]].Add(float.Parse(fields[i]));
                         }
                     }
                 }
@@ -273,20 +316,21 @@ namespace Flight_Sim
          *  im going to sleep. ill dream about you AVEV.
          * 
          */
-        /*   public void ParseLine(string line)
-           {
-               for(int i = 0; i < colNames.Count; i++)
-               {
-                    
-               }
-           }*/
+        public void UpdateLine(string line)
+        {
+            float[] lineVal = Array.ConvertAll(line.Split(','), float.Parse);
+             for (int i = 0; i < this.numOfCols ; i++)
+              {
+                 data.GetType().GetProperty(colNames[i]).SetValue(data, lineVal[i]);
+              }
+        }
 
         public void Connect()
         {
-            string[] flightLines = File.ReadAllLines(filePath);
+            string[] flightLines = File.ReadAllLines(csvPath);
             //number of line
             this.numberOfLines = flightLines.Length;
-            for (int i = 1; i < numberOfLines; i++)
+            for (int i = 0; i < numberOfLines; i++)
             {
                 flightLines[i] += "\n";
             }
@@ -298,8 +342,6 @@ namespace Flight_Sim
                 //tcp client
                 TcpClient client = new TcpClient(serverPath, port);
                 NetworkStream stream = client.GetStream();
-
-                //sending the lines 1 by 1 to the FG.
                 new Thread(delegate ()
                 {
                     while (true)
@@ -319,9 +361,10 @@ namespace Flight_Sim
                                 Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
 
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
-                                Thread.Sleep(playRythm);
-                               
-                                
+                                //update the data class members.
+                                UpdateLine(flightLines[this.data.CurrentLine]);
+                                this.data.CurrentLine++;
+                                Thread.Sleep(this.playRythm);
                             }
                             stop = true;
                             if (closeFlag)
@@ -346,7 +389,7 @@ namespace Flight_Sim
             }
             catch (SocketException e)
             {
-                Console.WriteLine("Socket failed to open. Open the flightgear sim.\n", e);
+                Console.WriteLine("Socket failed to open. Open the flightgear sim Please.\n", e);
             }
             
         }
@@ -360,87 +403,3 @@ namespace Flight_Sim
 }
 
 
-
-
-/* 
-                            /////////////////////////////////// Ariel tests
-                            data.CurrentLine = i;
-                            if (i % 10 == 0)
-                            { data.rudder_p = -1;
-                                data.throttle1_p = (float)-1;
-                                data.elevator_p = 1;
-                            }
-                            if (i % 10 == 1)
-                            { data.rudder_p = (float)-0.8;
-                               data.throttle1_p = (float)-0.8;
-                                data.elevator_p = 2;
-                                data.airleron_p = 1;
-                            }
-                            if (i % 10 == 2)
-                            { data.rudder_p = (float)-0.6; ;
-                                data.throttle1_p = (float)-0.6;
-                                data.airleron_p = 2;
-                            }
-                            if (i % 10 == 3)
-                            { data.rudder_p = (float)-0.4;
-                                data.throttle1_p = (float)-0.4;
-                                data.elevator_p = 0;
-                                data.airleron_p = 3;
-                            }
-                            if (i % 10 == 4)
-                            { data.rudder_p = (float)-0.2;
-                                data.throttle1_p = (float)-0.2;
-                                data.elevator_p = -1;
-                            }
-                            if (i % 10 == 5)
-                            { data.rudder_p = (float)0;
-                                data.throttle1_p = (float)0;
-                                data.elevator_p = -2;
-                                data.airleron_p = -2;
-                            }
-                            if (i % 10 == 6)
-                            { data.rudder_p = (float)0.2;
-                                data.throttle1_p = (float)0.2;
-                                data.airleron_p = -3;
-                            }
-                            if (i % 10 == 7)
-                            { data.rudder_p = (float)0.4;
-                                data.throttle1_p = (float)0.4;
-                                data.elevator_p = 0;
-                                data.airleron_p = -4;
-                            }
-                            if (i % 10 == 8)
-                            { data.rudder_p = (float)0.6;
-                                data.throttle1_p = (float)0.8;
-                            }
-                            if (i % 10 == 9)
-                            { data.rudder_p = 1;
-                                data.throttle1_p = (float)1;
-                            }
-                            if (i % 3 == 0){
-                                data.airspeed_kt_p = -2;
-                                data.altitude_ft_p = -1;
-                                data.heading_deg_p = 0;
-                                data.roll_deg_p = 1;
-                                data.pitch_deg_p = 2;
-                                data.side_slip_deg_p = 3;
-                            }
-                            if (i % 3 == 1)
-                            {
-                                data.airspeed_kt_p = -1;
-                                data.altitude_ft_p = 0;
-                                data.heading_deg_p = 1;
-                                data.roll_deg_p = 2;
-                                data.pitch_deg_p = 3;
-                                data.side_slip_deg_p = 4;
-                            }
-                            if (i % 3 == 2)
-                            {
-                                data.airspeed_kt_p = 0;
-                                data.altitude_ft_p = 1;
-                                data.heading_deg_p = 2;
-                                data.roll_deg_p = 3;
-                                data.pitch_deg_p = 4;
-                                data.side_slip_deg_p = 5;
-                            }/////////////////////////////
- */
