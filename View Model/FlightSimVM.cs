@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
 using System.Threading;
+using Flight_Sim.Model;
+
 
 
 namespace Flight_Sim
@@ -17,24 +19,15 @@ namespace Flight_Sim
         private FlightSimM model;
         public event PropertyChangedEventHandler PropertyChanged;
 
-
         //Constructor
         public FlightSimVM(FlightSimM model)
         {
             this.model = model;
-            this.model = model;//new FlightSimM("localhost", 5400);
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-
-        public void VM_Play()
-        {
-            this.model.Play();
-        }
-
-
 
         //Properties
         public int VM_PlaySpeed
@@ -45,26 +38,25 @@ namespace Flight_Sim
             }
             set
             {
-               /* if (this.PlaySpeed != value)
+                if (this.VM_PlaySpeed != value)
                 {
-                    this.PlaySpeed = value;
-                    this.NotifyPropertyChanged("PlaySpeed");
-                }*/
+                    this.VM_PlaySpeed = value;
+                    this.NotifyPropertyChanged("VM_PlaySpeed");
+                }
             }
         }
 
-        public string VM_FilePath
+        public string VM_CsvPath
         {
             get
             {
-                return this.model.FilePath;
+                return this.model.CsvPath;
             }
             set
             {
-                if (this.VM_FilePath != value)
+                if (this.VM_CsvPath != value)
                 {
-                    this.model.FilePath = value;
-                    NotifyPropertyChanged("VM_FilePath");
+                    this.model.CsvPath = value;
                 }
             }
         }
@@ -85,16 +77,33 @@ namespace Flight_Sim
             }
         }
 
+        public string VM_XmlPath
+        {
+            get
+            {
+                return model.XmlPath;
+            }
+            set
+            {
+                this.model.XmlPath = value;
+            }
+        }
+
+        public void VM_Play()
+        {
+            this.model.Play();
+        }
+
+
         public void Connect()
         {
-            Console.WriteLine("this is Csv filepath----------------->" + VM_FilePath);
-            if (VM_FilePath == null)
+            if (VM_CsvPath == null)
             {
                 MessageBox.Show("An error occured. Make sure XML and CSV file are loaded.");
             }
             else
             {
-                model.Connect();
+                this.model.Connect();
             }
         }
 

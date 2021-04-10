@@ -27,10 +27,6 @@ namespace Flight_Sim
             }
         }
 
-
-
-
-        private double altitude = 0;
         //public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; }}
         public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; } }
         public double VM_altitude_ft_p

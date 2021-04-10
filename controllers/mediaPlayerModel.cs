@@ -8,10 +8,10 @@ namespace Flight_Sim.controllers
 {
     class mediaPlayerModel
     {
-        bool play;
+       /* bool play;
         int speedPlay;
 
-        double currentTime;
+        double currentTime;*/
 
         mediaPlayerModel()
         {

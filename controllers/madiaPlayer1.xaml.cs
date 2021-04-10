@@ -22,14 +22,15 @@ namespace Flight_Sim.controllers
     /// 
     public partial class madiaPlayer1 : UserControl
     {
-         mediaPlayer1VM vm;
-
+        mediaPlayer1VM vm;
+        
         public madiaPlayer1()
         {
             InitializeComponent();
             this.vm = new mediaPlayer1VM(Single.SingleFlightSimM());
             Image b = new Image();
             b.Name = "play";
+            DataContext = vm;
 
         }
 
@@ -45,12 +46,12 @@ namespace Flight_Sim.controllers
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
         {
-          //  this.vm.VM_rightButton();
+            this.vm.VM_rightButton();
         }
         private void rightStopButton_Click(object sender, RoutedEventArgs e)
         {
 
-        ///    this.vm.VM_rightStopButton();
+            this.vm.VM_rightStopButton();
         }
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
@@ -58,18 +59,42 @@ namespace Flight_Sim.controllers
         }
         private void leftButton_Click(object sender, RoutedEventArgs e)
         {
-         //   this.vm.VM_leftButton();
+            this.vm.VM_leftButton();
         }
         private void leftStopButton_Click(object sender, RoutedEventArgs e)
         {
-          //  this.vm.VM_leftStopButton();
+            this.vm.VM_leftStopButton();
         }
 
 
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            double sliderVal = Convert.ToDouble(((Slider)sender).Value);
+            this.vm.VM_changeTimeBySlider(sliderVal);
+        }
 
+        private void SpeedField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            if (((TextBox)sender).Text == "") {
+                this.vm.SpeedVal = 10;
+            }
+            else {
+                this.vm.SpeedVal = Double.Parse(((TextBox)sender).Text);
+            }
+        }
+
+        private void Slider_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.vm.VM_close();
         }
     }
 }

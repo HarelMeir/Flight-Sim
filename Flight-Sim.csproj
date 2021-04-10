@@ -89,17 +89,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="API.cs" />
-    <Compile Include="FlightdataModel.cs" />
+    <Compile Include="Model\API.cs" />
+    <Compile Include="Model\FlightdataModel.cs" />
     <Compile Include="FlightSimApp.xaml.cs">
       <DependentUpon>FlightSimApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FlightSimM.cs" />
-    <Compile Include="FlightSimVM.cs" />
-    <Compile Include="IFlightSimM.cs" />
-    <Compile Include="IFlightSimVM.cs" />
+    <Compile Include="Model\FlightSimM.cs" />
+    <Compile Include="Model\GraphUtils.cs" />
+    <Compile Include="View Model\FlightSimVM.cs" />
+    <Compile Include="Model\IFlightSimM.cs" />
+    <Compile Include="View Model\GraphsVm.cs" />
+    <Compile Include="View Model\IFlightSimVM.cs" />
     <Compile Include="controllers\mediaPlayer1VM.cs" />
-    <Compile Include="Single.cs" />
+    <Compile Include="Model\Single.cs" />
     <Compile Include="UserStory5.xaml.cs">
       <DependentUpon>UserStory5.xaml</DependentUpon>
     </Compile>
@@ -108,6 +110,9 @@
       <DependentUpon>JoystickControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="User_Story_3\JoystickControlViewModel.cs" />
+    <Compile Include="View\Graphs.xaml.cs">
+      <DependentUpon>Graphs.xaml</DependentUpon>
+    </Compile>
     <Page Include="controllers\madiaPlayer1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -141,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Graphs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -161,6 +170,230 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="project\.git\COMMIT_EDITMSG" />
+    <None Include="project\.git\config" />
+    <None Include="project\.git\description" />
+    <None Include="project\.git\HEAD" />
+    <None Include="project\.git\hooks\applypatch-msg.sample" />
+    <None Include="project\.git\hooks\commit-msg.sample" />
+    <None Include="project\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="project\.git\hooks\post-update.sample" />
+    <None Include="project\.git\hooks\pre-applypatch.sample" />
+    <None Include="project\.git\hooks\pre-commit.sample" />
+    <None Include="project\.git\hooks\pre-merge-commit.sample" />
+    <None Include="project\.git\hooks\pre-push.sample" />
+    <None Include="project\.git\hooks\pre-rebase.sample" />
+    <None Include="project\.git\hooks\pre-receive.sample" />
+    <None Include="project\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="project\.git\hooks\update.sample" />
+    <None Include="project\.git\index" />
+    <None Include="project\.git\info\exclude" />
+    <None Include="project\.git\logs\HEAD" />
+    <None Include="project\.git\logs\refs\heads\main" />
+    <None Include="project\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="project\.git\logs\refs\remotes\origin\main" />
+    <None Include="project\.git\objects\0a\221487043551e086a4fe9f23ffc84779f22159" />
+    <None Include="project\.git\objects\25\9148fa18f9fb7ef58563f4ff15fc7b172339fb" />
+    <None Include="project\.git\objects\27\8467f931a13fb55b05c8f17fa2fce8b18fa0c9" />
+    <None Include="project\.git\objects\3e\b46c9b18ccd16016d3a85b0ccdfb43b23f3171" />
+    <None Include="project\.git\objects\76\8dfa813a4a02b9e5848b4f8bafa71946d9c3ff" />
+    <None Include="project\.git\objects\7e\58773c8c6bc277e549eecb7569a9148ea574c4" />
+    <None Include="project\.git\objects\9f\0d3be36d258c3b2e616db881a1a478e9e97281" />
+    <None Include="project\.git\objects\ae\fbb209ed7a994dd2a81f5583d315e6938c951f" />
+    <None Include="project\.git\objects\c5\894692eaa45f601cfc2cf8fc97b9d679a74eac" />
+    <None Include="project\.git\objects\dd\b7ddf47fe09177b98cbc86df06d1de0cafcfc3" />
+    <None Include="project\.git\packed-refs" />
+    <None Include="project\.git\refs\heads\main" />
+    <None Include="project\.git\refs\remotes\origin\HEAD" />
+    <None Include="project\.git\refs\remotes\origin\main" />
+    <None Include="project\.vscode\settings.json" />
+    <None Include="project\AnomalyDetector" />
+    <None Include="project\build\.cmake\api\v1\query\client-vscode\query.json" />
+    <None Include="project\build\.cmake\api\v1\reply\cache-v2-11294d5529629f781d5e.json" />
+    <None Include="project\build\.cmake\api\v1\reply\codemodel-v2-30a7349c89211b563497.json" />
+    <None Include="project\build\.cmake\api\v1\reply\index-2021-04-10T13-37-40-0329.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-Continuous-Debug-ccb7ffa9978a17909427.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousBuild-Debug-fbe5c6f13f9d0b0fda7f.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousConfigure-Debug-e50d85f92dff45137d08.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousCoverage-Debug-8e77c9844717b5d78f1d.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousMemCheck-Debug-6dc397776ac62b583443.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousStart-Debug-e5333a93d322bdca7e2c.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousSubmit-Debug-4fa6b21fb7b292361882.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousTest-Debug-568a9c9a705921553383.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ContinuousUpdate-Debug-64371bec26c652a83b2a.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ex6-Debug-7d307ef93b3c7c5bcdae.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-Experimental-Debug-9dd5df03d773a90f3c92.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalBuild-Debug-73bb360ec85e77324b07.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalConfigure-Debug-16d715fabac2df4f738b.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalCoverage-Debug-84b4a72b86a74a7b0c74.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalMemCheck-Debug-e2a5c5b061800616824e.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalStart-Debug-7113052b00f034005848.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalSubmit-Debug-5845b4f637743a5446be.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalTest-Debug-46e37abeefe8d5146a50.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-ExperimentalUpdate-Debug-88df2b117e6a7cd48b33.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-Nightly-Debug-cea50abb2f464ca0229a.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyBuild-Debug-afccd0465e4b8c1e2d87.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyConfigure-Debug-7ec533b122c4c2965696.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyCoverage-Debug-e2b20065ab4aa5f75d86.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyMemCheck-Debug-8eda9eba68978ec4ed5b.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyMemoryCheck-Debug-784f4a2876bbb9b4bcea.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyStart-Debug-87062bf9eaacc239a2bf.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlySubmit-Debug-00614dd8d283eaa542b9.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyTest-Debug-b8d330abdb63439bfe9e.json" />
+    <None Include="project\build\.cmake\api\v1\reply\target-NightlyUpdate-Debug-b681408b94dc782d2255.json" />
+    <None Include="project\build\anomalyTest.csv" />
+    <None Include="project\build\anomalyTrain.csv" />
+    <None Include="project\build\CMakeFiles\3.16.3\CMakeCCompiler.cmake" />
+    <None Include="project\build\CMakeFiles\3.16.3\CMakeCXXCompiler.cmake" />
+    <None Include="project\build\CMakeFiles\3.16.3\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="project\build\CMakeFiles\3.16.3\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="project\build\CMakeFiles\3.16.3\CMakeSystem.cmake" />
+    <None Include="project\build\CMakeFiles\3.16.3\CompilerIdCXX\a.out" />
+    <None Include="project\build\CMakeFiles\3.16.3\CompilerIdC\a.out" />
+    <None Include="project\build\CMakeFiles\cmake.check_cache" />
+    <None Include="project\build\CMakeFiles\CMakeDirectoryInformation.cmake" />
+    <None Include="project\build\CMakeFiles\CMakeOutput.log" />
+    <None Include="project\build\CMakeFiles\Continuous.dir\build.make" />
+    <None Include="project\build\CMakeFiles\Continuous.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\Continuous.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\Continuous.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousBuild.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousBuild.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousBuild.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousBuild.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousConfigure.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousConfigure.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousConfigure.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousConfigure.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousCoverage.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousCoverage.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousCoverage.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousCoverage.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousMemCheck.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousMemCheck.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousMemCheck.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousMemCheck.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousStart.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousStart.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousStart.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousStart.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousSubmit.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousSubmit.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousSubmit.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousSubmit.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousTest.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousTest.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousTest.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousTest.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ContinuousUpdate.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ContinuousUpdate.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousUpdate.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ContinuousUpdate.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ex6.dir\anomaly_detection_util.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ex6.dir\CLI.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ex6.dir\CXX.includecache" />
+    <None Include="project\build\CMakeFiles\ex6.dir\depend.internal" />
+    <None Include="project\build\CMakeFiles\ex6.dir\depend.make" />
+    <None Include="project\build\CMakeFiles\ex6.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ex6.dir\flags.make" />
+    <None Include="project\build\CMakeFiles\ex6.dir\HybridAnomalyDetector.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\MainTrain.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\minCircle.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ex6.dir\Server.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\SimpleAnomalyDetector.cpp.o" />
+    <None Include="project\build\CMakeFiles\ex6.dir\timeseries.cpp.o" />
+    <None Include="project\build\CMakeFiles\Experimental.dir\build.make" />
+    <None Include="project\build\CMakeFiles\Experimental.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\Experimental.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\Experimental.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalBuild.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalBuild.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalBuild.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalBuild.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalConfigure.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalConfigure.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalConfigure.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalConfigure.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalCoverage.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalCoverage.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalCoverage.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalCoverage.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalMemCheck.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalMemCheck.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalMemCheck.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalMemCheck.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalStart.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalStart.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalStart.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalStart.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalSubmit.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalSubmit.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalSubmit.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalSubmit.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalTest.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalTest.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalTest.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalTest.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalUpdate.dir\build.make" />
+    <None Include="project\build\CMakeFiles\ExperimentalUpdate.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalUpdate.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\ExperimentalUpdate.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\Makefile.cmake" />
+    <None Include="project\build\CMakeFiles\Makefile2" />
+    <None Include="project\build\CMakeFiles\Nightly.dir\build.make" />
+    <None Include="project\build\CMakeFiles\Nightly.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\Nightly.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\Nightly.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyBuild.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyBuild.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyBuild.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyBuild.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyConfigure.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyConfigure.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyConfigure.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyConfigure.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyCoverage.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyCoverage.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyCoverage.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyCoverage.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyMemCheck.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyMemCheck.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyMemCheck.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyMemCheck.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyMemoryCheck.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyMemoryCheck.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyMemoryCheck.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyMemoryCheck.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyStart.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyStart.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyStart.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyStart.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlySubmit.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlySubmit.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlySubmit.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlySubmit.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyTest.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyTest.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyTest.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyTest.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\NightlyUpdate.dir\build.make" />
+    <None Include="project\build\CMakeFiles\NightlyUpdate.dir\cmake_clean.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyUpdate.dir\DependInfo.cmake" />
+    <None Include="project\build\CMakeFiles\NightlyUpdate.dir\progress.make" />
+    <None Include="project\build\CMakeFiles\progress.marks" />
+    <None Include="project\build\cmake_install.cmake" />
+    <None Include="project\build\compile_commands.json" />
+    <None Include="project\build\CPackConfig.cmake" />
+    <None Include="project\build\CPackSourceConfig.cmake" />
+    <None Include="project\build\CTestTestfile.cmake" />
+    <None Include="project\build\DartConfiguration.tcl" />
+    <None Include="project\build\ex6" />
+    <None Include="project\build\Makefile" />
+    <None Include="project\build\Testing\Temporary\LastTest.log" />
+    <None Include="project\MainTrainex5cpp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -186,6 +419,79 @@
     <Resource Include="User_Story_3\Joystick_images\rudder_bar.png" />
     <Resource Include="User_Story_3\Joystick_images\slider.png" />
     <Resource Include="User_Story_3\Joystick_images\throttle_bar.png" />
+    <Content Include="project\.gitignore" />
+    <Content Include="project\AnomalyDetector.h" />
+    <Content Include="project\anomaly_detection_util.cpp" />
+    <Content Include="project\anomaly_detection_util.h" />
+    <Resource Include="project\build\CMakeCache.txt" />
+    <Content Include="project\build\CMakeFiles\3.16.3\CompilerIdCXX\CMakeCXXCompilerId.cpp" />
+    <Content Include="project\build\CMakeFiles\3.16.3\CompilerIdC\CMakeCCompilerId.c" />
+    <Resource Include="project\build\CMakeFiles\CMakeRuleHashes.txt" />
+    <Resource Include="project\build\CMakeFiles\ex6.dir\link.txt" />
+    <Resource Include="project\build\CMakeFiles\TargetDirectories.txt" />
+    <Resource Include="project\build\expected_output.txt" />
+    <Resource Include="project\build\expected_output_menu.txt" />
+    <Resource Include="project\build\input.txt" />
+    <Resource Include="project\build\output117.txt" />
+    <Resource Include="project\build\output159.txt" />
+    <Resource Include="project\build\output161.txt" />
+    <Resource Include="project\build\output175.txt" />
+    <Resource Include="project\build\output207.txt" />
+    <Resource Include="project\build\output235.txt" />
+    <Resource Include="project\build\output309.txt" />
+    <Resource Include="project\build\output324.txt" />
+    <Resource Include="project\build\output354.txt" />
+    <Resource Include="project\build\output37.txt" />
+    <Resource Include="project\build\output395.txt" />
+    <Resource Include="project\build\output399.txt" />
+    <Resource Include="project\build\output459.txt" />
+    <Resource Include="project\build\output506.txt" />
+    <Resource Include="project\build\output62.txt" />
+    <Resource Include="project\build\output64.txt" />
+    <Resource Include="project\build\output669.txt" />
+    <Resource Include="project\build\output80.txt" />
+    <Resource Include="project\build\output812.txt" />
+    <Resource Include="project\build\output837.txt" />
+    <Resource Include="project\build\output904.txt" />
+    <Resource Include="project\build\output996.txt" />
+    <Resource Include="project\build\output_menu117.txt" />
+    <Resource Include="project\build\output_menu159.txt" />
+    <Resource Include="project\build\output_menu161.txt" />
+    <Resource Include="project\build\output_menu175.txt" />
+    <Resource Include="project\build\output_menu207.txt" />
+    <Resource Include="project\build\output_menu235.txt" />
+    <Resource Include="project\build\output_menu309.txt" />
+    <Resource Include="project\build\output_menu324.txt" />
+    <Resource Include="project\build\output_menu354.txt" />
+    <Resource Include="project\build\output_menu37.txt" />
+    <Resource Include="project\build\output_menu395.txt" />
+    <Resource Include="project\build\output_menu399.txt" />
+    <Resource Include="project\build\output_menu459.txt" />
+    <Resource Include="project\build\output_menu506.txt" />
+    <Resource Include="project\build\output_menu62.txt" />
+    <Resource Include="project\build\output_menu64.txt" />
+    <Resource Include="project\build\output_menu669.txt" />
+    <Resource Include="project\build\output_menu80.txt" />
+    <Resource Include="project\build\output_menu812.txt" />
+    <Resource Include="project\build\output_menu837.txt" />
+    <Resource Include="project\build\output_menu904.txt" />
+    <Resource Include="project\build\output_menu996.txt" />
+    <Content Include="project\CLI.cpp" />
+    <Content Include="project\CLI.h" />
+    <Resource Include="project\CMakeLists.txt" />
+    <Content Include="project\commands.h" />
+    <Resource Include="project\ex4Grade.png" />
+    <Content Include="project\HybridAnomalyDetector.cpp" />
+    <Content Include="project\HybridAnomalyDetector.h" />
+    <Content Include="project\MainTrain.cpp" />
+    <Content Include="project\minCircle.cpp" />
+    <Content Include="project\minCircle.h" />
+    <Content Include="project\Server.cpp" />
+    <Content Include="project\Server.h" />
+    <Content Include="project\SimpleAnomalyDetector.cpp" />
+    <Content Include="project\SimpleAnomalyDetector.h" />
+    <Content Include="project\timeseries.cpp" />
+    <Content Include="project\timeseries.h" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />
@@ -235,6 +541,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="controllers\images\Image10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="project\.git\branches\" />
+    <Folder Include="project\.git\objects\info\" />
+    <Folder Include="project\.git\objects\pack\" />
+    <Folder Include="project\.git\refs\tags\" />
+    <Folder Include="project\build\CMakeFiles\3.16.3\CompilerIdCXX\tmp\" />
+    <Folder Include="project\build\CMakeFiles\3.16.3\CompilerIdC\tmp\" />
+    <Folder Include="project\build\CMakeFiles\CMakeTmp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
