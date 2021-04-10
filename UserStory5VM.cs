@@ -29,7 +29,7 @@ namespace Flight_Sim
 
         //public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; }}
         public string Altitude_Text { get { return "Aircraft altitude: " + VM_altitude_ft_p; } }
-        public double VM_altitude_ft_p
+        public float VM_altitude_ft_p
         {
             get { return model.altitude_ft_p; }
         }
@@ -38,7 +38,7 @@ namespace Flight_Sim
 
 
         public string Airspeed_Text { get { return "Airspeed: " + VM_airspeed_kt_p; } }
-        public double VM_airspeed_kt_p //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
+        public float VM_airspeed_kt_p //////////might need to switch to indicated-speed-kt https://lemida.biu.ac.il/mod/forum/discuss.php?d=670687
         {
             get { return model.airspeed_kt_p; }
         }
@@ -46,16 +46,16 @@ namespace Flight_Sim
 
 
         public string Heading_Text { get { return "Aircraft direction: " + VM_heading_deg_p; } }
-        public double VM_heading_deg_p {  get { return model.heading_deg_p; } }
+        public float VM_heading_deg_p {  get { return model.heading_deg_p; } }
 
 
 
 
-        public double VM_roll_deg_p { get { return model.roll_deg_p; } }
+        public float VM_roll_deg_p { get { return model.roll_deg_p; } }
 
-        public double VM_pitch_deg_p { get { return model.pitch_deg_p; } }
+        public float VM_pitch_deg_p { get { return model.pitch_deg_p; } }
 
-        public double VM_side_slip_deg_p { get { return model.side_slip_deg_p; } }
+        public float VM_side_slip_deg_p { get { return model.side_slip_deg_p; } }
 
         public string RollPitchYaw_Text { get { return "Roll: " + VM_roll_deg_p + "\nPitch: " + VM_pitch_deg_p + "\nYaw: " + VM_side_slip_deg_p; } }
 

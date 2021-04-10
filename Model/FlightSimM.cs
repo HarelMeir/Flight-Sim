@@ -23,7 +23,6 @@ namespace Flight_Sim.Model
         volatile Boolean stop;
         volatile public int sliderCurrent;
         private bool closeFlag;
-        private Boolean stop;
         private int numOfCols;
 
         private int numberOfLines;
@@ -35,7 +34,6 @@ namespace Flight_Sim.Model
         private List<Point> points;
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
         //constructor
         public FlightSimM(string server, Int32 port)
         {
@@ -45,11 +43,10 @@ namespace Flight_Sim.Model
             this.playRythm = 100;
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
-            //this.data = new FlightdataModel();
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
-            this.currentLine = 1;
+            //this.currentLine = 1;
             this.closeFlag = false;
         }
 
@@ -363,7 +360,7 @@ namespace Flight_Sim.Model
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
                                 //update the data class members.
                                 UpdateLine(flightLines[this.data.CurrentLine]);
-                                this.data.CurrentLine++;
+                                //this.data.CurrentLine++;
                                 Thread.Sleep(this.playRythm);
                             }
                             stop = true;
