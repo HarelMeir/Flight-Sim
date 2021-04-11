@@ -19,7 +19,10 @@ namespace Flight_Sim.Model
         private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
-        private Boolean stop;
+        public event PropertyChangedEventHandler PropertyChanged;
+        volatile Boolean stop;
+        volatile public int sliderCurrent;
+        private bool closeFlag;
         private int numOfCols;
 
         private int numberOfLines;
@@ -31,7 +34,6 @@ namespace Flight_Sim.Model
         private List<Point> points;
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
         //constructor
         public FlightSimM(string server, Int32 port)
         {
@@ -41,10 +43,11 @@ namespace Flight_Sim.Model
             this.playRythm = 100;
             this.colNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
-            //this.data = new FlightdataModel();
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
+            //this.currentLine = 1;
+            this.closeFlag = false;
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -79,6 +82,38 @@ namespace Flight_Sim.Model
         public void Pause()
         {
             stop = true;
+        }
+
+        public void RightButton()
+        {
+            data.CurrentLine = data.CurrentLine + 10;
+        }
+        public void LeftButton()
+        {
+            data.CurrentLine = data.CurrentLine - 10;
+        }
+        public void RightStopButton()
+        {
+            data.CurrentLine = numberOfLines - 1;
+        }
+        public void LeftStopButton()
+        {
+            data.CurrentLine = 0;
+        }
+
+        public void changeRhythm(double newSpeedRhythm)
+        {
+            this.playRythm = Convert.ToInt32(newSpeedRhythm);
+        }
+        public void ChangeTimeBySlider(double val)
+        {
+            double v = (val / 100) * numberOfLines;
+            //sliderCurrent = Convert.ToInt32(val);
+            data.CurrentLine = Convert.ToInt32(v);
+        }
+        public void Close()
+        {
+            closeFlag = true;
         }
 
         public string CsvPath
@@ -310,23 +345,40 @@ namespace Flight_Sim.Model
                     {
                         while (!stop)
                         {
-                            //sending the lines 1 by 1 to the FG.
-                            while (this.data.CurrentLine < numberOfLines)
+                            for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
                             {
-                                //sending the line data as bytes to the fg.
-                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[this.data.CurrentLine]);
+                                if(stop)
+                                {
+                                    break;
+                                }
+                                if (closeFlag)
+                                {
+                                    break;
+                                }
+                                Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
+
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
                                 //update the data class members.
                                 UpdateLine(flightLines[this.data.CurrentLine]);
-                                this.data.CurrentLine++;
+                                //this.data.CurrentLine++;
                                 Thread.Sleep(this.playRythm);
                             }
                             stop = true;
+                            if (closeFlag)
+                            {
+                                break;
+                            }
                         }
-                        stream.Close();
-                        client.Close();
-                    }             
+                        if (closeFlag)
+                        {
+                            break;
+                        }
+                    }
+                    stream.Close();
+                    client.Close();
+                    System.Environment.Exit(1); //in case of "close" - exit the window
                 }).Start();
+                
             }
             catch (ArgumentNullException e)
             {
@@ -336,6 +388,7 @@ namespace Flight_Sim.Model
             {
                 Console.WriteLine("Socket failed to open. Open the flightgear sim Please.\n", e);
             }
+            
         }
 
         public void NotifyPropertyChanged(string propertyName)

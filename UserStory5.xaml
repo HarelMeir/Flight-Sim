@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Flight_Sim" d:DataContext="{d:DesignInstance Type=local:UserStory5VM}"
-             mc:Ignorable="d" Height="206.039" Width="170.506">
+             mc:Ignorable="d" Height="259.821" Width="237.195">
     <Grid Margin="0,0,570,191">
-        <ListBox HorizontalAlignment="Left" Height="235" Margin="10,10,-226,-230" VerticalAlignment="Top" Width="216">
+        <ListBox HorizontalAlignment="Left" Height="263" Margin="10,10,-287,-204" VerticalAlignment="Top" Width="277">
             <TextBlock x:Name="Airspeed_textblock"  Text="{Binding Airspeed_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
             <TextBlock x:Name="Altitude_textblock"  Text="{Binding Altitude_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
             <TextBlock x:Name="Direction_textblock"  Text="{Binding Heading_Text}" FontWeight="Bold"   FontSize="15" HorizontalAlignment="Center" Margin="0,0,0,25"/>
