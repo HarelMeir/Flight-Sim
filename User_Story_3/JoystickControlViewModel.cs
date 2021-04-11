@@ -33,22 +33,6 @@ namespace Flight_Sim.User_Story_3
             }
         }
 
-        
-
-        ////keep track of csv line number and update joystick when there's a change
-        //private int lineNumber = 0;
-        //public int VM_CurrentLine
-        //{
-        //    get { return lineNumber; }
-        //    set
-        //    {
-        //        if (lineNumber != value)
-        //        {
-        //            lineNumber = value;
-        //        }
-        //    }
-        //}
-
 
 
 
