@@ -22,6 +22,7 @@ public:
 	virtual void learnNormal(const TimeSeries& ts)=0;
 	virtual vector<AnomalyReport> detect(const TimeSeries& ts)=0;
 	virtual ~TimeSeriesAnomalyDetector(){}
+	virtual vector<correlatedFeatures> getNormalModel() = 0;
 };
 
 #endif /* ANOMALYDETECTOR_H_ */
