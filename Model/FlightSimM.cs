@@ -19,11 +19,10 @@ namespace Flight_Sim.Model
         private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
-        public event PropertyChangedEventHandler PropertyChanged;
+
         volatile Boolean stop;
         volatile public int sliderCurrent;
         private bool closeFlag;
-        private Boolean stop;
         private int numOfCols;
 
         private int numberOfLines;
@@ -49,7 +48,6 @@ namespace Flight_Sim.Model
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
-            this.currentLine = 1;
             this.closeFlag = false;
         }
 
