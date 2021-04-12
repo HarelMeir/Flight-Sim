@@ -40,12 +40,23 @@ namespace Flight_Sim
         private float airspeed_indicated_speed, altimeter_indicated_altitude, altimeter_pressure, attitude_indicated_pitch_deg, attitude_indicted_roll_deg,
             attitude_internal_pitch_deg, attitude_internal_roll_deg, encoder_indicated_altitude, encoder_pressure, gps_altitude, gps_ground_speed, gps_vertical_speed,
             indicated_heading, magnetic_compass_heading, slip_skid_balls, indicated_turn_rate, vertical_speed_speed_fpm, engine_rpm;
-
+        //currentLine
         private int currentLine;
+
+        private List<string> colNames;
+        private List<string> colDataNames;
+        private IDictionary<string, List<float>> table;
+        private string chosenFeature;
+        private List<float> chosenValues;
 
         //default constructor
         public FlightdataModel() {
             this.currentLine = 0;
+            this.colNames = new List<string>();
+            this.colDataNames = new List<string>();
+            this.table = new Dictionary<string, List<float>>();
+            this.chosenValues = new List<float>();       
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -755,6 +766,72 @@ namespace Flight_Sim
                 NotifyPropertyChanged("CurrentLine");
             }
         }
+
+        public List<string> ColNames
+        {
+            get
+            {
+                return this.colNames;
+            }
+            set
+            {
+                if(this.colNames != value)
+                {
+                    this.colNames = value;
+                }
+            }
+        }
+
+
+        public IDictionary<string, List<float>> Table
+        {
+            get
+            {
+                return this.table;
+            }
+            set
+            {
+                if(this.table != value)
+                {
+                    this.table = value;
+                }
+            }
+        }
+        
+        public string ChosenFeature
+        {
+            get { return this.chosenFeature; }
+            set
+            {
+                if(this.chosenFeature != value)
+                {
+                    this.chosenFeature = value;
+                    NotifyPropertyChanged("ChosenFeature");
+                }
+            }
+        }
+
+        public List<float> ChosenValues
+        {
+            get
+            {
+                return this.chosenValues;
+            }
+        }
+
+
+        /******************************************************
+         *                      Methods
+         *******************************************************/         
+        
+        public List<float> FeatureChosenValues()
+        {
+            string s = this.chosenFeature; ;
+            s += "_p";
+            Console.WriteLine(s);
+            return table[s].ToList();
+        } 
+
 
         //INotifyHelperApp
         public void NotifyPropertyChanged(string propertyName)
