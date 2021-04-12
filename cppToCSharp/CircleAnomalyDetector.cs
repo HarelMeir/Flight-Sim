@@ -7,24 +7,9 @@ using Flight_Sim.Model;
 
 namespace Flight_Sim.cppToCSharp
 {
-    /*class CorrelatedFeatures
+    class CircleAnomalyDetector : ITimeSeriesAnomalyDetector
     {
-        string feature1, feature2;  // names of the correlated features
-        public string Feature1 { get { return feature1; } set { feature1 = value; } }
-        public string Feature2 { get { return feature2; } set { feature2 = value; } }
-        float correlation;
-        public float Corr { get { return correlation; } set { correlation= value; } }
-        Line lin_reg;
-        public Line Lin_Reg{ get { return lin_reg; } set { lin_reg = value; } }
-        float threshold;
-        public float Threshold { get { return threshold; } set { threshold = value; } }
-        Circle circleThreshold;
-        public Circle CircleThreshold { get { return circleThreshold; } set { circleThreshold = value; } }
-    };*/
-
-    class SimpleAnomalyDetector : ITimeSeriesAnomalyDetector
-    {
-		List<CorrelatedFeatures> cf;
+        List<CorrelatedFeatures> cf;
         float correlationThreshold = 0.9f;
         public void setCorrelationThreshold(float newThreshold)
         {
@@ -80,7 +65,7 @@ namespace Flight_Sim.cppToCSharp
             }
             return maxDev;
         }
-        
+
 
 
 
@@ -92,7 +77,7 @@ namespace Flight_Sim.cppToCSharp
                 for (int i = 0; i < table[correlatedFeature.Feature1].Count; i++)
                 {
                     Point p = new Point(table[correlatedFeature.Feature1].ElementAt(i), table[correlatedFeature.Feature1].ElementAt(i));
-                    if (AnomalyUtils.Dev(p, correlatedFeature.Lin_Reg) > correlatedFeature.Threshold)
+                    if (!MinCircle.IsPointInside(correlatedFeature.CircleThreshold, p))
                         anomalyReport.Add(new AnomalyReport(correlatedFeature.Feature1 + "-" + correlatedFeature.Feature2, i));
                 }
             }
