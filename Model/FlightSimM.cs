@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace Flight_Sim.Model
 {
-    public class FlightSimM : IFlightSimM
+    public class FlightSimM : IFlightSimM,INotifyPropertyChanged
     {
         private volatile int playRythm;
         private volatile string csvPath;
@@ -23,7 +23,6 @@ namespace Flight_Sim.Model
         volatile Boolean stop;
         volatile public int sliderCurrent;
         private bool closeFlag;
-        private Boolean stop;
         private int numOfCols;
 
         private int numberOfLines;
@@ -34,8 +33,6 @@ namespace Flight_Sim.Model
         //Graphs
         private List<Point> points;
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
         //constructor
         public FlightSimM(string server, Int32 port)
         {
@@ -49,7 +46,7 @@ namespace Flight_Sim.Model
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
-            this.currentLine = 1;
+            //this.currentLine = 1;
             this.closeFlag = false;
         }
 
@@ -73,6 +70,26 @@ namespace Flight_Sim.Model
 
             }
         }
+        /*public int sliderVal
+        {
+            get
+            {
+                 double val = (_sliderVal / NumberOfLines) * 100;
+                return Convert.ToInt32(val);
+
+            }
+            set
+            {
+                if (this._sliderVal != value)
+                {
+                    this._sliderVal = value;
+                    this.NotifyPropertyChanged("sliderVal");
+                }
+                // value = this.model.sliderCurrent;
+                // _sliderVal = this.model.sliderCurrent;        
+            }
+        }*/
+
         public void Play()
         {
            stop = false;
@@ -103,11 +120,17 @@ namespace Flight_Sim.Model
         {
             data.CurrentLine = 0;
         }
+        public int getCurrentLine()
+        {
+            return data.CurrentLine;
+        }
 
+        //change the rythem by the value we get
         public void changeRhythm(double newSpeedRhythm)
         {
-            this.playRythm = Convert.ToInt32(newSpeedRhythm);
+            this.playRythm = Convert.ToInt32(100 /newSpeedRhythm);
         }
+
         public void ChangeTimeBySlider(double val)
         {
             double v = (val / 100) * numberOfLines;
