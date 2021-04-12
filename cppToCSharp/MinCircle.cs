@@ -32,11 +32,11 @@ namespace Flight_Sim.cppToCSharp
             return Dist(c.center, p) <= c.radius;
         }
 
-        public Circle TwoPointsCircle(Point p1, Point p2) {
+        public static Circle TwoPointsCircle(Point p1, Point p2) {
             return new Circle(new Point((p1.X + p2.X) / 2, (p1.Y + p2.Y) / 2), Dist(p1, p2) / 2);
         }
 
-        public Circle ThreePointCircle(Point p1, Point p2, Point p3) {
+        public static Circle ThreePointCircle(Point p1, Point p2, Point p3) {
             float xc = ((p1.X * p1.X - p2.X * p2.X + p1.Y * p1.Y - p2.Y * p2.Y) * (p1.Y - p3.Y) +
                 (-p1.X * p1.X + p3.X * p3.X - p1.Y * p1.Y + p3.Y * p3.Y) * (p1.Y - p2.Y)) /
                (2 * ((p1.X - p2.X) * (p1.Y - p3.Y) - (p1.X - p3.X) * (p1.Y - p2.Y)));
@@ -46,7 +46,7 @@ namespace Flight_Sim.cppToCSharp
             return new Circle(new Point(xc, yc), radius);
         }
 
-        public Circle Welzl(List<Point> P, List<Point> R, int sizeP) {
+        public static Circle Welzl(List<Point> P, List<Point> R, int sizeP) {
             // trivial cases + case that we need to make a circle using 2 or 3 points (depending on how many we recieve).
             if (sizeP == 0 || R.Count == 3)
             {
@@ -87,7 +87,7 @@ namespace Flight_Sim.cppToCSharp
         }
 
 
-        public Circle FindMinCircle(List<Point> pointsList)
+        public static Circle FindMinCircle(List<Point> pointsList)
         {
             // obtain a time-based seed using time since epoch for a proper random shuffle.
             //unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
