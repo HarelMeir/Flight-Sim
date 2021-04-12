@@ -10,7 +10,7 @@ namespace Flight_Sim
     class API
     {
         [DllImport("Dll.dll")]
-        public static extern void uploadCSV(string path);
+        public static extern int uploadCSV(string path);
         [DllImport("Dll.dll")]
         public static extern IntPtr createPoint(float x, float y);
         [DllImport("Dll.dll")]

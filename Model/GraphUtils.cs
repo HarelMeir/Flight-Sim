@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Flight_Sim.Model;
 
 namespace Flight_Sim.Model
 {
@@ -12,7 +11,7 @@ namespace Flight_Sim.Model
         private float x;
         private float y;
 
-        public Point(int x, int y)
+        public Point(float x, float y)
         {
             this.x = x;
             this.y = y;
@@ -106,18 +105,19 @@ namespace Flight_Sim.Model
         //****methods******//
 
         //avg
-        public float Avg(List<float> list)
+        public static float Avg(List<float> list)
         {
             float sum = 0;
             foreach (float val in list)
             {
                 sum += val;
             }
-            return sum;
+            // return value changed from sum to sum / list.count
+            return sum / list.Count;
         }
 
         //variance
-        public float Var(List<float> x)
+        public static float Var(List<float> x)
         {
             float ex = Avg(x);
             for (int i = 0; i < x.Count; i++)
@@ -129,7 +129,7 @@ namespace Flight_Sim.Model
         }
 
         //cov
-        public float Cov(List<float> x, List<float> y)
+        public static float Cov(List<float> x, List<float> y)
         {
             float ex = Avg(x);
             float ey = Avg(y);
@@ -142,13 +142,13 @@ namespace Flight_Sim.Model
         }
 
         //pearson
-        public float Pearson(List<float> x, List<float> y)
+        public static float Pearson(List<float> x, List<float> y)
         {
             return Cov(x, y) / (float)Math.Sqrt(Var(x) * Var(y));
         }
 
         //linear reg
-        public Line LinearReg(List<Point> points)
+        public static Line LinearReg(List<Point> points)
         {
             var x = new List<float>();
             var y = new List<float>();
@@ -162,14 +162,21 @@ namespace Flight_Sim.Model
 
             return new Line(a, b);
         }
+        public static Line LinearReg(List<float> x, List<float> y)
+        {
+            float a = Cov(x, y) / Var(x);
+            float b = Avg(x) - (a * Avg(x));
+
+            return new Line(a, b);
+        }
         //1st dev
-        public float Dev(Point p, List<Point> points)
+        public static float Dev(Point p, List<Point> points)
         {
             return Dev(p, LinearReg(points)); 
         }
 
         //2st dev
-        public float Dev(Point p, Line l) {
+        public static float Dev(Point p, Line l) {
             return Math.Abs(p.Y - l.LineEx(p.X));
         }
     }

@@ -19,19 +19,21 @@ namespace Flight_Sim.Model
         private volatile string xmlPath;
         private Int32 port;
         private string serverPath;
-        public event PropertyChangedEventHandler PropertyChanged;
+
         volatile Boolean stop;
         volatile public int sliderCurrent;
         private bool closeFlag;
         private int numOfCols;
 
         private int numberOfLines;
-        private IDictionary<string, List<float>> table;
-        private List<string> colNames;
+        private List<string> colDataNames;
         private FlightdataModel data;
-
+        public event PropertyChangedEventHandler PropertyChanged;
         //Graphs
         private List<Point> points;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         //constructor
         public FlightSimM(string server, Int32 port)
@@ -40,9 +42,7 @@ namespace Flight_Sim.Model
             this.port = port;
             //default speed(X1)
             this.playRythm = 100;
-            this.colNames = new List<string>();
-            this.table = new Dictionary<string, List<float>>();
-            //this.data = new FlightdataModel();
+            this.colDataNames = new List<string>();
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
@@ -232,29 +232,18 @@ namespace Flight_Sim.Model
             }
         }
 
-
-        public IDictionary<string, List<float>> Table
+        public List<string> ColDataNames
         {
             get
             {
-                return this.table;
+                return this.ColDataNames;
             }
-
             set
             {
-                if (this.table != value)
+                if(this.colDataNames != value)
                 {
-                    this.table = value;
-                    NotifyPropertyChanged("Table");
+                    this.colDataNames = value;
                 }
-            }
-        }
-
-        public List<string> ColNames
-        {
-            get
-            {
-                return this.ColNames;
             }
         }
 
@@ -279,28 +268,33 @@ namespace Flight_Sim.Model
                 if (n.Name.Equals("chunk"))
                 {
                     string s1 = n.SelectSingleNode("name").InnerText;
-                    if (colNames.Contains(s1))
+                    if (colDataNames.Contains(s1))
                     {
-                        colNames.Add(s1 + "2");
+                        data.ColNames.Add(s1 + "2");
+                        colDataNames.Add(s1 + "2");
                     }
                     else
                     {
-                        colNames.Add(s1);
+                        data.ColNames.Add(s1);
+                        colDataNames.Add(s1);
                     }
                 }
             }
-            this.numOfCols = colNames.Count; 
+            //initialize numOfCost field member
+            this.numOfCols = colDataNames.Count; 
             for (int i = 0; i < this.numOfCols; i++)
             {
-                colNames[i] = colNames[i].Replace('-', '_');
-                colNames[i] += "_p";
+                this.data.ColNames[i] = data.ColNames[i].Replace('-', '_'); 
+                colDataNames[i] = colDataNames[i].Replace('-', '_');
+                colDataNames[i] += "_p";
             }
         }
 
 
-        /**
+        /***************************************************
          *  Creating a Dictionary as a time Series.
-         */
+         ****************************************************/
+
         private Dictionary<string, List<float>> CreateTable()
         {
             //Create a dicionary, with string as keys,and list of floats as values.
@@ -310,19 +304,23 @@ namespace Flight_Sim.Model
             {
                 using (TextFieldParser parser = new TextFieldParser(csvPath))
                 {
-                    getColNames();
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
                     string[] fields;
                     //adding the rest of the data as value to associated with each key.
+
+                    foreach(string col in colDataNames)
+                    {
+                        dic.Add(col, new List<float>());
+                    }
                     while (!parser.EndOfData)
                     {
                         //reading each line to a string array.
                         fields = parser.ReadFields();
                         //adding each value to its keys list.
-                        for (int i = 0; i < dic.Count; i++)
+                        for (int i = 0; i < fields.Length; i++)
                         {
-                            dic[this.colNames[i]].Add(float.Parse(fields[i]));
+                            dic[this.colDataNames[i]].Add(float.Parse(fields[i]));
                         }
                     }
                 }
@@ -343,9 +341,9 @@ namespace Flight_Sim.Model
         {
             float[] lineVal = Array.ConvertAll(line.Split(','), float.Parse);
              for (int i = 0; i < this.numOfCols ; i++)
-              {
-                 data.GetType().GetProperty(colNames[i]).SetValue(data, lineVal[i]);
-              }
+             {
+                 data.GetType().GetProperty(colDataNames[i]).SetValue(data, lineVal[i]);             
+             }
         }
 
         public void Connect()
@@ -353,12 +351,14 @@ namespace Flight_Sim.Model
             string[] flightLines = File.ReadAllLines(csvPath);
             //number of line
             this.numberOfLines = flightLines.Length;
+            //adding linefeed char in every single line.
             for (int i = 0; i < numberOfLines; i++)
             {
                 flightLines[i] += "\n";
             }
             //Creating a Dictionary for future use.
-            this.table = CreateTable();
+            getColNames();
+            this.data.Table = CreateTable();
 
             try
             {
@@ -386,7 +386,7 @@ namespace Flight_Sim.Model
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
                                 //update the data class members.
                                 UpdateLine(flightLines[this.data.CurrentLine]);
-                                this.data.CurrentLine++;
+                                //this.data.CurrentLine++;
                                 Thread.Sleep(this.playRythm);
                             }
                             stop = true;

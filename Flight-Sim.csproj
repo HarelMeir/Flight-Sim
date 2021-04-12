@@ -89,6 +89,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="cppToCSharp\AnomalyDetector.cs" />
+    <Compile Include="cppToCSharp\CircleAnomalyDetector.cs" />
+    <Compile Include="cppToCSharp\CorrelatedFeatures.cs" />
+    <Compile Include="cppToCSharp\MinCircle.cs" />
+    <Compile Include="cppToCSharp\SimpleAnomalyDetector.cs" />
+    <Compile Include="GraphTest.xaml.cs">
+      <DependentUpon>GraphTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\API.cs" />
     <Compile Include="Model\FlightdataModel.cs" />
     <Compile Include="FlightSimApp.xaml.cs">
@@ -120,6 +128,10 @@
     <Page Include="FlightSimApp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GraphTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

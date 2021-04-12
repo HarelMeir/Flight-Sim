@@ -3,20 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Flight_Sim.View"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:local="clr-namespace:Flight_Sim.View" xmlns:view_model="clr-namespace:Flight_Sim.View_Model" d:DataContext="{d:DesignInstance Type=view_model:GraphsVm}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid x:Name="scrollIt" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Background="White" Margin="20,15,20,15">
-            <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="360"/>
+            <ScrollViewer Grid.Column="0" FlowDirection="RightToLeft" HorizontalScrollBarVisibility="Disabled" Width="400">
+                <StackPanel  x:Name="fList" Grid.Column="0" HorizontalAlignment="Left" FlowDirection="LeftToRight" Width="385">
 
-        </StackPanel>
-        <Grid Grid.Column="1" Background="White"/>
+                </StackPanel>
+            </ScrollViewer>
 
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <oxy:PlotView x:Name="featuresPlot" Model="{Binding VM_PlotModel}" Margin="10" Grid.Column="0"/>
+                <oxy:PlotView x:Name="corrPlot"  Margin="10" Grid.Column="1" Grid.Row="0"/>
+
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

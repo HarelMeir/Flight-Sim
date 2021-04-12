@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Flight_Sim.View;
 
 namespace Flight_Sim
 {
@@ -27,7 +28,7 @@ namespace Flight_Sim
         {
             Single.SetServer("localhost", 5400);
             vm = new FlightSimVM(Single.SingleFlightSimM());
-           
+            //vm = new FlightSimVM(new FlightSimM("localhost", 5400));
             DataContext = vm;
             InitializeComponent();
         }
@@ -59,11 +60,20 @@ namespace Flight_Sim
             {
                 error_msg_csv.Visibility = Visibility.Hidden;
                 error_msg_xml.Visibility = Visibility.Hidden;
-                Thread.Sleep(500);
+
+
                 vm.Connect();
-                FlightSimApp fsa = new FlightSimApp();
+                 FlightSimApp fsa = new FlightSimApp();
                 fsa.Show();
+                GraphTest g = new GraphTest();
+                g.Show();
                 this.Close();
+                // Thread.Sleep(500);
+
+
+
+             
+
             }
         }
 
