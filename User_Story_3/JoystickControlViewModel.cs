@@ -50,7 +50,7 @@ namespace Flight_Sim.User_Story_3
 
 
         //how many chunks to divide the slider into
-        private float sliderAccuracy = 30;
+        private float sliderAccuracy = 100;
         private float sliderJumps;
 
         //Rudder definitions and functions to move the slider
@@ -84,7 +84,7 @@ namespace Flight_Sim.User_Story_3
 
         //Throttle definitions and functions to move the slider
         private double throttleSliderPos;
-        public double VM_throttle1_p
+        public double VM_throttle_p
         {
             get { return throttleSliderPos; }
             set {
@@ -95,13 +95,13 @@ namespace Flight_Sim.User_Story_3
         }
 
         public Thickness ThrottleMargin { get { return new Thickness(248, 71, 0, 0); }}
-        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_throttle1_p - 12, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
+        public Thickness ThrottleSliderMargin { get { return new Thickness(ThrottleMargin.Left - 4, VM_throttle_p - 12, ThrottleMargin.Right, ThrottleMargin.Bottom); }}
         public double ThrottleHeight { get { return 226; } }
         public void UpdateThrottle1Position() {
             for (int i = 0; i <= sliderAccuracy; i++) {
                 if (model.throttle_p >= -1 + (sliderJumps * i) && model.throttle_p <= -1 + (sliderJumps * (i + 1)))
                 {
-                    VM_throttle1_p = ThrottleMargin.Top + (i * ThrottleHeight) / sliderAccuracy;
+                    VM_throttle_p = ThrottleMargin.Top + (i * ThrottleHeight) / sliderAccuracy;
                     NotifyPropertyChanged("ThrottleSliderMargin");
                     break;
                 }
@@ -119,28 +119,28 @@ namespace Flight_Sim.User_Story_3
             if (lastElevator == this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\0_neutral_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron == this.model.aileron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\1_up_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron < this.model.aileron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\2_up-right_joystick.png";
 
-            if (lastElevator == this.model.elevator_p && lastAileron < this.model.aileron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\3_right_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron < this.model.aileron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron > this.model.aileron_p)
                 ImageName = "Joystick_images\\4_down-right_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron == this.model.aileron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron == this.model.aileron_p)
                 ImageName = "Joystick_images\\5_down_joystick.png";
 
-            if (lastElevator > this.model.elevator_p && lastAileron > this.model.aileron_p)
+            if (lastElevator < this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\6_down-left_joystick.png";
 
-            if (lastElevator == this.model.elevator_p && lastAileron > this.model.aileron_p)
+            if (lastElevator == this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\7_left_joystick.png";
 
-            if (lastElevator < this.model.elevator_p && lastAileron > this.model.aileron_p)
+            if (lastElevator > this.model.elevator_p && lastAileron < this.model.aileron_p)
                 ImageName = "Joystick_images\\8_up-left_joystick.png";
 
             lastAileron = this.model.aileron_p;
@@ -155,7 +155,7 @@ namespace Flight_Sim.User_Story_3
         {
             if (propName == "VM_rudder_p")
                 UpdateRudderPosition();
-            if (propName == "VM_throttle1_p")
+            if (propName == "VM_throttle_p")
                 UpdateThrottle1Position();
             if (propName == "VM_CurrentLine")
                 UpdateJoystickPosition();
