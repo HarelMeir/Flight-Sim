@@ -38,21 +38,10 @@ namespace Flight_Sim
 
         private void UserStory9_Loaded(object sender, RoutedEventArgs e)
         {
-            /*string dllFile = @"C:\Users\avivi\Desktop\AP2\SimpleAnomalyDetectorDLL.dll";
-            var assembly = Assembly.LoadFrom(dllFile);
-            var type = assembly.GetType("SimpleAnomalyDetectorDLL.API");
-            Console.WriteLine("type is: " + type + "\n");
-            var obj = Activator.CreateInstance(type);
-            var method = type.GetMethod("useDetector");
-            var a = method.Invoke(obj, new object[] {Single.SingleDataModel().Table,
-            Single.SingleDataModel().Table});
-            List<AnomalyReport> b = (List<AnomalyReport>)a;
-            Console.WriteLine(b.ElementAt(0).desc);*/
-
             FlightSimM fsm = Single.SingleFlightSimM();
             // creates a new csv like the received one but with the properties in the first row.
-            string noPropTrainCSVPath =  fsm.CsvPath; // change to train
-            string noPropTestCSVPath = fsm.CsvPath; // change to test
+            string noPropTrainCSVPath = fsm.CsvPath; // change to train *****************
+            string noPropTestCSVPath = fsm.CsvPath; // change to test ***************************
             string csvTrain = "train.csv";
             string csvTest = "test.csv";
             // adds the first line with properties
@@ -63,18 +52,14 @@ namespace Flight_Sim
                 File.AppendAllText(csvTrain, "," + fsm.ColDataNames[i]);
                 File.AppendAllText(csvTest, "," + fsm.ColDataNames[i]);
             }
+            File.AppendAllText(csvTrain, "\n");
+            File.AppendAllText(csvTest, "\n");
             // copying the rest of the file as it is
             string[] noPropTrainLines = File.ReadAllLines(noPropTrainCSVPath);
-            foreach(string ln in noPropTrainLines)
-            {
-                File.AppendAllLines(csvTrain, noPropTrainLines);
-            }
+            File.AppendAllLines(csvTrain, noPropTrainLines);
             // copying the rest of the file as it is
             string[] noPropTestLines = File.ReadAllLines(noPropTestCSVPath);
-            foreach (string ln in noPropTestLines)
-            {
-                File.AppendAllLines(csvTest, noPropTestLines);
-            }
+            File.AppendAllLines(csvTest, noPropTestLines);
 
             // use the dll function, it creates a file named Anomalies.csv that holds all the
             // AnomalyReports, each line holds: Timestep,Description.
@@ -91,7 +76,7 @@ namespace Flight_Sim
             string anomaliesPath = "Anomalies.csv";
             List<AnomalyReport> anomalyReports = new List<AnomalyReport>();
             string[] lines = File.ReadAllLines(anomaliesPath);
-            foreach(string ln in lines)
+            foreach (string ln in lines)
             {
                 string[] splitted = ln.Split(',');
                 anomalyReports.Add(new AnomalyReport(splitted[1], long.Parse(splitted[0])));

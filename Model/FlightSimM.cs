@@ -55,7 +55,6 @@ namespace Flight_Sim.Model
         }
 
         public FlightdataModel GetFlightdata() { return data; }
-        public event PropertyChangedEventHandler PropertyChanged;
 
 
         //Properties
