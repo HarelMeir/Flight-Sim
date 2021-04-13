@@ -45,10 +45,10 @@
             </Button.Background>
         </Button>
 
-        
+
         <TextBlock HorizontalAlignment="Left" Margin="548,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="62"><Run Background="#FFBFBCBC" Text="Play Speed"/></TextBlock>
 
-        <Slider HorizontalAlignment="Left" Name="slider" Minimum="0" Maximum="100" Value="{Binding sliderVal, Mode=TwoWay}" Height="24" Margin="106,285,0,0" VerticalAlignment="Top" Width="491" RenderTransformOrigin="0.5,0.5" ValueChanged="Slider_ValueChanged" DataContextChanged="Slider_DataContextChanged">
+        <Slider HorizontalAlignment="Right" Name="slider" Minimum="0" Maximum="100" Value="{Binding Path=sliderVal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="24" Margin="0,285,203,0" VerticalAlignment="Top" Width="491" RenderTransformOrigin="0.5,0.5" ValueChanged="Slider_ValueChanged" DataContextChanged="Slider_DataContextChanged">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

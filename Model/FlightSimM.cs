@@ -24,11 +24,13 @@ namespace Flight_Sim.Model
         volatile public int sliderCurrent;
         private bool closeFlag;
         private int numOfCols;
+        private int slider_al;
+        int currentValSlider; //gets num between 0-100
 
         private int numberOfLines;
         private List<string> colDataNames;
         private FlightdataModel data;
-        public event PropertyChangedEventHandler PropertyChanged;
+
         //Graphs
         private List<Point> points;
 
@@ -48,6 +50,7 @@ namespace Flight_Sim.Model
             this.points = new List<Point>();
             //this.currentLine = 1;
             this.closeFlag = false;
+            this.currentValSlider = 0;
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -70,25 +73,26 @@ namespace Flight_Sim.Model
 
             }
         }
-        /*public int sliderVal
+        public int sliderVal
         {
             get
             {
-                 double val = (_sliderVal / NumberOfLines) * 100;
-                return Convert.ToInt32(val);
+                //double val = (sliderVal / NumberOfLines) * 100;
+                //return Convert.ToInt32(val);
+                return currentValSlider;
 
             }
             set
             {
-                if (this._sliderVal != value)
+                if (this.currentValSlider != value)
                 {
-                    this._sliderVal = value;
+                    this.currentValSlider = value;
                     this.NotifyPropertyChanged("sliderVal");
                 }
                 // value = this.model.sliderCurrent;
                 // _sliderVal = this.model.sliderCurrent;        
             }
-        }*/
+        }
 
         public void Play()
         {
@@ -227,6 +231,7 @@ namespace Flight_Sim.Model
                 if (this.numberOfLines != value)
                 {
                     this.numberOfLines = value;
+
                     NotifyPropertyChanged("NumberOfLines");
                 }
             }
@@ -373,6 +378,7 @@ namespace Flight_Sim.Model
                         {
                             for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
                             {
+                                this.currentValSlider = Convert.ToInt32((data.CurrentLine / numberOfLines) * 100);
                                 if(stop)
                                 {
                                     break;
@@ -381,6 +387,7 @@ namespace Flight_Sim.Model
                                 {
                                     break;
                                 }
+
                                 Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
 
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
