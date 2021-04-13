@@ -17,6 +17,7 @@ namespace Flight_Sim.Model
         private volatile int playRythm;
         private volatile string csvPath;
         private volatile string xmlPath;
+        private volatile string dllPath;
         private Int32 port;
         private string serverPath;
 
@@ -143,6 +144,20 @@ namespace Flight_Sim.Model
                 }
             }
         }
+        public string DLLPath
+        {
+            get
+            {
+                return this.dllPath;
+            }
+            set
+            {
+                if (this.dllPath != value)
+                {
+                    this.dllPath = value;
+                }
+            }
+        }
 
 
         public Int32 Port
@@ -225,9 +240,6 @@ namespace Flight_Sim.Model
                 return this.data;
             }
         }
-    
-
-
 
         private void getColNames()
         {

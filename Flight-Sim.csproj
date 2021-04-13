@@ -23,7 +23,9 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -104,6 +106,10 @@
     </Compile>
     <Compile Include="Model\FlightSimM.cs" />
     <Compile Include="Model\GraphUtils.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="UserStory9.xaml.cs">
+      <DependentUpon>UserStory9.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View Model\FlightSimVM.cs" />
     <Compile Include="Model\IFlightSimM.cs" />
     <Compile Include="View Model\GraphsVm.cs" />
@@ -151,6 +157,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserStory5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserStory9.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
