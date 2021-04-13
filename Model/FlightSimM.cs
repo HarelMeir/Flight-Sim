@@ -35,6 +35,8 @@ namespace Flight_Sim.Model
         //Graphs
         private List<Point> points;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         //constructor
         public FlightSimM(string server, Int32 port)
@@ -254,7 +256,7 @@ namespace Flight_Sim.Model
         {
             get
             {
-                return this.ColDataNames;
+                return this.colDataNames;
             }
             set
             {
