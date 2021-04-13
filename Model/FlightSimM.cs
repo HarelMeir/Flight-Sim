@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace Flight_Sim.Model
 {
-    public class FlightSimM : IFlightSimM
+    public class FlightSimM : IFlightSimM,INotifyPropertyChanged
     {
         private volatile int playRythm;
         private volatile string csvPath;
@@ -25,11 +25,13 @@ namespace Flight_Sim.Model
         volatile public int sliderCurrent;
         private bool closeFlag;
         private int numOfCols;
+        private int slider_al;
+        int currentValSlider; //gets num between 0-100
 
         private int numberOfLines;
         private List<string> colDataNames;
         private FlightdataModel data;
-        public event PropertyChangedEventHandler PropertyChanged;
+
         //Graphs
         private List<Point> points;
 
@@ -45,7 +47,9 @@ namespace Flight_Sim.Model
             this.stop = false;
             this.data = Single.SingleDataModel();
             this.points = new List<Point>();
+            //this.currentLine = 1;
             this.closeFlag = false;
+            this.currentValSlider = 0;
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -68,6 +72,27 @@ namespace Flight_Sim.Model
 
             }
         }
+        public int sliderVal
+        {
+            get
+            {
+                //double val = (sliderVal / NumberOfLines) * 100;
+                //return Convert.ToInt32(val);
+                return currentValSlider;
+
+            }
+            set
+            {
+                if (this.currentValSlider != value)
+                {
+                    this.currentValSlider = value;
+                    this.NotifyPropertyChanged("sliderVal");
+                }
+                // value = this.model.sliderCurrent;
+                // _sliderVal = this.model.sliderCurrent;        
+            }
+        }
+
         public void Play()
         {
            stop = false;
@@ -98,11 +123,17 @@ namespace Flight_Sim.Model
         {
             data.CurrentLine = 0;
         }
+        public int getCurrentLine()
+        {
+            return data.CurrentLine;
+        }
 
+        //change the rythem by the value we get
         public void changeRhythm(double newSpeedRhythm)
         {
-            this.playRythm = Convert.ToInt32(newSpeedRhythm);
+            this.playRythm = Convert.ToInt32(100 /newSpeedRhythm);
         }
+
         public void ChangeTimeBySlider(double val)
         {
             double v = (val / 100) * numberOfLines;
@@ -213,6 +244,7 @@ namespace Flight_Sim.Model
                 if (this.numberOfLines != value)
                 {
                     this.numberOfLines = value;
+
                     NotifyPropertyChanged("NumberOfLines");
                 }
             }
@@ -356,6 +388,7 @@ namespace Flight_Sim.Model
                         {
                             for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
                             {
+                                this.currentValSlider = Convert.ToInt32((data.CurrentLine / numberOfLines) * 100);
                                 if(stop)
                                 {
                                     break;
@@ -364,6 +397,7 @@ namespace Flight_Sim.Model
                                 {
                                     break;
                                 }
+
                                 Byte[] lineInBytes = System.Text.Encoding.ASCII.GetBytes(flightLines[data.CurrentLine]);
 
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);

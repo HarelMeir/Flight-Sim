@@ -45,10 +45,10 @@
             </Button.Background>
         </Button>
 
-        
+
         <TextBlock HorizontalAlignment="Left" Margin="548,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="62"><Run Background="#FFBFBCBC" Text="Play Speed"/></TextBlock>
 
-        <Slider HorizontalAlignment="Left" Minimum="0" Maximum="100" Value="{Binding SliderVal, Mode=TwoWay}" Height="24" Margin="106,285,0,0" VerticalAlignment="Top" Width="491" RenderTransformOrigin="0.5,0.5" ValueChanged="Slider_ValueChanged" DataContextChanged="Slider_DataContextChanged">
+        <Slider HorizontalAlignment="Right" Name="slider" Minimum="0" Maximum="100" Value="{Binding Path=sliderVal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="24" Margin="0,285,203,0" VerticalAlignment="Top" Width="491" RenderTransformOrigin="0.5,0.5" ValueChanged="Slider_ValueChanged" DataContextChanged="Slider_DataContextChanged">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -58,8 +58,9 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <TextBox x:Name="SpeedField" HorizontalAlignment="Left" Height="23" Margin="615,331,0,0" TextWrapping="Wrap" Text="{Binding SpeedVal, Mode=OneWayToSource}" VerticalAlignment="Top" Width="27" SelectionOpacity="1" TextChanged="SpeedField_TextChanged"/>
+        <TextBox x:Name="SpeedField" HorizontalAlignment="Left" Height="23" Margin="615,331,0,0" TextWrapping="Wrap" Text="{Binding SpeedVal, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="27" SelectionOpacity="1" TextChanged="SpeedField_TextChanged"/>
         <Button Content="Close" HorizontalAlignment="Left" Name="Close" Margin="548,359,0,0" VerticalAlignment="Top" Width="75" Click="Close_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="628,359,0,0" TextWrapping="Wrap" Text="{Binding time, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="84"/>
 
 
 

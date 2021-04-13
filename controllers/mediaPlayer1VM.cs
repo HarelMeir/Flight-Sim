@@ -14,14 +14,12 @@ namespace Flight_Sim.controllers
     {
         FlightSimM model;
         double _speedVal;
-        int _sliderVal;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public mediaPlayer1VM(FlightSimM model)
         {
             this.model = model;
-            this._sliderVal = 0;
         }
         public double SpeedVal
         {
@@ -35,15 +33,37 @@ namespace Flight_Sim.controllers
                 }
             }
         }
-        /*public int SliderVal
+         public int numberOfLines
         {
-            get { return _sliderVal; }
+            get { return this.model.NumberOfLines; }
+        }
+
+        private int _sliderVal;
+        public int sliderVal
+        {
+            get {
+                // double val = (_sliderVal / this.model.NumberOfLines) * 100;
+                //return Convert.ToInt32(val);
+                return _sliderVal;
+            }
             set
             {
-                    value = this.model.sliderCurrent;
-                    _sliderVal = this.model.sliderCurrent;        
+                    if (_sliderVal != value)
+                {
+                    _sliderVal = value;
+                    
+                    this.NotifyPropertyChanged("sliderVal");
+                }
+                   // value = this.model.sliderCurrent;
+                   // _sliderVal = this.model.sliderCurrent;        
             }
-        }*/
+        } 
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
 
         public void VM_Play()
         {
