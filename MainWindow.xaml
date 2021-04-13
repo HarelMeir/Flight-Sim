@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Flight_Sim"
         xmlns:controllers="clr-namespace:Flight_Sim.controllers" xmlns:User_Story_3="clr-namespace:Flight_Sim.User_Story_3" x:Class="Flight_Sim.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="571.176" Width="800">
     <Border Padding="10">
         <StackPanel>
             <TextBlock Text="Welcome To Flight-Sim!" FontWeight="Bold"   FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,25"/>
@@ -32,10 +32,14 @@
 
                 <Button x:Name="xml_b" Grid.Column="0" Grid.Row="2" FontSize="32" Content="XML" FontWeight="Bold" Click="XML_Button_Click"/>
                 <TextBlock x:Name="error_msg_xml" Grid.Row="2" Grid.Column="1" Text="This path doesnt exsist. Try again." VerticalAlignment="Center" FontSize="26" FontWeight="DemiBold" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,7.2,0,7.4"/>
-                <TextBox   x:Name="user_XML_Path" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="0,13.6,0,14"/>
+                <TextBox   x:Name="user_XML_Path" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="0,12.6,0,14"/>
+
+                <Button x:Name="DLL_b" Grid.Column="0" Grid.Row="3" FontSize="32" Content="DLL" FontWeight="Bold" Click="DLL_Button_Click" Margin="0,60,0,-60"/>
+                <TextBlock x:Name="error_msg_DLL" Grid.Row="0" Grid.Column="1" Text="This path doesnt exsist. Try again." VerticalAlignment="Center" FontSize="26" FontWeight="DemiBold" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,6.2,0,7.4"/>
+                <TextBox   x:Name="user_DLL_Path" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="0,110,-0.667,-82"/>
 
             </Grid>
-            <Button x:Name="confirm_Button" Content="Confirm!" HorizontalAlignment="Center" FontSize="25" Margin="0,25" Click="confirm_Button_Click"/>
+            <Button x:Name="confirm_Button" Content="Confirm!" HorizontalAlignment="Center" FontSize="25" Margin="337,120,336.333,25" Click="confirm_Button_Click"/>
         </StackPanel>
     </Border>
 </Window>
