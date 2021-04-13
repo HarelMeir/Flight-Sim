@@ -41,6 +41,13 @@ namespace Flight_Sim.cppToCSharp
                                 table.ElementAt(j).Value);
                             cfs.Threshold = highestDev(table.ElementAt(i).Value,
                                 table.ElementAt(j).Value, cfs.Lin_Reg);
+
+                            List<Point> pointsList = new List<Point>();
+                            for (int k = 1; k < columnSize; k++) 
+                                pointsList.Add(new Point(table[cfs.Feature1].ElementAt(k), table[cfs.Feature2].ElementAt(k)));
+                           
+                            cfs.CircleThreshold = MinCircle.FindMinCircle(pointsList);
+                            cfs.CircleThreshold.radius *= 1.1;
                         }
                     }
                 }
