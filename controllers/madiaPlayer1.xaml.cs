@@ -73,9 +73,9 @@ namespace Flight_Sim.controllers
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            double sliderVal = Convert.ToDouble(((Slider)sender).Value);
+            /*double sliderVal = Convert.ToDouble(((Slider)sender).Value);
             this.vm.VM_changeTimeBySlider(sliderVal);
-           // slider.Value = Single.SingleDataModel().CurrentLine;
+           // slider.Value = Single.SingleDataModel().CurrentLine;*/
         }
 
         private void SpeedField_TextChanged(object sender, TextChangedEventArgs e)
@@ -89,10 +89,6 @@ namespace Flight_Sim.controllers
             }
         }
 
-        private void Slider_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
 
 
 

@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace Flight_Sim.Model
 {
-    public class FlightSimM : IFlightSimM,INotifyPropertyChanged
+    public class FlightSimM : IFlightSimM
     {
         private volatile int playRythm;
         private volatile string csvPath;
@@ -52,6 +52,7 @@ namespace Flight_Sim.Model
         }
 
         public FlightdataModel GetFlightdata() { return data; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         //Properties
@@ -71,6 +72,8 @@ namespace Flight_Sim.Model
 
             }
         }
+
+
         public int sliderVal
         {
             get
@@ -135,9 +138,9 @@ namespace Flight_Sim.Model
 
         public void ChangeTimeBySlider(double val)
         {
-            double v = (val / 100) * numberOfLines;
-            //sliderCurrent = Convert.ToInt32(val);
-            data.CurrentLine = Convert.ToInt32(v);
+            //double v = (val / 100) * numberOfLines;
+           
+            data.CurrentLine = Convert.ToInt32(val);
         }
         public void Close()
         {
@@ -376,7 +379,9 @@ namespace Flight_Sim.Model
                         {
                             for (; data.CurrentLine < numberOfLines; data.CurrentLine++)
                             {
-                                this.currentValSlider = Convert.ToInt32((data.CurrentLine / numberOfLines) * 100);
+                                double curr = (Convert.ToDouble(data.CurrentLine) / Convert.ToDouble(numberOfLines)) * 100.0;
+                                this.currentValSlider = Convert.ToInt32(curr);
+
                                 if(stop)
                                 {
                                     break;

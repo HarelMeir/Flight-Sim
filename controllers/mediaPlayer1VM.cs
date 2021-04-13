@@ -15,12 +15,24 @@ namespace Flight_Sim.controllers
         FlightSimM model;
         double _speedVal;
 
+        private string time;
+        private double minutes;
+        private double seconds;
+        private int currentLine;
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public mediaPlayer1VM(FlightSimM model)
         {
             this.model = model;
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) { NotifyPropertyChanged("VM_" + e.PropertyName); };
+            model.Data.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) { NotifyPropertyChanged("VM_" + e.PropertyName); };
+            this.time = "00:00";
+            this.minutes = 0.0;
+            this.seconds = 0.0;
         }
+
         public double SpeedVal
         {
             get{ return _speedVal; }
@@ -38,26 +50,74 @@ namespace Flight_Sim.controllers
             get { return this.model.NumberOfLines; }
         }
 
-        private int _sliderVal;
-        public int sliderVal
+        
+        public int VM_sliderVal
         {
             get {
-                // double val = (_sliderVal / this.model.NumberOfLines) * 100;
-                //return Convert.ToInt32(val);
-                return _sliderVal;
+                return model.sliderVal;
             }
             set
             {
-                    if (_sliderVal != value)
+                   /* if (model.sliderVal != value)
                 {
-                    _sliderVal = value;
+                    model.sliderVal = value;
                     
-                    this.NotifyPropertyChanged("sliderVal");
-                }
+                    this.NotifyPropertyChanged("VM_sliderVal");
+                }8*/
                    // value = this.model.sliderCurrent;
                    // _sliderVal = this.model.sliderCurrent;        
             }
-        } 
+        }
+
+        public int VM_CurrentLine
+        {
+            get
+            {
+                currentLine = model.Data.CurrentLine;
+                this.NotifyPropertyChanged("VM_time");
+                return currentLine;
+                
+            }
+            set
+            {
+                model.Data.CurrentLine = value;
+                this.NotifyPropertyChanged("sliderVal");
+                
+                if (value < numberOfLines)
+                {
+                    VM_Play();
+                }
+
+            }
+        }
+        public int VM_NumberOfLines
+        {
+            get
+            {
+                return model.NumberOfLines;
+
+            }
+            set
+            {
+           
+            }
+        }
+        
+        public string VM_time
+        {
+            get
+            {
+                seconds = ((double)currentLine / 10) % 59;
+                minutes = Math.Floor(((double)currentLine / 10) / 59); 
+              
+                time = Convert.ToInt32(minutes) + ":" + Convert.ToInt32(seconds);
+                return time;
+            }
+            set
+            {
+                
+            }
+        }
 
         public void NotifyPropertyChanged(string propName)
         {
