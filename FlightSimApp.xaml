@@ -11,8 +11,8 @@
 
         <controllers:madiaPlayer1 HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="794" Margin="-50,68,-152,-516"/>
         <User_Story_3:JoystickControlView HorizontalAlignment="Left" Height="428" Margin="-130,-51,0,-369" VerticalAlignment="Top" Width="642"/>
-        <local:UserStory5 HorizontalAlignment="Left" Margin="814,68,-235,-372" VerticalAlignment="Top" Height="309" Width="302"/>
-        <local:UserStory9 HorizontalAlignment="Left" Margin="667,342,-950,-822" VerticalAlignment="Top" Height="485" Width="1164"/>
+        <local:UserStory5 HorizontalAlignment="Left" Margin="668,124,-89,-427" VerticalAlignment="Top" Height="308" Width="302"/>
+        <local:UserStory9 HorizontalAlignment="Left" Margin="668,38,-951,-519" VerticalAlignment="Top" Height="486" Width="1164" Loaded="UserStory9_Loaded"/>
 
 
 

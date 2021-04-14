@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Flight_Sim.cppToCSharp;
 
 namespace Flight_Sim
 {
     class UserStory9VM : INotifyPropertyChanged
     {
         private FlightdataModel model;
+        private string currentAnomalyDescription;
 
         public UserStory9VM(FlightdataModel flightdataModel)
         {
@@ -30,20 +32,52 @@ namespace Flight_Sim
         }
 
 
-        public int VM_CurrentLine { get {
+        public int VM_CurrentLine { 
+            get 
+            {
                 NotifyPropertyChanged("VM_Opacity");
-                return model.CurrentLine; }}
+                return model.CurrentLine; 
+            }
+        }
+
+        public string VM_CurrentAnomalyDescription
+        {
+            get
+            {
+                return currentAnomalyDescription;
+            }
+
+            set
+            {
+                currentAnomalyDescription = value;
+            }
+        }
         
         public int VM_Opacity { 
             get 
             {
-                if (model.CurrentLine % 2 == 0)
+                if (checkLineAnomaly())
                     return 1;
                 return 0;
             }
         }
 
-
+        // checks if the current line has an anomaly
+        private bool checkLineAnomaly()
+        {
+            List<AnomalyReport> anomalyReports = Single.SingleDataModel().AnomalyReports;
+            int currLine = Single.SingleFlightSimM().getCurrentLine();
+            foreach (AnomalyReport anom in anomalyReports)
+            {
+                if (currLine == anom.ts)
+                {
+                    this.currentAnomalyDescription = anom.desc;
+                    NotifyPropertyChanged("VM_CurrentAnomalyDescription");
+                    return true;
+                }
+            }
+            return false;
+        }
 
 
     }

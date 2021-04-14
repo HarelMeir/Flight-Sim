@@ -31,9 +31,11 @@ namespace Flight_Sim.cppToCSharp
             }
         }
     }
-    interface ITimeSeriesAnomalyDetector
+    public interface ITimeSeriesAnomalyDetector
     {
-        void learnNormal(IDictionary<string, List<float>> table);
+        List<CorrelatedFeatures> Cf {get;}
+        void SetNormalModel(List<CorrelatedFeatures> correlatedFeatures);
+        void LearnNormal(IDictionary<string, List<float>> table);
         List<AnomalyReport> detect(IDictionary<string, List<float>> table);
     }
 }

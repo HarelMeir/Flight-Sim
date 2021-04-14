@@ -65,17 +65,11 @@ namespace Flight_Sim
 
 
                 vm.Connect();
-                 FlightSimApp fsa = new FlightSimApp();
+                FlightSimApp fsa = new FlightSimApp();
                 fsa.Show();
                 GraphTest g = new GraphTest();
                 g.Show();
                 this.Close();
-                // Thread.Sleep(500);
-
-
-
-             
-
             }
         }
 
