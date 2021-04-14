@@ -74,7 +74,7 @@ namespace Flight_Sim
             // saves the anomaly reports that in the file Animalies.csv
             // locally in a list of AnomalyReports
             string anomaliesPath = "Anomalies.csv";
-            List<AnomalyReport> anomalyReports = new List<AnomalyReport>();
+            List<AnomalyReport> anomalyReports = Single.SingleDataModel().AnomalyReports;
             string[] lines = File.ReadAllLines(anomaliesPath);
             foreach (string ln in lines)
             {

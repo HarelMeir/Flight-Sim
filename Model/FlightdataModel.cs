@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
-
+using Flight_Sim.cppToCSharp;
 
 
 namespace Flight_Sim
@@ -48,14 +48,15 @@ namespace Flight_Sim
         private IDictionary<string, List<float>> table;
         private string chosenFeature;
         private List<float> chosenValues;
-
+        private List<AnomalyReport> anomalyReports;
         //default constructor
         public FlightdataModel() {
             this.currentLine = 0;
             this.colNames = new List<string>();
             this.colDataNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
-            this.chosenValues = new List<float>();       
+            this.chosenValues = new List<float>();
+            this.anomalyReports = new List<AnomalyReport>();
             
         }
 
@@ -838,6 +839,11 @@ namespace Flight_Sim
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public List<AnomalyReport> AnomalyReports
+        {
+            get { return anomalyReports; }
         }
     }
 
