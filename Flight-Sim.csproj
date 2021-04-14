@@ -220,6 +220,7 @@
     <Resource Include="controllers\images\2.png" />
     <Resource Include="controllers\images\3.png" />
     <Resource Include="controllers\images\4.png" />
+    <Resource Include="controllers\images\5.png" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />
