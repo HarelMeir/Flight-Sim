@@ -7,16 +7,13 @@
             xmlns:controllers="clr-namespace:Flight_Sim.controllers" xmlns:User_Story_3="clr-namespace:Flight_Sim.User_Story_3"
         xmlns:View="clr-namespace:Flight_Sim.View" x:Class="Flight_Sim.FlightSimApp"
         mc:Ignorable="d"
-        Title="FlightSimApp" Height="497.043" Width="1798.5">
+        Title="FlightSimApp" Height="491.043" Width="1138.5">
     <Grid Background="White" RenderTransformOrigin="0.436,0.491" Margin="0,0,404,461">
 
-        <controllers:madiaPlayer1 HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="794" Margin="-50,68,-152,-516"/>
-        <User_Story_3:JoystickControlView HorizontalAlignment="Left" Height="428" Margin="-130,-51,0,-369" VerticalAlignment="Top" Width="642"/>
-        <local:UserStory5 HorizontalAlignment="Left" Margin="668,124,-89,-427" VerticalAlignment="Top" Height="308" Width="302"/>
-        <local:UserStory9 HorizontalAlignment="Left" Margin="668,38,-951,-519" VerticalAlignment="Top" Height="486" Width="1164" Loaded="UserStory9_Loaded"/>
-        <View:Graphs HorizontalAlignment="Left" Height="425" Margin="1222,24,-398,-444" VerticalAlignment="Top" Width="562"/>
-
-
+        <controllers:madiaPlayer1 HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="794" Margin="-92,68,0,-519"/>
+        <User_Story_3:JoystickControlView HorizontalAlignment="Left" Height="428" Margin="-188,-60,0,-363" VerticalAlignment="Top" Width="642"/>
+        <local:UserStory5 HorizontalAlignment="Left" Margin="558,124,-148,-432" VerticalAlignment="Top" Height="308" Width="316"/>
+        <local:UserStory9 HorizontalAlignment="Left" Margin="558,38,-902,-519" VerticalAlignment="Top" Height="486" Width="1164" Loaded="UserStory9_Loaded"/>
 
     </Grid>
 </Window>
