@@ -32,6 +32,7 @@ namespace Flight_Sim
 
         private void UserStory9_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
 
     }
