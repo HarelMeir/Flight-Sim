@@ -55,7 +55,7 @@ namespace Flight_Sim
             // copying the rest of the file as it is
             string[] noPropTestLines = File.ReadAllLines(noPropTestCSVPath);
             File.AppendAllLines(csvTest, noPropTestLines);
-
+            Console.WriteLine("aaaaaaaaaa\n\n");
             // use the dll function, it creates a file named Anomalies.csv that holds all the
             // AnomalyReports, each line holds: Timestep,Description.
             string dllPath = fsm.DLLPath;
