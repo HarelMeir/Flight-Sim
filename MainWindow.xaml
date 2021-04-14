@@ -37,7 +37,7 @@
 
                 <Button x:Name="DLL_b" Grid.Column="0" Grid.Row="3" FontSize="32" Content="DLL" FontWeight="Bold" Click="DLL_Button_Click" Margin="0,60,0,-60"/>
                 <TextBlock x:Name="error_msg_DLL" Grid.Row="0" Grid.Column="1" Text="This path doesnt exsist. Try again." VerticalAlignment="Center" FontSize="26" FontWeight="DemiBold" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,6.2,0,7.4"/>
-                <TextBox   x:Name="user_DLL_Path" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="0,110,-0.667,-82"/>
+                <TextBox   x:Name="user_DLL_Path" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="-1,126,0,-98"/>
 
             </Grid>
             <Button x:Name="confirm_Button" Content="Confirm!" HorizontalAlignment="Center" FontSize="25" Margin="337,120,336.333,25" Click="confirm_Button_Click"/>
