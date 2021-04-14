@@ -7,7 +7,7 @@ using Flight_Sim.Model;
 
 namespace Flight_Sim.cppToCSharp
 {
-    class CorrelatedFeatures
+    public class CorrelatedFeatures
     {
         string feature1, feature2;  // names of the correlated features
         public string Feature1 { get { return feature1; } set { feature1 = value; } }

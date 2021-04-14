@@ -36,6 +36,8 @@ namespace Flight_Sim
         {
             string path_csv = user_Csv_Path.Text;
             string path_xml = user_XML_Path.Text;
+            string path_csvTrain = user_csvTrain_Path.Text;
+            string path_dll = user_DLL_Path.Text;
 
             if (!File.Exists(path_csv) && !File.Exists(path_xml))
             {
@@ -66,12 +68,6 @@ namespace Flight_Sim
                  FlightSimApp fsa = new FlightSimApp();
                 fsa.Show();;
                 this.Close();
-                // Thread.Sleep(500);
-
-
-
-             
-
             }
         }
 
@@ -118,6 +114,21 @@ namespace Flight_Sim
             {
                 user_DLL_Path.Text = openFileDlg.FileName;
                 this.vm.VM_DLLPath = openFileDlg.FileName;
+            }
+        }
+
+        private void CSVTrain_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                user_csvTrain_Path.Text = openFileDlg.FileName;
+                this.vm.VM_CSVTrainPath = openFileDlg.FileName;
             }
         }
     }

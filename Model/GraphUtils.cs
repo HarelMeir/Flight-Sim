@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flight_Sim.Model
 {
-    class Point
+    public class Point
     {
         private float x;
         private float y;
@@ -47,7 +47,7 @@ namespace Flight_Sim.Model
             }
         }
     }
-    class Line
+    public class Line
     {
         private float a;
         private float b;
@@ -120,12 +120,14 @@ namespace Flight_Sim.Model
         public static float Var(List<float> x)
         {
             float ex = Avg(x);
+            float sum = 0;
             for (int i = 0; i < x.Count; i++)
             {
-                x[i] *= x[i];
+                sum += x[i] * x[i];
             }
-            float ex2 = Avg(x);
-            return ex2 - (ex * ex);
+            sum /= x.Count;
+           // float ex2 = Avg(x);
+            return sum - (ex * ex);
         }
 
         //cov
@@ -133,17 +135,22 @@ namespace Flight_Sim.Model
         {
             float ex = Avg(x);
             float ey = Avg(y);
+            float sum = 0;
             for (int i = 0; i < x.Count; i++)
             {
-                x[i] *= y[i];
+               sum += x[i] * y[i];
             }
-
-            return Avg(x) - (ex * ey);
+            sum /= x.Count;
+            return sum - (ex * ey);
         }
 
         //pearson
         public static float Pearson(List<float> x, List<float> y)
         {
+       /*     if(Var(x) == 0 || Var(y) == 0)
+            {
+                return 0;
+            }*/
             return Cov(x, y) / (float)Math.Sqrt(Var(x) * Var(y));
         }
 
@@ -165,6 +172,10 @@ namespace Flight_Sim.Model
         public static Line LinearReg(List<float> x, List<float> y)
         {
             float a = Cov(x, y) / Var(x);
+            if(Var(x) == 0)
+            {
+                return new Line(0, 0);
+            }
             float b = Avg(x) - (a * Avg(x));
 
             return new Line(a, b);

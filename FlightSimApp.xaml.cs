@@ -35,8 +35,8 @@ namespace Flight_Sim
         {
             FlightSimM fsm = Single.SingleFlightSimM();
             // creates a new csv like the received one but with the properties in the first row.
-            string noPropTrainCSVPath = fsm.CsvPath; // change to train *****************
-            string noPropTestCSVPath = fsm.CsvPath; // change to test ***************************
+            string noPropTrainCSVPath = fsm.CSVTrainPath;
+            string noPropTestCSVPath = fsm.CsvPath;
             string csvTrain = "train.csv";
             string csvTest = "test.csv";
             // adds the first line with properties
