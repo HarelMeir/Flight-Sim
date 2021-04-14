@@ -89,6 +89,17 @@ namespace Flight_Sim
             }
         }
 
+        public string VM_DLLPath {
+            get
+            {
+                return model.DLLPath;
+            }
+            set
+            {
+                this.model.DLLPath = value;
+            }
+        }
+
         public void VM_Play()
         {
             this.model.Play();

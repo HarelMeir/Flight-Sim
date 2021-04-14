@@ -26,11 +26,14 @@ namespace Flight_Sim.controllers
         
         public madiaPlayer1()
         {
+            
             InitializeComponent();
             this.vm = new mediaPlayer1VM(Single.SingleFlightSimM());
             Image b = new Image();
             b.Name = "play";
             DataContext = vm;
+           // slider.Maximum = this.vm.numberOfLines;
+
 
         }
 
@@ -70,8 +73,9 @@ namespace Flight_Sim.controllers
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            double sliderVal = Convert.ToDouble(((Slider)sender).Value);
+            /*double sliderVal = Convert.ToDouble(((Slider)sender).Value);
             this.vm.VM_changeTimeBySlider(sliderVal);
+           // slider.Value = Single.SingleDataModel().CurrentLine;*/
         }
 
         private void SpeedField_TextChanged(object sender, TextChangedEventArgs e)
@@ -85,10 +89,6 @@ namespace Flight_Sim.controllers
             }
         }
 
-        private void Slider_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
 
 
 

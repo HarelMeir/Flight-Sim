@@ -101,5 +101,20 @@ namespace Flight_Sim
                 this.vm.VM_XmlPath = openFileDlg.FileName;
             }
         }
+
+        private void DLL_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                user_DLL_Path.Text = openFileDlg.FileName;
+                this.vm.VM_DLLPath = openFileDlg.FileName;
+            }
+        }
     }
 }

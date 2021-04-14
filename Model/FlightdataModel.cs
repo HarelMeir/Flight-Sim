@@ -51,12 +51,16 @@ namespace Flight_Sim
         private List<CorrelatedFeatures> corrFeatures;
         private Line linReg;
 
+        private List<AnomalyReport> anomalyReports;
         //default constructor
         public FlightdataModel() {
             this.currentLine = 0;
             this.colNames = new List<string>();
             this.colDataNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
+            this.chosenValues = new List<float>();
+            this.anomalyReports = new List<AnomalyReport>();
+            
             this.chosenValues = new List<float>();
             this.corrFeatures = new List<CorrelatedFeatures>();
         }
@@ -913,6 +917,11 @@ namespace Flight_Sim
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public List<AnomalyReport> AnomalyReports
+        {
+            get { return anomalyReports; }
         }
     }
 
