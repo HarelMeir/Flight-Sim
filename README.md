@@ -42,5 +42,3 @@ The project is divided into four main parts :
 
 
 
-#### Video
-Link to an explanation video:
