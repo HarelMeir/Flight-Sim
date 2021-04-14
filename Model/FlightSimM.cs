@@ -34,7 +34,9 @@ namespace Flight_Sim.Model
         private FlightdataModel data;
         public event PropertyChangedEventHandler PropertyChanged;
         private ITimeSeriesAnomalyDetector aDetector;
-        //Graph
+        //Graphs
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
         //constructor
