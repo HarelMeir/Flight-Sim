@@ -108,8 +108,12 @@ namespace Flight_Sim.controllers
             get
             {
                 seconds = ((double)currentLine / 10) % 59;
-                minutes = Math.Floor(((double)currentLine / 10) / 59); 
-              
+                minutes = Math.Floor(((double)currentLine / 10) / 59);
+                if (seconds < 10)
+                {
+                    time = Convert.ToInt32(minutes) + ":0" + Convert.ToInt32(seconds);
+                    return time;
+                }
                 time = Convert.ToInt32(minutes) + ":" + Convert.ToInt32(seconds);
                 return time;
             }
