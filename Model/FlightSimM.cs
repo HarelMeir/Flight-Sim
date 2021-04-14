@@ -9,6 +9,7 @@ using System.Threading;
 using System.ComponentModel;
 using Microsoft.VisualBasic.FileIO;
 using System.Xml;
+using Flight_Sim.cppToCSharp;
 
 namespace Flight_Sim.Model
 {
@@ -29,8 +30,8 @@ namespace Flight_Sim.Model
         private List<string> colDataNames;
         private FlightdataModel data;
         public event PropertyChangedEventHandler PropertyChanged;
+        private ITimeSeriesAnomalyDetector aDetector;
         //Graphs
-        private List<Point> points;
 
 
         //constructor
@@ -40,11 +41,13 @@ namespace Flight_Sim.Model
             this.port = port;
             //default speed(X1)
             this.playRythm = 100;
+            this.aDetector = new SimpleAnomalyDetector();
             this.colDataNames = new List<string>();
             this.stop = false;
             this.data = Single.SingleDataModel();
-            this.points = new List<Point>();
             this.closeFlag = false;
+            aDetector = new SimpleAnomalyDetector();
+            
         }
 
         public FlightdataModel GetFlightdata() { return data; }
@@ -280,7 +283,7 @@ namespace Flight_Sim.Model
                     string[] fields;
                     //adding the rest of the data as value to associated with each key.
 
-                    foreach(string col in colDataNames)
+                    foreach(string col in this.data.ColNames)
                     {
                         dic.Add(col, new List<float>());
                     }
@@ -291,7 +294,7 @@ namespace Flight_Sim.Model
                         //adding each value to its keys list.
                         for (int i = 0; i < fields.Length; i++)
                         {
-                            dic[this.colDataNames[i]].Add(float.Parse(fields[i]));
+                            dic[this.data.ColNames[i]].Add(float.Parse(fields[i]));
                         }
                     }
                 }
@@ -317,6 +320,7 @@ namespace Flight_Sim.Model
              }
         }
 
+
         public void Connect()
         {
             string[] flightLines = File.ReadAllLines(csvPath);
@@ -330,6 +334,9 @@ namespace Flight_Sim.Model
             //Creating a Dictionary for future use.
             getColNames();
             this.data.Table = CreateTable();
+            this.aDetector.LearnNormal(this.data.Table);
+            this.data.CorrFeatures = this.aDetector.Cf;
+            
 
             try
             {

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
-
-
+using Flight_Sim.cppToCSharp;
+using Flight_Sim.Model;
 
 namespace Flight_Sim
 {
@@ -46,8 +46,10 @@ namespace Flight_Sim
         private List<string> colNames;
         private List<string> colDataNames;
         private IDictionary<string, List<float>> table;
-        private string chosenFeature;
+        private string chosenFeature , chosenCorr;
         private List<float> chosenValues;
+        private List<CorrelatedFeatures> corrFeatures;
+        private Line linReg;
 
         //default constructor
         public FlightdataModel() {
@@ -55,8 +57,8 @@ namespace Flight_Sim
             this.colNames = new List<string>();
             this.colDataNames = new List<string>();
             this.table = new Dictionary<string, List<float>>();
-            this.chosenValues = new List<float>();       
-            
+            this.chosenValues = new List<float>();
+            this.corrFeatures = new List<CorrelatedFeatures>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -811,6 +813,19 @@ namespace Flight_Sim
             }
         }
 
+        public string ChosenCorr
+        {
+            get { return this.chosenCorr; }
+            set
+            {
+                if(this.chosenCorr != value)
+                {
+                    this.chosenCorr = value;
+                    NotifyPropertyChanged("ChosenCorr");
+                }
+            }
+        } 
+
         public List<float> ChosenValues
         {
             get
@@ -819,18 +834,78 @@ namespace Flight_Sim
             }
         }
 
+        public List<CorrelatedFeatures> CorrFeatures
+        {
+            get
+            {
+                return this.CorrFeatures;
+            }
+            set
+            {
+                if(this.corrFeatures != value)
+                {
+                    this.corrFeatures = value;
+                }
+            }
+        }
+
+        public Line LinReg
+        {
+            get
+            {
+                return this.linReg;
+            }
+            set
+            {
+                if(this.linReg != value)
+                {
+                    this.linReg = value;
+                    NotifyPropertyChanged("LinReg");
+                }
+            }
+        }
 
         /******************************************************
          *                      Methods
-         *******************************************************/         
-        
+         *******************************************************/
+
         public List<float> FeatureChosenValues()
         {
-            string s = this.chosenFeature; ;
-            s += "_p";
-            Console.WriteLine(s);
-            return table[s].ToList();
+            string s = this.chosenFeature; 
+            List<float> l = table[s];
+            return l;
         } 
+
+        public void FeatureChosenCorr(string fName)
+        {            
+            foreach(CorrelatedFeatures corrF in this.corrFeatures)
+            {
+                if(corrF.Feature1 == fName)
+                {
+                    this.ChosenCorr = corrF.Feature2;
+                }
+                else if(corrF.Feature2 == fName)
+                {
+                    this.ChosenCorr = corrF.Feature1;
+                }              
+            }
+
+        }
+
+
+        public List<float> FeatureChosenCorrValues()
+        {
+            string s = this.ChosenCorr;
+            List<float> l = table[s];
+            return l;
+        }
+
+        public Line CorrLinReg(string fName, string corrName)
+        {
+            this.linReg = AnomalyUtils.LinearReg(table[fName], table[corrName]);
+            return this.linReg;
+        } 
+
 
 
         //INotifyHelperApp

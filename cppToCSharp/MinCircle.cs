@@ -7,7 +7,7 @@ using Flight_Sim.Model;
 
 namespace Flight_Sim.cppToCSharp
 {
-    class Circle
+    public class Circle
     {
         public Point center;
         public double radius;

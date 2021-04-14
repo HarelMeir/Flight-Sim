@@ -22,65 +22,84 @@ namespace Flight_Sim.cppToCSharp
         public Circle CircleThreshold { get { return circleThreshold; } set { circleThreshold = value; } }
     };*/
 
-    class SimpleAnomalyDetector : ITimeSeriesAnomalyDetector
+    public class SimpleAnomalyDetector : ITimeSeriesAnomalyDetector
     {
 		List<CorrelatedFeatures> cf;
         float correlationThreshold = 0.9f;
-        public void setCorrelationThreshold(float newThreshold)
+
+        public SimpleAnomalyDetector()
+        {
+            this.cf = new List<CorrelatedFeatures>();
+        }
+
+        public List<CorrelatedFeatures> Cf
+        {
+            get
+            {
+                return this.cf;
+            }
+        }
+        public void SetCorrelationThreshold(float newThreshold)
         {
             correlationThreshold = newThreshold;
         }
-        public void setNormalModel(List<CorrelatedFeatures> correlatedFeatures)
+        public void SetNormalModel(List<CorrelatedFeatures> correlatedFeatures)
         {
             cf = correlatedFeatures;
         }
-        public void learnNormal(IDictionary<string, List<float>> table)
+
+        private float FindThreshold(List<float> l1, List<float> l2, Line lin_reg)
         {
-            int columnSize = table.ElementAt(0).Value.Count; //table.Keys.ElementAt(0)
-            int rowSize = table.Count;
-            for (int i = 0; i < table.Count; i++)
+            float max = 0;
+            int size = l1.Count;
+            for(int i = 0; i < size; i++)
             {
-                CorrelatedFeatures cfs = new CorrelatedFeatures();
-                cfs.Corr = -1;
-                cfs.Feature1 = table.ElementAt(i).Key;
-                for (int j = i + 1; j < table.Count; j++)
+                Point point = new Point(l1[i], l2[i]);
+                float distance = AnomalyUtils.Dev(point, lin_reg);
+                if(distance > max)
                 {
-                    float correlation = AnomalyUtils.Pearson(table.ElementAt(i).Value, table.ElementAt(j).Value);
-                    if (correlation > correlationThreshold)
+                    max = distance;
+                }
+            }
+            return max;
+        }
+
+        private void LearnHelper(IDictionary<string, List<float>> table, float maxCore, string f1, string f2)
+        { 
+          //  if(maxCore > this.correlationThreshold)
+           // {
+                CorrelatedFeatures cfs = new CorrelatedFeatures();
+                cfs.Feature1 = f1;
+                cfs.Feature2 = f2;
+                cfs.Corr = maxCore;
+                cfs.Lin_Reg = AnomalyUtils.LinearReg(table[f1], table[f2]);
+                cfs.Threshold = FindThreshold(table[f1], table[f2], cfs.Lin_Reg) * 1.1f;
+                this.cf.Add(cfs);
+           // }
+        }
+        public void LearnNormal(IDictionary<string, List<float>> table)
+        {
+            int size = table.Count;
+
+            for(int i = 0; i < size; i++)
+            {
+                string f1 = table.ElementAt(i).Key;
+                float maxCore = 0;
+                int maxIndex = 0;
+                for(int j = i + 1; j < size; j++)
+                {
+                    float cor = Math.Abs(AnomalyUtils.Pearson(table.ElementAt(i).Value, table.ElementAt(j).Value));
+                    if(cor > maxCore)
                     {
-                        if (correlation > cfs.Corr)
-                        {
-                            cfs.Feature2 = table.ElementAt(j).Key;
-                            cfs.Corr = correlation;
-                            cfs.Lin_Reg = AnomalyUtils.LinearReg(table.ElementAt(i).Value,
-                                table.ElementAt(j).Value);
-                            cfs.Threshold = highestDev(table.ElementAt(i).Value,
-                                table.ElementAt(j).Value, cfs.Lin_Reg);
-                        }
+                        maxCore = cor;
+                        maxIndex = j;
                     }
                 }
-                if (cfs.Corr > -1)
-                {
-                    cf.Add(cfs);
-                }
+                string fMostCore = table.ElementAt(maxIndex).Key;
+                LearnHelper(table, maxCore, f1, fMostCore);
             }
         }
-        //sends each x y pair to dev and returns the highest
-        public float highestDev(List<float> x, List<float> y, Line line)
-        {
-            float maxDev = 0;
-            for (int i = 0; i < x.Count; i++)
-            {
-                Point p = new Point(x[i], y[i]);
-                float newDev = AnomalyUtils.Dev(p, line);
-                if (newDev > maxDev)
-                {
-                    maxDev = newDev;
-                }
-            }
-            return maxDev;
-        }
-        
+
 
 
 

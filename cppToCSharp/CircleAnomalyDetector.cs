@@ -10,16 +10,20 @@ namespace Flight_Sim.cppToCSharp
     class CircleAnomalyDetector : ITimeSeriesAnomalyDetector
     {
         List<CorrelatedFeatures> cf;
+        public List<CorrelatedFeatures> Cf
+        {
+           get { return this.cf; }
+        }
         float correlationThreshold = 0.9f;
-        public void setCorrelationThreshold(float newThreshold)
+        public void SetCorrelationThreshold(float newThreshold)
         {
             correlationThreshold = newThreshold;
         }
-        public void setNormalModel(List<CorrelatedFeatures> correlatedFeatures)
+        public void SetNormalModel(List<CorrelatedFeatures> correlatedFeatures)
         {
             cf = correlatedFeatures;
         }
-        public void learnNormal(IDictionary<string, List<float>> table)
+        public void LearnNormal(IDictionary<string, List<float>> table)
         {
             int columnSize = table.ElementAt(0).Value.Count; //table.Keys.ElementAt(0)
             int rowSize = table.Count;
@@ -39,7 +43,7 @@ namespace Flight_Sim.cppToCSharp
                             cfs.Corr = correlation;
                             cfs.Lin_Reg = AnomalyUtils.LinearReg(table.ElementAt(i).Value,
                                 table.ElementAt(j).Value);
-                            cfs.Threshold = highestDev(table.ElementAt(i).Value,
+                            cfs.Threshold = HighestDev(table.ElementAt(i).Value,
                                 table.ElementAt(j).Value, cfs.Lin_Reg);
 
                             List<Point> pointsList = new List<Point>();
@@ -58,7 +62,7 @@ namespace Flight_Sim.cppToCSharp
             }
         }
         //sends each x y pair to dev and returns the highest
-        public float highestDev(List<float> x, List<float> y, Line line)
+        public float HighestDev(List<float> x, List<float> y, Line line)
         {
             float maxDev = 0;
             for (int i = 0; i < x.Count; i++)
