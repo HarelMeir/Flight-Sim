@@ -58,7 +58,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <TextBox x:Name="SpeedField" HorizontalAlignment="Left" Height="23" Margin="615,331,0,0" TextWrapping="Wrap" Text="{Binding SpeedVal, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="27" SelectionOpacity="1" TextChanged="SpeedField_TextChanged"/>
+        <TextBox x:Name="SpeedField" HorizontalAlignment="Left" Height="23" Margin="615,331,0,0" TextWrapping="Wrap" Text="{Binding SpeedVal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="27" SelectionOpacity="1" TextChanged="SpeedField_TextChanged"/>
         <Button Content="Close" HorizontalAlignment="Left" Name="Close" Margin="548,359,0,0" VerticalAlignment="Top" Width="75" Click="Close_Click"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="628,359,0,0" TextWrapping="Wrap" Text="{Binding VM_time, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="84"/>
 

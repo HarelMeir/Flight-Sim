@@ -100,6 +100,18 @@ namespace Flight_Sim
             }
         }
 
+        public string VM_CSVTrainPath
+        {
+            get
+            {
+                return model.CSVTrainPath;
+            }
+            set
+            {
+                this.model.CSVTrainPath = value;
+            }
+        }
+
         public void VM_Play()
         {
             this.model.Play();
