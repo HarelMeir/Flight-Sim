@@ -11,8 +11,12 @@ The project is divided into four main parts :
 
 
 
-Here you can control your flight video, go back and re-watch important sections and also quickly run non-important sections:
+- Here you can control your flight video, go back and re-watch important sections and also quickly run non-important sections:
 ![pj3](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/3.png)
+
+- Data display:
+![pj2](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/2.png)
+
 
 ## Installation:
 
