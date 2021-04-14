@@ -199,7 +199,7 @@ namespace Flight_Sim.View_Model
                     this.pvCor.InvalidatePlot(true);
 
                     //plot3
-                        this.VM_PlotModelReg.Series.Clear();
+                    this.VM_PlotModelReg.Series.Clear();
                     SetUpModel(VM_PlotModelReg);
                     LoadRegData(FeatureList, corrList, VM_PlotModelReg);
                     this.pvReg.InvalidatePlot(true);
