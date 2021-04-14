@@ -13,7 +13,7 @@ namespace Flight_Sim.controllers
     public class mediaPlayer1VM : INotifyPropertyChanged
     {
         FlightSimM model;
-        double _speedVal;
+        double _speedVal = 1;
 
         private string time;
         private double minutes;

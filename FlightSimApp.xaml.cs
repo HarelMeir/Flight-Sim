@@ -77,5 +77,6 @@ namespace Flight_Sim
                 anomalyReports.Add(new AnomalyReport(splitted[1], long.Parse(splitted[0])));
             }
         }
+
     }
 }
