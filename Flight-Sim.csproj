@@ -216,6 +216,10 @@
     <Resource Include="User_Story_3\Joystick_images\rudder_bar.png" />
     <Resource Include="User_Story_3\Joystick_images\slider.png" />
     <Resource Include="User_Story_3\Joystick_images\throttle_bar.png" />
+    <Resource Include="controllers\images\1.png" />
+    <Resource Include="controllers\images\2.png" />
+    <Resource Include="controllers\images\3.png" />
+    <Resource Include="controllers\images\4.png" />
     <Content Include="Squidward%27s anomaly detector\AnomalyDetector.h" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.cpp" />
     <Content Include="Squidward%27s anomaly detector\anomaly_detection_util.h" />

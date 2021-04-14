@@ -39,12 +39,10 @@ namespace Flight_Sim.controllers
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            // playFlag = true;
             this.vm.VM_Play();
         }
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            // playFlag = false;
             this.vm.VM_Pause();
         }
         private void rightButton_Click(object sender, RoutedEventArgs e)
