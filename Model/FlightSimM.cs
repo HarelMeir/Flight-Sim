@@ -37,9 +37,6 @@ namespace Flight_Sim.Model
         private ITimeSeriesAnomalyDetector aDetector;
         //Graphs
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
         //constructor
         public FlightSimM(string server, Int32 port)
         {
