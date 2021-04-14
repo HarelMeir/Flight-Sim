@@ -28,7 +28,6 @@ namespace Flight_Sim
         {
             Single.SetServer("localhost", 5400);
             vm = new FlightSimVM(Single.SingleFlightSimM());
-            //vm = new FlightSimVM(new FlightSimM("localhost", 5400));
             DataContext = vm;
             InitializeComponent();
         }

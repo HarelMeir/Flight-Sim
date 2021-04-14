@@ -30,7 +30,6 @@ namespace Flight_Sim
         {
             useDll();
             InitializeComponent();
-
         }
 
         private void useDll()
