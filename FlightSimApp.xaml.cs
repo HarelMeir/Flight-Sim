@@ -28,10 +28,12 @@ namespace Flight_Sim
         private delegate int useDetector(string trainPath, string testPath);
         public FlightSimApp()
         {
+            useDll();
             InitializeComponent();
+
         }
 
-        private void UserStory9_Loaded(object sender, RoutedEventArgs e)
+        private void useDll()
         {
             FlightSimM fsm = Single.SingleFlightSimM();
             // creates a new csv like the received one but with the properties in the first row.
@@ -76,6 +78,5 @@ namespace Flight_Sim
                 anomalyReports.Add(new AnomalyReport(splitted[1], long.Parse(splitted[0])));
             }
         }
-
     }
 }
