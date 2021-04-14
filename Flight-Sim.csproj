@@ -110,6 +110,7 @@
     <Compile Include="UserStory9.xaml.cs">
       <DependentUpon>UserStory9.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserStory9VM.cs" />
     <Compile Include="View Model\FlightSimVM.cs" />
     <Compile Include="Model\IFlightSimM.cs" />
     <Compile Include="View Model\GraphsVm.cs" />

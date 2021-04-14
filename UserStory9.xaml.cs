@@ -22,7 +22,9 @@ namespace Flight_Sim
     {
         public UserStory9()
         {
+            UserStory9VM vm = new UserStory9VM(Single.SingleDataModel());
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

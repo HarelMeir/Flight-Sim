@@ -31,11 +31,6 @@ namespace Flight_Sim
             InitializeComponent();
         }
 
-        private void UserStory5_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UserStory9_Loaded(object sender, RoutedEventArgs e)
         {
             FlightSimM fsm = Single.SingleFlightSimM();
