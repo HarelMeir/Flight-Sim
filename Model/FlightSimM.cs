@@ -18,6 +18,7 @@ namespace Flight_Sim.Model
         private volatile string csvPath;
         private volatile string xmlPath;
         private volatile string dllPath;
+        private volatile string csvTrainPath;
         private Int32 port;
         private string serverPath;
 
@@ -190,6 +191,21 @@ namespace Flight_Sim.Model
                 if (this.dllPath != value)
                 {
                     this.dllPath = value;
+                }
+            }
+        }
+
+        public string CSVTrainPath
+        {
+            get
+            {
+                return this.csvTrainPath;
+            }
+            set
+            {
+                if (this.csvTrainPath != value)
+                {
+                    this.csvTrainPath = value;
                 }
             }
         }
