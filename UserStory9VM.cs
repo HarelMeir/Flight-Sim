@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Flight_Sim.cppToCSharp;
 
 namespace Flight_Sim
 {
@@ -30,20 +31,37 @@ namespace Flight_Sim
         }
 
 
-        public int VM_CurrentLine { get {
+        public int VM_CurrentLine { 
+            get 
+            {
                 NotifyPropertyChanged("VM_Opacity");
-                return model.CurrentLine; }}
+                return model.CurrentLine; 
+            }
+        }
         
         public int VM_Opacity { 
             get 
             {
-                if (model.CurrentLine % 2 == 0)
+                if (checkLineAnomaly())
                     return 1;
                 return 0;
             }
         }
 
-
+        // checks if the current line has an anomaly
+        private bool checkLineAnomaly()
+        {
+            List<AnomalyReport> anomalyReports = Single.SingleDataModel().AnomalyReports;
+            int currLine = Single.SingleFlightSimM().getCurrentLine();
+            foreach (AnomalyReport anom in anomalyReports)
+            {
+                if (currLine == anom.ts)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
 
     }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Flight_Sim.cppToCSharp;
 
 namespace Flight_Sim
 {
@@ -25,6 +26,16 @@ namespace Flight_Sim
             UserStory9VM vm = new UserStory9VM(Single.SingleDataModel());
             InitializeComponent();
             DataContext = vm;
+            AddAnomalies();
+        }
+
+        private void AddAnomalies()
+        {
+            FlightdataModel fdm = Single.SingleDataModel();
+            foreach (AnomalyReport ar in fdm.AnomalyReports)
+            {
+                Anomalies_List.Items.Add(ar.ts + ": " + ar.desc);
+            }
         }
     }
 }
