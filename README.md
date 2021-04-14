@@ -16,7 +16,7 @@ The project is divided into four main parts :
 
 ![pj3](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/3.png)
 
-- Data display:
+- Data display: allows the user to choose one of the attributes of the flight. 
 
 
 ![pj2](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/2.png)
@@ -30,8 +30,12 @@ The project is divided into four main parts :
 --fdm=null"
 3. set configuration in the project to "x86"
 4. Run the project and add reg_flight.csv, playback_small.xml, and SimpleAnomalyDetectorDLL.dll
+
  ![pj1](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/1.png)
+ 
 5.Now, everything is ready, enjoy!
+
+ ![pj5](https://github.com/HarelMeir/Flight-Sim/blob/master/controllers/images/5.png)
 
 
 
