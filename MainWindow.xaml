@@ -10,7 +10,7 @@
     <Border Padding="10">
         <StackPanel>
             <TextBlock Text="Welcome To Flight-Sim!" FontWeight="Bold"   FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,25"/>
-            <TextBlock Text="Please insert your Flight csv and XML files path" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,25"/>
+            <TextBlock Text="Please insert your Flight csv, XML and dll files path" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,25"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -28,6 +28,7 @@
                 <Button x:Name="csv_b" Grid.Column="0" Grid.Row="0" FontSize="32" Content="CSV" FontWeight="Bold" Click="CSV_Button_Click"/>
                 <TextBlock x:Name="error_msg_csv" Grid.Row="0" Grid.Column="1" Text="This path doesnt exsist. Try again." VerticalAlignment="Center" FontSize="26" FontWeight="DemiBold" Foreground="Red" Visibility="Hidden" Grid.ColumnSpan="2" Margin="0,8,0,7.4"/>
                 <TextBox   x:Name="user_Csv_Path" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" VerticalAlignment="Center" Margin="0,14.6,0,13.8"/>
+
 
 
                 <Button x:Name="xml_b" Grid.Column="0" Grid.Row="2" FontSize="32" Content="XML" FontWeight="Bold" Click="XML_Button_Click"/>

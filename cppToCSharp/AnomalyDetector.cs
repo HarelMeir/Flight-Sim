@@ -7,7 +7,7 @@ using Flight_Sim.Model;
 
 namespace Flight_Sim.cppToCSharp
 {
-    class AnomalyReport
+    public class AnomalyReport
     {
         string description;
         long timeStep;
