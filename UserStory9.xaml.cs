@@ -30,6 +30,7 @@ namespace Flight_Sim
         {
             UserStory9VM vm = new UserStory9VM(Single.SingleDataModel());
             InitializeComponent();
+            DataContext = vm;
             AddAnomalies();
         }
 
