@@ -12,6 +12,7 @@ namespace Flight_Sim
     class UserStory9VM : INotifyPropertyChanged
     {
         private FlightdataModel model;
+        private string currentAnomalyDescription;
 
         public UserStory9VM(FlightdataModel flightdataModel)
         {
@@ -38,6 +39,19 @@ namespace Flight_Sim
                 return model.CurrentLine; 
             }
         }
+
+        public string VM_CurrentAnomalyDescription
+        {
+            get
+            {
+                return currentAnomalyDescription;
+            }
+
+            set
+            {
+                currentAnomalyDescription = value;
+            }
+        }
         
         public int VM_Opacity { 
             get 
@@ -57,6 +71,8 @@ namespace Flight_Sim
             {
                 if (currLine == anom.ts)
                 {
+                    this.currentAnomalyDescription = anom.desc;
+                    NotifyPropertyChanged("VM_CurrentAnomalyDescription");
                     return true;
                 }
             }

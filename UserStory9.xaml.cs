@@ -34,7 +34,7 @@ namespace Flight_Sim
             FlightdataModel fdm = Single.SingleDataModel();
             foreach (AnomalyReport ar in fdm.AnomalyReports)
             {
-                Anomalies_List.Items.Add(ar.ts + ": " + ar.desc);
+                Anomalies_List.Items.Add(ar.ts + " : " + ar.desc);
             }
         }
     }
