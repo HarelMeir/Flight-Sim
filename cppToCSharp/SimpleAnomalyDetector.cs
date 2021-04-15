@@ -7,21 +7,6 @@ using Flight_Sim.Model;
 
 namespace Flight_Sim.cppToCSharp
 {
-    /*class CorrelatedFeatures
-    {
-        string feature1, feature2;  // names of the correlated features
-        public string Feature1 { get { return feature1; } set { feature1 = value; } }
-        public string Feature2 { get { return feature2; } set { feature2 = value; } }
-        float correlation;
-        public float Corr { get { return correlation; } set { correlation= value; } }
-        Line lin_reg;
-        public Line Lin_Reg{ get { return lin_reg; } set { lin_reg = value; } }
-        float threshold;
-        public float Threshold { get { return threshold; } set { threshold = value; } }
-        Circle circleThreshold;
-        public Circle CircleThreshold { get { return circleThreshold; } set { circleThreshold = value; } }
-    };*/
-
     public class SimpleAnomalyDetector : ITimeSeriesAnomalyDetector
     {
 		List<CorrelatedFeatures> cf;
@@ -66,8 +51,6 @@ namespace Flight_Sim.cppToCSharp
 
         private void LearnHelper(IDictionary<string, List<float>> table, float maxCore, string f1, string f2)
         { 
-          //  if(maxCore > this.correlationThreshold)
-           // {
                 CorrelatedFeatures cfs = new CorrelatedFeatures();
                 cfs.Feature1 = f1;
                 cfs.Feature2 = f2;
@@ -75,7 +58,6 @@ namespace Flight_Sim.cppToCSharp
                 cfs.Lin_Reg = AnomalyUtils.LinearReg(table[f1], table[f2]);
                 cfs.Threshold = FindThreshold(table[f1], table[f2], cfs.Lin_Reg) * 1.1f;
                 this.cf.Add(cfs);
-           // }
         }
         public void LearnNormal(IDictionary<string, List<float>> table)
         {
@@ -99,9 +81,6 @@ namespace Flight_Sim.cppToCSharp
                 LearnHelper(table, maxCore, f1, fMostCore);
             }
         }
-
-
-
 
         public List<AnomalyReport> detect(IDictionary<string, List<float>> table)
         {

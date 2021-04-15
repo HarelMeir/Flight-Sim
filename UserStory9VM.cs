@@ -78,7 +78,5 @@ namespace Flight_Sim
             }
             return false;
         }
-
-
     }
 }

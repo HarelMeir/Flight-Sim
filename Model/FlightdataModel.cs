@@ -873,6 +873,8 @@ namespace Flight_Sim
          *                      Methods
          *******************************************************/
 
+
+        //return the list of the chosen user's feature.
         public List<float> FeatureChosenValues()
         {
             string s = this.chosenFeature; 
@@ -880,23 +882,23 @@ namespace Flight_Sim
             return l;
         } 
 
+        //updates the Corr feature to chosen feature.
         public void FeatureChosenCorr(string fName)
-        {            
+        {         
+            
             foreach(CorrelatedFeatures corrF in this.corrFeatures)
             {
+                Console.WriteLine(corrF.Feature1 + " - " + corrF.Feature2);
                 if(corrF.Feature1 == fName)
                 {
                     this.ChosenCorr = corrF.Feature2;
-                }
-                else if(corrF.Feature2 == fName)
-                {
-                    this.ChosenCorr = corrF.Feature1;
-                }              
+                }         
             }
-
+            this.ChosenCorr = this.ChosenCorr;
         }
 
 
+        //return the value list of the corrFeature.
         public List<float> FeatureChosenCorrValues()
         {
             string s = this.ChosenCorr;

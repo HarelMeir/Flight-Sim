@@ -35,37 +35,27 @@ namespace Flight_Sim.controllers
 
         public double SpeedVal
         {
-            get{ return _speedVal; }
+            get { return _speedVal; }
             set
             {
-                if(_speedVal != value)
+                if (_speedVal != value)
                 {
                     _speedVal = value;
                     this.model.changeRhythm(value);
                 }
             }
         }
-         public int numberOfLines
+        public int numberOfLines
         {
             get { return this.model.NumberOfLines; }
         }
 
-        
+
         public int VM_sliderVal
         {
-            get {
-                return model.sliderVal;
-            }
-            set
+            get
             {
-                   /* if (model.sliderVal != value)
-                {
-                    model.sliderVal = value;
-                    
-                    this.NotifyPropertyChanged("VM_sliderVal");
-                }8*/
-                   // value = this.model.sliderCurrent;
-                   // _sliderVal = this.model.sliderCurrent;        
+                return model.sliderVal;
             }
         }
 
@@ -76,13 +66,13 @@ namespace Flight_Sim.controllers
                 currentLine = model.Data.CurrentLine;
                 this.NotifyPropertyChanged("VM_time");
                 return currentLine;
-                
+
             }
             set
             {
                 model.Data.CurrentLine = value;
                 this.NotifyPropertyChanged("sliderVal");
-                
+
                 if (value < numberOfLines)
                 {
                     VM_Play();
@@ -97,12 +87,8 @@ namespace Flight_Sim.controllers
                 return model.NumberOfLines;
 
             }
-            set
-            {
-           
-            }
         }
-        
+
         public string VM_time
         {
             get
@@ -116,10 +102,6 @@ namespace Flight_Sim.controllers
                 }
                 time = Convert.ToInt32(minutes) + ":" + Convert.ToInt32(seconds);
                 return time;
-            }
-            set
-            {
-                
             }
         }
 
@@ -138,9 +120,9 @@ namespace Flight_Sim.controllers
             this.model.Pause();
         }
         public void VM_Stop()
-         {
-             this.model.Stop();
-         }
+        {
+            this.model.Stop();
+        }
 
         public void VM_rightButton()
         {
@@ -151,15 +133,15 @@ namespace Flight_Sim.controllers
             this.model.LeftButton();
         }
 
-         public void VM_rightStopButton()
-         {
-             this.model.RightStopButton();
-         }
+        public void VM_rightStopButton()
+        {
+            this.model.RightStopButton();
+        }
 
-         public void VM_leftStopButton()
-         {
-             this.model.LeftStopButton();
-         }
+        public void VM_leftStopButton()
+        {
+            this.model.LeftStopButton();
+        }
         public void VM_changeTimeBySlider(double val)
         {
             this.model.ChangeTimeBySlider(val);
@@ -168,12 +150,6 @@ namespace Flight_Sim.controllers
         {
             this.model.Close();
         }
-            
-
-        /*public void VM_changeTimeSlider()
-        {
-            this.model.Play();
-        }*/
 
     }
 }

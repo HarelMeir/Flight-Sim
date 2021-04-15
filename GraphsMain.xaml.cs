@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Flight_Sim
 {
     /// <summary>
-    /// Interaction logic for GraphTest.xaml
+    /// Interaction logic for GraphsMain.xaml
     /// </summary>
-    public partial class GraphTest : Window
+    public partial class GraphsMain : Window
     {
-        public GraphTest()
+        public GraphsMain()
         {
             InitializeComponent();
         }

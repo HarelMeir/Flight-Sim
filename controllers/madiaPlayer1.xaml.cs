@@ -32,7 +32,7 @@ namespace Flight_Sim.controllers
             Image b = new Image();
             b.Name = "play";
             DataContext = vm;
-           // slider.Maximum = this.vm.numberOfLines;
+           
 
 
         }

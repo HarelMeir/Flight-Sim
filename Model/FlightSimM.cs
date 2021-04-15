@@ -430,7 +430,7 @@ namespace Flight_Sim.Model
                                 stream.Write(lineInBytes, 0, lineInBytes.Length);
                                 //update the data class members.
                                 UpdateLine(flightLines[this.data.CurrentLine]);
-                                //this.data.CurrentLine++;
+                                this.data.CurrentLine++;
                                 Thread.Sleep(this.playRythm);
                             }
                             stop = true;
@@ -444,8 +444,8 @@ namespace Flight_Sim.Model
                             break;
                         }
                     }
-                    stream.Close();
-                    client.Close();
+                    //stream.Close();
+                    //client.Close();
                     System.Environment.Exit(1); //in case of "close" - exit the window
                 }).Start();
                 

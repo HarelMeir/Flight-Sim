@@ -96,8 +96,8 @@
     <Compile Include="cppToCSharp\CorrelatedFeatures.cs" />
     <Compile Include="cppToCSharp\MinCircle.cs" />
     <Compile Include="cppToCSharp\SimpleAnomalyDetector.cs" />
-    <Compile Include="GraphTest.xaml.cs">
-      <DependentUpon>GraphTest.xaml</DependentUpon>
+    <Compile Include="GraphsMain.xaml.cs">
+      <DependentUpon>GraphsMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\API.cs" />
     <Compile Include="Model\FlightdataModel.cs" />
@@ -136,7 +136,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GraphTest.xaml">
+    <Page Include="GraphsMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
