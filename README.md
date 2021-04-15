@@ -10,8 +10,8 @@ The project is divided into four main parts :
          FlightSimData: This class holds all 42 properties of the flight. Morover, it contains the data structure Dictionary - that hold all the
                         anomaly csv data as string and float List.
                           All controler's views contains this class.
-8.                         
-9. View Model -  This layer performs connection between the View and the Model layers. 
+                         
+ View Model -  This layer performs connection between the View and the Model layers. 
 10.              Every controller has a vm of its own. this layer connect bewtween the controller's view to its model.
 11.              it uses the interface called NotifyPropertyChanged, according the MVVM architecture.
 12.              Part of its properties are binded to the view's ones, to execute real time changes.
