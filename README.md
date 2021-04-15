@@ -3,13 +3,13 @@
 ## Main files in the project
 The App is made for and flight researchers that want to explore flights.
 The project is divided into four main parts : 
-1. Model - Composed by The connection + data Layer.
-2.         Conntection: this class called FlightSimM. It holds all the FG connection part from the user.
-3.                      Its jobs is to parse the xml for the colNames, "learn normal" for finding anomalies from the "csv train", and detect with the "csv
-4.                      Test". It contain another Model class - FlightSim data, and save some cauculations reasults in it.
-5.         FlightSimData: This class holds all 42 properties of the flight. Morover, it contains the data structure Dictionary - that hold all the
-6.                        anomaly csv data as string and float List.
-7.                        All controler's views contains this class.
+  Model - Composed by The connection + data Layer.
+         Conntection: this class called FlightSimM. It holds all the FG connection part from the user.
+                      Its jobs is to parse the xml for the colNames, "learn normal" for finding anomalies from the "csv train", and detect with the "csv
+                      Test". It contain another Model class - FlightSim data, and save some cauculations reasults in it.
+         FlightSimData: This class holds all 42 properties of the flight. Morover, it contains the data structure Dictionary - that hold all the
+                        anomaly csv data as string and float List.
+                          All controler's views contains this class.
 8.                         
 9. View Model -  This layer performs connection between the View and the Model layers. 
 10.              Every controller has a vm of its own. this layer connect bewtween the controller's view to its model.
