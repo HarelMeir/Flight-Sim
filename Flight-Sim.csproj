@@ -273,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dll\" />
+    <Folder Include="plugins\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
