@@ -272,7 +272,7 @@
     <Resource Include="controllers\images\Image10.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="plugins\" />
+    <Folder Include="Dll\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
