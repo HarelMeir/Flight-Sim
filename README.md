@@ -1,5 +1,7 @@
 # Advanced-Programming-2 - Flight Inspection App
 
+https://www.youtube.com/watch?v=_tP9fRXuNbk
+
 ## Main files in the project
 The App is made for and flight researchers that want to explore flights.
 The project is divided into four main parts : 
