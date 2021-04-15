@@ -57,6 +57,13 @@ namespace Flight_Sim.controllers
             {
                 return model.sliderVal;
             }
+            set
+            {
+                if(this.model.sliderVal != value)
+                {
+                    this.model.sliderVal = value;
+                }
+            }
         }
 
         public int VM_CurrentLine
@@ -102,6 +109,10 @@ namespace Flight_Sim.controllers
                 }
                 time = Convert.ToInt32(minutes) + ":" + Convert.ToInt32(seconds);
                 return time;
+            }
+            set
+            {
+                
             }
         }
 

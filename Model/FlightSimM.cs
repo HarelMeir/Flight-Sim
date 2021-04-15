@@ -363,8 +363,6 @@ namespace Flight_Sim.Model
          *  parse every line that we send to the FG,update FlightDataModel according to its properties,
          *  that are saved at (this.colNames). 
          *  And every time the dataModel properties being updated, they send notication the the different VM that listens.
-         *  its probobly relevant from user Story 3+.
-         *  im going to sleep. ill dream about you AVEV.
          * 
          */
         public void UpdateLine(string line)
