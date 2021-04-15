@@ -3,10 +3,38 @@
 ## Main files in the project
 The App is made for and flight researchers that want to explore flights.
 The project is divided into four main parts : 
-1. Model - contains the latest information at any given moment.
-2. View Model - the part that connects the model to visibility.
-3. View - the visibility of each of the different controllers that control the simulator.
-4. DLL - the user receives a dll from us and decides which dll to let us use, the dll is an anomaly detector written in C++ and used dynamically by the c# program to detect anomalies, the API holds a single function that starts the whole process and creates a file with the detected anomalies that holds their description and timestep, the c# program use the file to save the anomalies locally in a list of AnomalyReports.
+1. Model - Composed by The connection + data Layer.
+2.         Conntection: this class called FlightSimM. It holds all the FG connection part from the user.
+3.                      Its jobs is to parse the xml for the colNames, "learn normal" for finding anomalies from the "csv train", and detect with the "csv
+4.                      Test". It contain another Model class - FlightSim data, and save some cauculations reasults in it.
+5.         FlightSimData: This class holds all 42 properties of the flight. Morover, it contains the data structure Dictionary - that hold all the
+6.                        anomaly csv data as string and float List.
+7.                        All controler's views contains this class.
+8.                         
+9. View Model -  This layer performs connection between the View and the Model layers. 
+10.              Every controller has a vm of its own. this layer connect bewtween the controller's view to its model.
+11.              it uses the interface called NotifyPropertyChanged, according the MVVM architecture.
+12.              Part of its properties are binded to the view's ones, to execute real time changes.
+13.              
+14.              
+15. View - The visibility Layer. every Controller has a view of its own, and contains its VM.
+16.        Composed by 2 parts:
+17.        Xaml: The desgin part, that sets the overall look for each controller.
+18.        Cs part: This is the "code behined". sets the logic behined its diff conponenets, like button clicks, binding to VM propertychanges, etc.
+           
+19. The Views: - 1.MainWindeow - the connection screen.
+20.              2.  FlightSimApp - the main app screen.
+21.              3. GraphMain - the graph screen.
+
+22.                    While finishing with the connection part - windows 2 and 3 opens.
+                     
+23. The Controllers: mediaPlayer - the player controller.
+24.                  Joistick - the joistick userstory.
+25.                  UserStroy5 - the story that represent the plane's location properties.
+26.                  Graphs - all the graphs part.
+27.                  UserStory9 - the anomalies algorith part.
+28.                      
+29. DLL - the user receives a dll from us and decides which dll to let us use, the dll is an anomaly detector written in C++ and used dynamically by the c# program to detect anomalies, the API holds a single function that starts the whole process and creates a file with the detected anomalies that holds their description and timestep, the c# program use the file to save the anomalies locally in a list of AnomalyReports.
 
 
 
