@@ -6,7 +6,7 @@ The project is divided into four main parts :
 1. Model - contains the latest information at any given moment.
 2. View Model - the part that connects the model to visibility.
 3. View - the visibility of each of the different controllers that control the simulator.
-4. DLL - calculates the anomalies and creates a file with the results.
+4. DLL - the user receives a dll from us and decides which dll to let us use, the dll is an anomaly detector written in C++ and used dynamically by the c# program to detect anomalies, the API holds a single function that starts the whole process and creates a file with the detected anomalies that holds their description and timestep, the c# program use the file to save the anomalies locally in a list of AnomalyReports.
 
 
 

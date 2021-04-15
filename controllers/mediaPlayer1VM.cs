@@ -53,7 +53,7 @@ namespace Flight_Sim.controllers
 
         public int VM_sliderVal
         {
-            get
+            get 
             {
                 return model.sliderVal;
             }
@@ -94,7 +94,7 @@ namespace Flight_Sim.controllers
             get
             {
                 seconds = ((double)currentLine / 10) % 59;
-                minutes = Math.Floor(((double)currentLine / 10) / 59);
+                minutes = Math.Floor(((double)currentLine / 10) / 59); 
                 if (seconds < 10)
                 {
                     time = Convert.ToInt32(minutes) + ":0" + Convert.ToInt32(seconds);
@@ -149,7 +149,7 @@ namespace Flight_Sim.controllers
         public void VM_close()
         {
             this.model.Close();
-        }
+        }  
 
     }
 }

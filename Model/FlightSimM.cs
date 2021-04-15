@@ -82,8 +82,6 @@ namespace Flight_Sim.Model
         {
             get
             {
-                //double val = (sliderVal / NumberOfLines) * 100;
-                //return Convert.ToInt32(val);
                 return currentValSlider;
 
             }
@@ -93,9 +91,7 @@ namespace Flight_Sim.Model
                 {
                     this.currentValSlider = value;
                     this.NotifyPropertyChanged("sliderVal");
-                }
-                // value = this.model.sliderCurrent;
-                // _sliderVal = this.model.sliderCurrent;        
+                }      
             }
         }
 
@@ -141,9 +137,7 @@ namespace Flight_Sim.Model
         }
 
         public void ChangeTimeBySlider(double val)
-        {
-            //double v = (val / 100) * numberOfLines;
-           
+        { 
             data.CurrentLine = Convert.ToInt32(val);
         }
         public void Close()

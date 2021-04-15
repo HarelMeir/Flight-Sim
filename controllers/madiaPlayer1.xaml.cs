@@ -67,15 +67,6 @@ namespace Flight_Sim.controllers
             this.vm.VM_leftStopButton();
         }
 
-
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            /*double sliderVal = Convert.ToDouble(((Slider)sender).Value);
-            this.vm.VM_changeTimeBySlider(sliderVal);
-           // slider.Value = Single.SingleDataModel().CurrentLine;*/
-        }
-
         private void SpeedField_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -86,9 +77,6 @@ namespace Flight_Sim.controllers
                 this.vm.SpeedVal = Double.Parse(((TextBox)sender).Text);
             }
         }
-
-
-
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
